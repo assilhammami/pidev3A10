@@ -1,6 +1,8 @@
 package com.esprit.tests;
 
+import com.esprit.models.Archive;
 import com.esprit.models.Travail;
+import com.esprit.services.ArchiveService2;
 import com.esprit.services.TravailService2;
 import java.sql.Date;
 
@@ -10,12 +12,17 @@ public class MainProg {
 
     public static void main(String[] args) {
         TravailService2 ps = new TravailService2();
-
+        ArchiveService2 As = new ArchiveService2();
         // Convertir les dates de chaînes de caractères à des objets Date
-        Date dateDemande = Date.valueOf("2023-06-02");
-        Date dateFin = Date.valueOf("2024-01-01");
+       // Date dateDemande = Date.valueOf("2023-06-02");
+       // Date dateFin = Date.valueOf("2024-01-01");
 
         // Utiliser les objets Date dans la création du Travail
-        ps.ajouter(new Travail("jdid", 10.5, "art", Attente, dateDemande, dateFin));
+        //ps.ajouter(new Travail("jdid", 10.5, "art", Attente, dateDemande, dateFin));
+
+
+
+        Date date_acceptation = Date.valueOf("2020-02-01");
+        As.ajouter(new Archive("arttt", 20, date_acceptation));
     }
 }
