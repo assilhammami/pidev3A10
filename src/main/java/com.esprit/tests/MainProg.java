@@ -17,6 +17,12 @@ public class MainProg {
         //as.ajouter(new avis(2,4,"jddh","yyyyy"));
         //as.modifier(new avis(2,4,"omar","abidi"));
         //as.supprimer(new avis(2,4,"jddh","yyyyy"));
-        System.out.println(as.afficher());
+        //System.out.println(as.afficher());
+        as.ajouter(new avis(2,4,"jddh","yyyyy"));
+        //as.modifier(new avis(2,4,"omar","abidi"));
+        //.supprimer(new avis(2,4,"jddh","yyyyy"));
+        //System.out.println(as.afficher());
+
+
 }
 }
