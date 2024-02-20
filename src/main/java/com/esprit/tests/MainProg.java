@@ -12,10 +12,10 @@ public class MainProg {
         ProduitsService ps = new ProduitsService();
 
         // ******* PRODUITS ********
-        Produits p = new Produits(4,"Monalisa","bbibvsrvbduvbdvbdrbv s",3600,1,"Janvier 1978","Tableaux");
-        ps.ajouterProduits(p);
+        Produits p = new Produits(8,"NAV","bbibvsrvbduvbdvbdrbv s",500,1,"Janvier 1978","Tableaux");
+        //ps.ajouterProduits(p);
         //ps.modifierProduits(p);
-        //ps.supprimerProduits(3);
+        //ps.supprimerProduits(8);
         //System.out.println(ps.afficherProduit());
 
         // ******* COMMANDES ********

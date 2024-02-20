@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="coback" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.AdminAffichageProduits">
+   <children>
+      <ScrollPane layoutX="79.0" layoutY="30.0" prefHeight="550.0" prefWidth="1000.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="PaneBg" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </ScrollPane>
+      <VBox layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG" stylesheets="@Style.css" />
+      <TextField layoutX="114.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" promptText="Search..." stylesheets="@Style.css">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="searchInput" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </TextField>
+      <Button layoutX="336.0" layoutY="5.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="searchBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="80.0" fitWidth="750.0" layoutX="265.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/crudBottom.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="7.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/ProductsTitle.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="278.0" layoutY="622.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="72.0" prefWidth="184.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="ajoutBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="525.0" layoutY="622.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="72.0" prefWidth="184.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="modifBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="750.0" layoutY="622.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="72.0" prefWidth="184.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="suppBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>
