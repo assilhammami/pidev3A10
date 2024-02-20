@@ -1,6 +1,6 @@
 package com.esprit.services;
 
-import com.esprit.models.FormatCours;
+import com.esprit.models.Num_chapitre;
 import com.esprit.models.cours;
 import com.esprit.utils.DataSource;
 
@@ -17,10 +17,10 @@ public class CoursService implements IService<cours> {
     }
     @Override
     public void ajouter(cours cours) {
-        String req = "INSERT into cours(nom, description, format) values (?, ?, ?);";
+        String req = "INSERT into cours(nom, description, num_chap) values (?, ?, ?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setString(3, cours.getFormat().name());
+            pst.setString(3, cours.getNum_chap().name());
             pst.setString(2, cours.getDescription());
             pst.setString(1, cours.getNom());
             pst.executeUpdate();
@@ -32,11 +32,11 @@ public class CoursService implements IService<cours> {
 
     @Override
     public void modifier(cours cours) {
-        String req = "UPDATE cours set nom = ?, description = ?, format = ? where id = ?;";
+        String req = "UPDATE cours set nom = ?, description = ?, num_chap = ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(4, cours.getId());
-            pst.setString(3, cours.getFormat().name());
+            pst.setString(3, cours.getNum_chap().name());
             pst.setString(2, cours.getDescription());
             pst.setString(1, cours.getNom());
             pst.executeUpdate();
@@ -71,9 +71,9 @@ public class CoursService implements IService<cours> {
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
                 String description = rs.getString("description");
-                String formatStr = rs.getString("format");
-                FormatCours format = FormatCours.valueOf(formatStr);
-                courss.add(new cours(id, nom, description, format));
+                String num_chapStr = rs.getString("num_chap");
+                Num_chapitre num_chap = Num_chapitre.valueOf(num_chapStr);
+                courss.add(new cours(id, nom, description, num_chap));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

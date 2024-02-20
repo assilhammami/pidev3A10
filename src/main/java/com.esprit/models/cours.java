@@ -4,19 +4,24 @@ public class cours {
 private int id;
 private String nom;
 private String description;
-private  FormatCours format;
+private Num_chapitre num_chap;
 
-    public cours(int id, String nom, String description,FormatCours format) {
+    public cours(int id, String nom, String description, Num_chapitre num_chap) {
         this.id = id;
         this.nom = nom;
         this.description = description;
-        this.format=format;
+        this.num_chap=num_chap;
     }
 
-    public cours(String nom, String description, FormatCours format) {
+    public cours(String nom, String description, Num_chapitre num_chap) {
         this.nom = nom;
         this.description = description;
-        this.format = format;
+        this.num_chap = num_chap;
+    }
+
+    public cours(String nom, String description) {
+        this.nom = nom;
+        this.description = description;
     }
 
     public int getId() {
@@ -31,8 +36,8 @@ private  FormatCours format;
         return description;
     }
 
-    public FormatCours getFormat() {
-        return format;
+    public Num_chapitre getNum_chap() {
+        return num_chap;
     }
     public void setId(int id) {
         this.id = id;
@@ -46,8 +51,8 @@ private  FormatCours format;
         this.description = description;
     }
 
-    public void setFormat(FormatCours format) {
-        this.format = format;
+    public void setNum_chap(Num_chapitre num_chap) {
+        this.num_chap = num_chap;
     }
 
     @Override
@@ -56,7 +61,7 @@ private  FormatCours format;
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", format=" + format +
+                ", num_chap=" + num_chap +
                 '}';
     }
 }
