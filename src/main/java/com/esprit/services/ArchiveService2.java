@@ -18,13 +18,13 @@ public class ArchiveService2 implements IService<Archive> {
     }
     @Override
     public void ajouter(Archive archive) {
-        String req = "INSERT into archive(description, nb_offre,date_acceptation) values (?,?,?);";
+        String req = "INSERT into archive(description, nb_offre,date_acceptation) values (?,?,?);"; //declaration de la requete
         try {
-            PreparedStatement pst = connection.prepareStatement(req);
-            pst.setDate(3, archive.getDate_acceptation());
+            PreparedStatement pst = connection.prepareStatement(req); //preparation de la requete
+            pst.setDate(3, archive.getDate_acceptation()); // affectation des valeurs
             pst.setDouble(2, archive.getNb_offre());
             pst.setString(1, archive.getDescription());
-            pst.executeUpdate();
+            pst.executeUpdate(); // exécution de la requete
             System.out.println("Archive ajoutée !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -33,7 +33,7 @@ public class ArchiveService2 implements IService<Archive> {
 
     @Override
     public void modifier(Archive archive) {
-        String req = "UPDATE archive set description = ?, nb_offre = ?, , date_aceptation = ? where id = ?;";
+        String req = "UPDATE archive set description = ?, nb_offre = ? , date_acceptation = ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(4, archive.getId());
@@ -55,7 +55,7 @@ public class ArchiveService2 implements IService<Archive> {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(1, archive.getId());
             pst.executeUpdate();
-            System.out.println("Archive supprmiée !");
+            System.out.println("Archive supprimée !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

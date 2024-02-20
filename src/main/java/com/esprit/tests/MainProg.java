@@ -14,15 +14,16 @@ public class MainProg {
         TravailService2 ps = new TravailService2();
         ArchiveService2 As = new ArchiveService2();
         // Convertir les dates de chaînes de caractères à des objets Date
-       // Date dateDemande = Date.valueOf("2023-06-02");
-       // Date dateFin = Date.valueOf("2024-01-01");
+       Date dateDemande = Date.valueOf("2040-10-06");
+       Date dateFin = Date.valueOf("2030-08-01");
 
         // Utiliser les objets Date dans la création du Travail
-        //ps.ajouter(new Travail("jdid", 10.5, "art", Attente, dateDemande, dateFin));
+        ps.ajouter(new Travail("tableau art", 21, "arte", Attente, dateDemande, dateFin));
 
 
 
-        Date date_acceptation = Date.valueOf("2020-02-01");
-        As.ajouter(new Archive("arttt", 20, date_acceptation));
+
+        //Date date_acceptation = Date.valueOf("2030-03-01");
+        //As.supprimer(new Archive(3,"artistique", 70, date_acceptation));
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TravailService2 implements IService<Travail> {
 
-    private Connection connection;
+    private final Connection connection;
 
     public TravailService2() {
         connection = DataSource.getInstance().getConnection();
@@ -22,16 +22,18 @@ public class TravailService2 implements IService<Travail> {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setDate(6, travail.getDate_fin());
             pst.setDate(5, travail.getDate_demande());
+
             pst.setString(4, travail.getStatus().name());
             pst.setString(3, travail.getType());
-            pst.setDouble(2, travail.getPrix());
+            pst.setInt(2, travail.getPrix());
             pst.setString(1, travail.getDescription());
             pst.executeUpdate();
-            System.out.println("Travail ajoutée !");
+            System.out.println("Travail ajouté !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
 
     @Override
     public void modifier(Travail travail) {
@@ -40,7 +42,7 @@ public class TravailService2 implements IService<Travail> {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(7, travail.getId());
             pst.setString(1, travail.getDescription());
-            pst.setDouble(2, travail.getPrix());
+            pst.setInt(2, travail.getPrix());
             pst.setString(3, travail.getType());
             pst.setString(4, travail.getStatus().name());
             pst.setDate(5, travail.getDate_demande());
@@ -77,7 +79,7 @@ public class TravailService2 implements IService<Travail> {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String description = rs.getString("description");
-                double prix = rs.getDouble("prix");
+                int prix = rs.getInt("prix");
                 String type = rs.getString("type");
                 StatusTravail status = StatusTravail.valueOf(rs.getString("status"));
                 Date date_demande = rs.getDate("date_demande");

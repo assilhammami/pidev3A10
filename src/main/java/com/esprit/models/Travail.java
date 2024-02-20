@@ -2,18 +2,19 @@ package com.esprit.models;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Travail {
     private int id;
     private String description;
-    private Double prix ;
+    private int prix ;
     private String type ;
     private StatusTravail status;
     private Date date_demande ;
     private Date date_fin;
 
-    public Travail(int id, String description, Double prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
+    public Travail(int id, String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
         this.id = id;
         this.description = description;
         this.prix = prix;
@@ -23,7 +24,7 @@ public class Travail {
         this.date_fin = date_fin;
     }
 
-    public Travail( String description, Double prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
+    public Travail( String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
 
         this.description = description;
         this.prix = prix;
@@ -33,6 +34,7 @@ public class Travail {
         this.date_fin = date_fin;
     }
 
+
     public int getId() {
         return id;
     }
@@ -41,7 +43,7 @@ public class Travail {
         return description;
     }
 
-    public Double getPrix() {
+    public int getPrix() {
         return prix;
     }
 
@@ -69,7 +71,7 @@ public class Travail {
         this.description = description;
     }
 
-    public void setPrix(Double prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 
@@ -89,12 +91,13 @@ public class Travail {
         this.date_fin = date_fin;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Travail travail = (Travail) o;
-        return id == travail.id && Double.compare(prix, travail.prix) == 0 && Objects.equals(description, travail.description) && Objects.equals(type, travail.type) && status == travail.status && Objects.equals(date_demande, travail.date_demande) && Objects.equals(date_fin, travail.date_fin);
+        return id == travail.id && prix == travail.prix && Objects.equals(description, travail.description) && Objects.equals(type, travail.type) && status == travail.status && Objects.equals(date_demande, travail.date_demande) && Objects.equals(date_fin, travail.date_fin);
     }
 
     @Override

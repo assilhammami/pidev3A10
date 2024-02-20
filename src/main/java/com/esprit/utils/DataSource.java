@@ -13,14 +13,14 @@ public class DataSource {
 
     private DataSource() {
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(URL, USER, PASSWORD); // connexion au base
             System.out.println("Connection a été établie");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static DataSource getInstance() {
+    public static DataSource getInstance() { // un seul canal de communication
         if(instance == null){
             instance = new DataSource();
         }

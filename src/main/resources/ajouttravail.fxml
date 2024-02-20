@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjoutTravailController">
+   <children>
+      <Label layoutX="62.0" layoutY="57.0" text="Description" />
+      <Label layoutX="62.0" layoutY="142.0" text="Prix" />
+      <Label layoutX="56.0" layoutY="251.0" text="Date de demande" />
+      <Label layoutX="61.0" layoutY="309.0" text="Date fin" />
+      <Label layoutX="59.0" layoutY="192.0" text="Type" />
+      <TextField fx:id="tfPrix" layoutX="214.0" layoutY="138.0" prefHeight="25.0" prefWidth="199.0" />
+      <TextField fx:id="tfType" layoutX="213.0" layoutY="188.0" prefHeight="25.0" prefWidth="199.0" />
+      <Button layoutX="219.0" layoutY="361.0" mnemonicParsing="false" onAction="#addTravail" text="Publier" />
+      <TextArea fx:id="tfDescription" layoutX="213.0" layoutY="17.0" prefHeight="97.0" prefWidth="200.0" />
+      <Button layoutX="325.0" layoutY="361.0" mnemonicParsing="false" text="Annuler" />
+      <DatePicker fx:id="tfDatedemande" layoutX="213.0" layoutY="247.0" prefHeight="25.0" prefWidth="199.0" />
+      <DatePicker fx:id="tfDatefin" layoutX="206.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="tfstatus" layoutX="38.0" layoutY="361.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+   </children>
+</AnchorPane>
