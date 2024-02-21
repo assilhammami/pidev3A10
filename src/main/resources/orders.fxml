@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#click" prefHeight="120.0" prefWidth="747.0" styleClass="order_bg" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.admin.OrderItemController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="36.6" layoutY="12.8" prefHeight="86.0" prefWidth="676.0" AnchorPane.leftAnchor="36.6" AnchorPane.rightAnchor="34.60000000000002" AnchorPane.topAnchor="12.8">
+         <children>
+            <ImageView fx:id="img" fitHeight="85.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane prefHeight="86.0" prefWidth="94.0" />
+            <Label fx:id="id" text="UserId: ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutX="136.0" layoutY="10.0" prefHeight="86.0" prefWidth="30.0" />
+            <Label fx:id="Date_commande" layoutX="230.0" layoutY="40.0" text="Date_commande:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="86.0" prefWidth="211.0" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

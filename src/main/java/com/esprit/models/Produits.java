@@ -8,10 +8,33 @@ public class Produits {
     int Stock;
     String Date_Creation;
     String Categorie;
+    String Image_produit;
 
     public Produits() {
 
     }
+
+    public Produits(String nom, String description, float prix, int stock, String date_Creation, String categorie, String image_produit) {
+        Nom = nom;
+        Description = description;
+        Prix = prix;
+        Stock = stock;
+        Date_Creation = date_Creation;
+        Categorie = categorie;
+        Image_produit = image_produit;
+    }
+
+    public Produits(int id_produit, String nom, String description, float prix, int stock, String date_Creation, String categorie, String image_produit) {
+        Id_produit = id_produit;
+        Nom = nom;
+        Description = description;
+        Prix = prix;
+        Stock = stock;
+        Date_Creation = date_Creation;
+        Categorie = categorie;
+        Image_produit = image_produit;
+    }
+
 
     public Produits(int id_produit, String nom, String description, float prix, int stock, String date_Creation, String categorie) {
         Id_produit = id_produit;
@@ -88,6 +111,14 @@ public class Produits {
         Categorie = categorie;
     }
 
+    public String getImage_produit() {
+        return Image_produit;
+    }
+
+    public void setImage_produit(String image_produit) {
+        Image_produit = image_produit;
+    }
+
     @Override
     public String toString() {
         return "Produits{" +
@@ -98,6 +129,7 @@ public class Produits {
                 ", Stock=" + Stock +
                 ", Date_Creation='" + Date_Creation + '\'' +
                 ", Categorie='" + Categorie + '\'' +
+                ", Image_produit='" + Image_produit + '\'' +
                 '}';
     }
 }

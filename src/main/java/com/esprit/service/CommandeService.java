@@ -15,8 +15,6 @@ public class CommandeService implements ICommandeService{
     Connection cnx = DataSource.getInstance().getConnection();
     @Override
     public void ajouterCommande(Commande c) throws SQLException {
-        try (Connection cnx = DataSource.getInstance().getConnection()) {
-
             String req= "INSERT INTO `commande`(`Date_commande`,`Montant_totale`, `Quantite`, `Id_produit`, `id`)"+" VALUES (?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1,c.getDate_commande());
@@ -26,10 +24,6 @@ public class CommandeService implements ICommandeService{
             pst.setInt(5, c.getId());
             pst.executeUpdate();
             System.out.println("Commande added Succesfully");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     @Override

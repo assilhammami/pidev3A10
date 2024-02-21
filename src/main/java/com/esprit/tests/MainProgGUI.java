@@ -17,11 +17,12 @@ public class MainProgGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminAjoutProduits.fxml"));
+       // FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminAffichageProduits.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClientShop.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajout Produit");
+        primaryStage.setTitle("DAVINCCI'S SHOP");
         primaryStage.show();
     }
 }
