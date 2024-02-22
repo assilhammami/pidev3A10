@@ -5,6 +5,9 @@ import com.esprit.models.Produits;
 import com.esprit.service.MyListener;
 import com.esprit.service.ProduitsService;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -164,5 +168,17 @@ public class ClientShopController implements Initializable {
     void search(MouseEvent event) {
 
     }
+    @FXML
+    void GoToMyOrders(ActionEvent event) throws IOException {
+        URL fxURL = getClass().getResource("/ClientOrders.fxml");
+        FXMLLoader loader = new FXMLLoader(fxURL);
+        Parent root = (Parent) loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Davincci Client - Orders");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
 
 }

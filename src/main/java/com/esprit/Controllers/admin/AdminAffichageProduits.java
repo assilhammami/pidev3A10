@@ -66,6 +66,7 @@ public class AdminAffichageProduits implements Initializable{
 
     public Produits selectedProduct;
     private List<Produits> produitsList = new ArrayList<>();
+    String date_creation_chosen;
     private void setChosenProduct(Produits p) {
         selectedProduct = p;
         id_prod = p.getId_produit();
@@ -74,6 +75,7 @@ public class AdminAffichageProduits implements Initializable{
         Prix.setText(Float.toString(p.getPrix()));
         Stock.setText(Integer.toString(p.getStock()));
         Date_creation.setText("Date creation: "+p.getDate_Creation());
+        date_creation_chosen = p.getDate_Creation();
         Categorie.setText(p.getCategorie());
         Image image = new Image(p.getImage_produit());
         img.setImage(image);
@@ -148,6 +150,7 @@ public class AdminAffichageProduits implements Initializable{
         int stockProduit = Integer.parseInt(Stock.getText());
         String categorieProduit = Categorie.getText();
         String imgProd = image_produit.getText();
+
         Produits p = new Produits(nomProduit, descriptionProduit, prixProduit, stockProduit, dateCreation, categorieProduit, imgProd);
         produit.ajouterProduits(p);
         Update();
@@ -155,7 +158,7 @@ public class AdminAffichageProduits implements Initializable{
 
     @FXML
     void modifierProduit(ActionEvent event) throws SQLException {
-        Produits p = new Produits(id_prod, Nom_produit.getText(), Description.getText(), Float.parseFloat(Prix.getText()), Integer.parseInt(Stock.getText()), Date_creation.getText(), Categorie.getText(), image_produit.getText());
+        Produits p = new Produits(id_prod, Nom_produit.getText(), Description.getText(), Float.parseFloat(Prix.getText()), Integer.parseInt(Stock.getText()), date_creation_chosen, Categorie.getText(), image_produit.getText());
         ProduitsService produit = new ProduitsService();
         produit.modifierProduits(p);
         produitsList.clear();

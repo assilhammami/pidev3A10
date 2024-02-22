@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="coback" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.client.ClientOrdersController">
+   <children>
+      <ScrollPane fx:id="scroll" layoutX="89.0" layoutY="40.0" prefHeight="550.0" prefWidth="1000.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="PaneBg" />
+            <String fx:value="transparent" />
+         </styleClass>
+         <content>
+            <GridPane fx:id="grid" prefHeight="125.0" prefWidth="114.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG" stylesheets="@Style.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="126.0" prefWidth="286.0" />
+         </children>
+      </VBox>
+      <TextField layoutX="124.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" promptText="Search..." stylesheets="@Style.css">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="searchInput" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </TextField>
+      <Button layoutX="346.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#search" prefHeight="40.0" prefWidth="44.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="searchBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1204.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToShop" prefHeight="69.0" prefWidth="70.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="shop_icon" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="17.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/order_title.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="750.0" layoutX="275.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/bottom_navigation.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="153.0" layoutX="-27.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/davincci_logo-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -10,4 +10,5 @@ public interface ICommandeService {
     public void modifierCommande(Commande c) throws SQLException;
     public void supprimerCommande(int Id_produit);
     public List<Commande> afficherCommande();
+    public List<Commande> afficherCommandeParIdUser(int id);
 }

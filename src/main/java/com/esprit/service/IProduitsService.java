@@ -12,4 +12,5 @@ public interface IProduitsService {
     public void modifierProduits(Produits p) throws SQLException;
     public void supprimerProduits(int Id_produit);
     public List<Produits> afficherProduit();
+    public void acheterProduit(int Id_produit, int ID_utilisateur);
 }

@@ -79,4 +79,24 @@ public class CommandeService implements ICommandeService{
         return commandes;
     }
 
+
+    @Override
+    public List<Commande> afficherCommandeParIdUser(int id) {
+
+        List<Commande> commandes = new ArrayList<>();
+
+        String req = "SELECT * FROM commande WHERE id like '" + id + "'";
+        try {
+
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                commandes.add(new Commande(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return commandes;
+    }
 }

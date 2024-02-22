@@ -108,5 +108,12 @@
             <Font name="Sitka Subheading" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="1204.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToMyOrders" prefHeight="69.0" prefWidth="70.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="orders_icon" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      
    </children>
 </AnchorPane>
