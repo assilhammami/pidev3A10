@@ -1,6 +1,5 @@
 package com.esprit.services;
 
-import com.esprit.models.Num_chapitre;
 import com.esprit.models.cours;
 import com.esprit.utils.DataSource;
 
@@ -17,10 +16,11 @@ public class CoursService implements IService<cours> {
     }
     @Override
     public void ajouter(cours cours) {
-        String req = "INSERT into cours(nom, description, num_chap) values (?, ?, ?);";
+        String req = "INSERT into cours(nom, description, date_pub, image) values (?, ?, ?, ?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setString(3, cours.getNum_chap().name());
+            pst.setString(4, cours.getImage());
+            pst.setDate(3, cours.getDate_pub());
             pst.setString(2, cours.getDescription());
             pst.setString(1, cours.getNom());
             pst.executeUpdate();
@@ -32,11 +32,12 @@ public class CoursService implements IService<cours> {
 
     @Override
     public void modifier(cours cours) {
-        String req = "UPDATE cours set nom = ?, description = ?, num_chap = ? where id = ?;";
+        String req = "UPDATE cours set nom = ?, description = ?, date_pub = ?, image = ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(4, cours.getId());
-            pst.setString(3, cours.getNum_chap().name());
+            pst.setInt(5, cours.getId());
+            pst.setString(4, cours.getImage());
+            pst.setDate(3, cours.getDate_pub());
             pst.setString(2, cours.getDescription());
             pst.setString(1, cours.getNom());
             pst.executeUpdate();
@@ -47,11 +48,11 @@ public class CoursService implements IService<cours> {
     }
 
     @Override
-    public void supprimer(cours cours) {
+    public void supprimer(int id) {
         String req = "DELETE from cours where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(1, cours.getId());
+            pst.setInt(1,id);
             pst.executeUpdate();
             System.out.println("cours supprmiée !");
         } catch (SQLException e) {
@@ -71,14 +72,37 @@ public class CoursService implements IService<cours> {
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
                 String description = rs.getString("description");
-                String num_chapStr = rs.getString("num_chap");
-                Num_chapitre num_chap = Num_chapitre.valueOf(num_chapStr);
-                courss.add(new cours(id, nom, description, num_chap));
+                Date date_pub = rs.getDate("date_pub");
+                String image = rs.getString("image");
+                courss.add(new cours(id,nom,description,date_pub,image));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return courss;
+    }
+    public cours getcoursparId(int id) {
+
+        String req = "SELECT * FROM cours WHERE id = ?";
+        cours courses = null;
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            pst.setInt(1, id);
+
+            while (rs.next()) {
+                int id1 = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String description = rs.getString("description");
+                Date date_pub = rs.getDate("date_pub");
+                String image = rs.getString("image");
+                courses = new cours(nom, description, date_pub, image);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return courses;
     }
 }

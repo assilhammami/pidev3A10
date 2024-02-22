@@ -1,27 +1,30 @@
 package com.esprit.controllers;
 
-import com.esprit.models.Num_chapitre;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import java.util.Date;
 
 public class AffichageCoursController {
 
     @FXML
     private Label lbDescription;
-
     @FXML
     private Label lbNom;
-
     @FXML
-    private Label lbNumchap;
+    private Label lbDatepub;
+    @FXML
+    private Label lbImage;
+
     public void setLbNom(String nom){
         lbNom.setText(nom);
     }
     public void setLbDescription(String description){
         lbDescription.setText(description);
     }
-    public void setLbNumchap(Num_chapitre num_chap){
-        lbNumchap.setText(num_chap.toString());
-    }
 
+    public void setLbDatepub(String date_pub){ lbDatepub.setText(date_pub);}
+    public void setLbImage(String image){lbImage.setText(image);}
 }
+
+

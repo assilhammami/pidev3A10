@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.ListCoursController">
+    <children>
+        <Label layoutX="123.0" layoutY="243.0" />
+        <Label layoutX="183.0" layoutY="27.0" prefHeight="32.0" prefWidth="234.0" text="Affichage Cours" textFill="#cc1275">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <TableView fx:id="tabcours" layoutX="34.0" layoutY="69.0" prefHeight="295.0" prefWidth="448.0">
+            <columns>
+                <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="Nom" prefWidth="75.0" text="NOM" />
+                <TableColumn fx:id="Description" prefWidth="75.0" text="DESCRIPTION" />
+                <TableColumn fx:id="Date" prefWidth="121.5999755859375" text="DATE PUBLICATION" />
+                <TableColumn fx:id="Image" prefWidth="100.0" text="IMAGE" />
+            </columns>
+        </TableView>
+        <Button layoutX="495.0" layoutY="192.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" text="MODIFIER" />
+        <Button layoutX="487.0" layoutY="236.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" text="SUPPRIMER" />
+    </children>
+</AnchorPane>

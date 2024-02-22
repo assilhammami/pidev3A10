@@ -1,27 +1,34 @@
 package com.esprit.models;
+import java.awt.*;
 import java.lang.String;
+import java.sql.Date;
+import java.util.Objects;
+
 public class cours {
 private int id;
 private String nom;
 private String description;
-private Num_chapitre num_chap;
+private Date date_pub;
+private String image;
 
-    public cours(int id, String nom, String description, Num_chapitre num_chap) {
+
+    public cours() {
+
+
+    }
+    public cours(String nom, String description, Date date_pub, String image) {
+        this.nom = nom;
+        this.description = description;
+        this.date_pub=date_pub;
+        this.image = image;
+    }
+
+    public cours(int id, String nom, String description, Date date_pub, String image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
-        this.num_chap=num_chap;
-    }
-
-    public cours(String nom, String description, Num_chapitre num_chap) {
-        this.nom = nom;
-        this.description = description;
-        this.num_chap = num_chap;
-    }
-
-    public cours(String nom, String description) {
-        this.nom = nom;
-        this.description = description;
+        this.date_pub = date_pub;
+        this.image = image;
     }
 
     public int getId() {
@@ -36,9 +43,14 @@ private Num_chapitre num_chap;
         return description;
     }
 
-    public Num_chapitre getNum_chap() {
-        return num_chap;
+    public Date getDate_pub() {
+        return date_pub;
     }
+
+    public String getImage() {
+        return image;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -51,8 +63,12 @@ private Num_chapitre num_chap;
         this.description = description;
     }
 
-    public void setNum_chap(Num_chapitre num_chap) {
-        this.num_chap = num_chap;
+    public void setDate_pub(Date date_pub) {
+        this.date_pub = date_pub;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -61,7 +77,21 @@ private Num_chapitre num_chap;
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", num_chap=" + num_chap +
+                ", date_pub=" + date_pub +
+                ", image='" + image + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        cours cours = (cours) o;
+        return id == cours.id && Objects.equals(nom, cours.nom) && Objects.equals(description, cours.description) && Objects.equals(date_pub, cours.date_pub) && Objects.equals(image, cours.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, description, date_pub, image);
     }
 }

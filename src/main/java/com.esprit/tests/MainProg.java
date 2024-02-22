@@ -1,16 +1,16 @@
 package com.esprit.tests;
 
-import com.esprit.models.Num_chapitre;
 import com.esprit.models.cours;
 import com.esprit.services.CoursService;
 
 public class MainProg {
     public static void main(String[] args) {
         CoursService cs = new CoursService();
-        cs.ajouter(new cours(1, "cours","ajdhdhdh", Num_chapitre.CHAP3));
-        //cs.modifier(new cours(7, "cours1","MOUADH", FormatCours.PRESENTIEL));
-        //cs.supprimer(new cours(7, "Med","MOUADH", FormatCours.PRESENTIEL));
-        //System.out.println(cs.afficher());
+        //cours cours1=new cours("cours4","ajdhdhdh",01/03/2020,"azazazaz");
+        //cs.ajouter(new cours(1, "cours4","ajdhdhdh"));
+        //cs.modifier(new cours(25, "cours3","MOUADH"));
+        //cs.supprimer(new cours(7, "Med","MOUADH"));
+        System.out.println(cs.afficher());
         //AvisService as = new AvisService();
         //as.ajouter(new avis(2,4,"jddh","yyyyy"));
         //as.modifier(new avis(2,4,"omar","abidi"));
