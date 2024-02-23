@@ -56,11 +56,11 @@ public class TravailService2 implements IService<Travail> {
 
 
     @Override
-    public void supprimer(Travail travail) {
+    public void supprimer(int id) {
         String req = "DELETE from travail where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(1, travail.getId());
+            pst.setInt(1, id);
             pst.executeUpdate();
             System.out.println("Travail supprmiée !");
         } catch (SQLException e) {

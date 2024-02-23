@@ -5,22 +5,61 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjoutTravailController">
+<AnchorPane prefHeight="609.0" prefWidth="794.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjoutTravailController">
    <children>
-      <Label layoutX="62.0" layoutY="57.0" text="Description" />
-      <Label layoutX="62.0" layoutY="142.0" text="Prix" />
-      <Label layoutX="56.0" layoutY="251.0" text="Date de demande" />
-      <Label layoutX="61.0" layoutY="309.0" text="Date fin" />
-      <Label layoutX="59.0" layoutY="192.0" text="Type" />
-      <TextField fx:id="tfPrix" layoutX="214.0" layoutY="138.0" prefHeight="25.0" prefWidth="199.0" />
-      <TextField fx:id="tfType" layoutX="213.0" layoutY="188.0" prefHeight="25.0" prefWidth="199.0" />
-      <Button layoutX="219.0" layoutY="361.0" mnemonicParsing="false" onAction="#addTravail" text="Publier" />
-      <TextArea fx:id="tfDescription" layoutX="213.0" layoutY="17.0" prefHeight="97.0" prefWidth="200.0" />
-      <Button layoutX="325.0" layoutY="361.0" mnemonicParsing="false" text="Annuler" />
-      <DatePicker fx:id="tfDatedemande" layoutX="213.0" layoutY="247.0" prefHeight="25.0" prefWidth="199.0" />
-      <DatePicker fx:id="tfDatefin" layoutX="206.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" />
-      <TextField fx:id="tfstatus" layoutX="38.0" layoutY="361.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Label layoutX="60.0" layoutY="115.0" text="Description">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="92.0" layoutY="219.0" text="Prix">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="57.0" layoutY="359.0" text="Date de demande">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="83.0" layoutY="427.0" text="Date fin">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="280.0" text="Type">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <TextField fx:id="tfPrix" layoutX="219.0" layoutY="211.0" prefHeight="35.0" prefWidth="248.0" promptText="Prix" />
+      <TextField fx:id="tfType" layoutX="219.0" layoutY="272.0" prefHeight="35.0" prefWidth="248.0" promptText="Type" />
+      <Button layoutX="219.0" layoutY="479.0" mnemonicParsing="false" onAction="#addTravail" prefHeight="35.0" prefWidth="77.0" text="Publier">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <TextArea fx:id="tfDescription" layoutX="219.0" layoutY="86.0" prefHeight="97.0" prefWidth="248.0" promptText="Description" />
+      <Button layoutX="358.0" layoutY="479.0" mnemonicParsing="false" onAction="#annulerEvent" prefHeight="35.0" prefWidth="77.0" text="Annuler">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <DatePicker fx:id="tfDatedemande" layoutX="219.0" layoutY="351.0" prefHeight="35.0" prefWidth="248.0" promptText="Date de demande" />
+      <DatePicker fx:id="tfDatefin" layoutX="219.0" layoutY="419.0" prefHeight="35.0" prefWidth="248.0" promptText="Date de fin" />
+      <Text fill="#a80f0f" layoutX="252.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Travail" wrappingWidth="211.7412109375">
+         <font>
+            <Font name="Algerian" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="65.0" fitWidth="103.0" layoutX="638.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/Firas/Desktop/ESPRIT/3éme%20cycle%20ing/P2/Pi/LOGO.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="174.0" fitWidth="229.0" layoutX="551.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/Firas/Desktop/416742132_432416622810311_6508778138220123199_n.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

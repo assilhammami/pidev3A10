@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AffichageTravailController">
+   <children>
+      <Label layoutX="43.0" layoutY="35.0" text="Description" />
+      <Label layoutX="63.0" layoutY="105.0" text="Prix" />
+      <Label layoutX="60.0" layoutY="163.0" text="Type" />
+      <Label layoutX="43.0" layoutY="227.0" text="Date de demande" />
+      <Label layoutX="52.0" layoutY="285.0" text="Date fin" />
+      <Label fx:id="lbDescription" layoutX="286.0" layoutY="35.0" text="Label" />
+      <Label fx:id="lbPrix" layoutX="286.0" layoutY="105.0" text="Label" />
+      <Label fx:id="lbType" layoutX="286.0" layoutY="163.0" text="Label" />
+      <Label fx:id="lbDatedemande" layoutX="286.0" layoutY="227.0" text="Label" />
+      <Label fx:id="lbDatefin" layoutX="286.0" layoutY="285.0" text="Label" />
+   </children>
+</AnchorPane>

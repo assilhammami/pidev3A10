@@ -49,11 +49,11 @@ public class ArchiveService2 implements IService<Archive> {
 
 
     @Override
-    public void supprimer(Archive archive) {
+    public void supprimer(int id) {
         String req = "DELETE from archive where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(1, archive.getId());
+            pst.setInt(1, id);
             pst.executeUpdate();
             System.out.println("Archive supprimée !");
         } catch (SQLException e) {
