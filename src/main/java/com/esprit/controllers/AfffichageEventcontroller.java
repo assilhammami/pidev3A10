@@ -63,6 +63,8 @@ public class AfffichageEventcontroller implements Initializable {
 
     public Event selectedProduct;
     private List<Event> eventsList = new ArrayList<>();
+    @FXML
+    private TextField searchField;
 
     private void setChosenProduct(Event ev) {
         selectedProduct = ev;
@@ -74,8 +76,7 @@ public class AfffichageEventcontroller implements Initializable {
         place.setText(ev.getPlace());
         image.setText(ev.getImage());
         Image image;
-        System.out.println(ev.getImage());
-        System.out.println("java zebi");
+
         image = new Image(ev.getImage());
         img.setImage(image);
 
@@ -101,7 +102,6 @@ public class AfffichageEventcontroller implements Initializable {
              for (int i = 0; i < eventsList.size(); i++) {
                  FXMLLoader fxmlLoader = new FXMLLoader();
                  fxmlLoader.setLocation(getClass().getResource("/evvv.fxml") );
-                 System.out.println("naan din zebi");
                  AnchorPane anchorPane = fxmlLoader.load();
 
                  Evvvcontroller evvvcontroller = fxmlLoader.getController();
@@ -132,27 +132,14 @@ public class AfffichageEventcontroller implements Initializable {
 
      @Override
      public void initialize(URL url, ResourceBundle rb) {
-
+         // Ajouter un écouteur d'événements sur le champ de recherche
+         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+             // Appeler la fonction de recherche à chaque fois que le texte du champ de recherche change
+             search();
+         });
         Update();
      }
-/*
-     @FXML
-     void ajoutProduit(ActionEvent event) throws SQLException {
-         ProduitsService produit = new ProduitsService();
-         LocalDate dateObj = LocalDate.now();
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-         String dateCreation = dateObj.format(formatter);
 
-         String nomProduit = Nom_produit.getText();
-         String descriptionProduit = Description.getText();
-         float prixProduit = Float.parseFloat(Prix.getText());
-         int stockProduit = Integer.parseInt(Stock.getText());
-         String categorieProduit = Categorie.getText();
-         Produits p = new Produits(nomProduit, descriptionProduit, prixProduit, stockProduit, dateCreation, categorieProduit);
-         produit.ajouterProduits(p);
-         Update();
-     }
-*/
      @FXML
      void modifier(ActionEvent event) throws SQLException {
          Event e = new Event(id_evnt, nom.getText(),date.getText(), description.getText(), Integer.parseInt(capacity.getText()), place.getText(), image.getText());
@@ -165,10 +152,7 @@ public class AfffichageEventcontroller implements Initializable {
          System.out.println(e.getNom());
      }
 
-     @FXML
-     void search(MouseEvent event) {
-         Update();
-     }
+
 
     @FXML
     void supprimer(MouseEvent event) {
@@ -179,17 +163,68 @@ public class AfffichageEventcontroller implements Initializable {
       Update();
     }
 
+
     @FXML
-    void GoToOrders(ActionEvent event) throws IOException {
-        URL fxURL = getClass().getResource("/AfffichageEvent.fxml");
-        FXMLLoader loader = new FXMLLoader(fxURL);
-        Parent root = (Parent) loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Davincci Admin - Orders");
-        stage.setScene(new Scene(root));
+    void ajouterEvent(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjoutEvent.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage stageAfficher = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle(" ajouter Event");
+        stageAfficher.close();
+
         stage.show();
-
     }
+    @FXML
+    void search( ) {
+        String searchTerm = searchField.getText().toLowerCase(); // Récupérer le terme de recherche saisi par l'utilisateur
+        List<Event> filteredList = new ArrayList<>(); // Créer une liste pour stocker les éléments filtrés
+
+        // Parcourir la liste des travaux
+        for (Event ev : eventsList) {
+            // Vérifier si le terme de recherche est contenu dans la description ou le type du travail
+            if (ev.getNom().toLowerCase().contains(searchTerm) ){
+                // Si oui, ajouter le travail à la liste filtrée
+                filteredList.add(ev);
+            }
+        }
+
+        // Nettoyer la grille actuelle
+        grid.getChildren().clear();
+
+        // Afficher les travaux filtrés
+        int c = 0;
+        int l = 0;
+        try {
+            for (int i = 0; i < filteredList.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/evvv.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                Evvvcontroller evvvcontroller = fxmlLoader.getController();
+                evvvcontroller.setData(filteredList.get(i), myListener);
+                if (c > 3) {
+                    c = 0;
+                    l++;
+                }
+                grid.add(anchorPane, c++, l);
+                //grid weight
+                grid.setMinWidth(134);
+                grid.setPrefWidth(134);
+                grid.setMaxWidth(134);//
+                //height
+                grid.setMinHeight(112);
+                grid.setPrefHeight(112);
+                grid.setMaxHeight(112);//
+                grid.setLayoutY(10);
 
 
-}
+                GridPane.setMargin(anchorPane, new Insets(175, 0, 0, 70));
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }}

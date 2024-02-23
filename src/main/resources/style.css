@@ -1,0 +1,24 @@
+.button {
+    -fx-background-color: #cce8e1; /* Couleur de base */
+    -fx-text-fill: #000000;
+}
+
+.button:hover {
+    -fx-background-color: #cce8e1; /* Couleur de survol */
+}
+
+.button:pressed {
+    -fx-background-color: #cce8e1; /* Couleur enfoncée */
+}
+
+.background {
+    -fx-background-color: linear-gradient(to right, #A5C1BA, #ffffffff);
+}
+
+.background2 {
+    -fx-background-color: linear-gradient(to bottom, #A5C1BA, #ffffffff);
+}
+.button:pressed
+{
+    -fx-background-color : #c1f6c7;
+}

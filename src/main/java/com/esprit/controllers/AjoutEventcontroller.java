@@ -5,9 +5,12 @@ import com.esprit.services.EventService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -40,16 +43,20 @@ public class AjoutEventcontroller {
         alert.setContentText("Event ajoutée !");
         alert.show();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageEvent.fxml"));
+
+    }
+
+
+    @FXML
+    void afficherEvent(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfffichageEvent.fxml"));
         Parent root = loader.load();
-        tfNom.getScene().setRoot(root);
-        AffichageEventcontroller apc = loader.getController();
-        apc.setLbNom(tfNom.getText());
-        apc.setLbdate(tfdate.getText());
-        apc.setLbdescription(tfdes.getText());
-        apc.setlbcapacity(Integer.parseInt(tfcapa.getText()));
-        apc.setLbplace(tfpla.getText());
-        apc.setLbimage(tfimage.getText());
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage stageAjouter = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stageAjouter.close();
+        stage.show();
     }
 
 }

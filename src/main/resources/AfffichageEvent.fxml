@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="730.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AfffichageEventcontroller">
+<AnchorPane prefHeight="730.0" prefWidth="1147.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AfffichageEventcontroller">
    <children>
-      <ScrollPane fx:id="scroll" layoutX="73.0" layoutY="107.0" prefHeight="527.0" prefWidth="902.0" style="-fx-background-color: #383E42;">
+      <ScrollPane fx:id="scroll" layoutX="73.0" layoutY="107.0" prefHeight="527.0" prefWidth="925.0" styleClass="background" stylesheets="@style.css">
          <padding>
             <Insets right="1.0" />
          </padding>
@@ -30,12 +30,15 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="786.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG">
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1000.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background" stylesheets="@style.css">
          <children>
-            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="286.0">
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="289.0">
                <children>
                   <TextField fx:id="nom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="188.0" promptText="Nom" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <VBox alignment="CENTER" prefHeight="179.0" prefWidth="286.0">
                <children>
@@ -49,7 +52,7 @@
             </TextField>
             <VBox prefHeight="169.0" prefWidth="286.0">
                <children>
-                  <Label text="date">
+                  <Label text="Date" textAlignment="CENTER" textFill="#1b1a1a">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -62,7 +65,7 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Description">
+                  <Label text="Description" textFill="#131313">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -82,14 +85,14 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="286.0">
                <children>
-                  <Label text="capacity: ">
+                  <Label text="capacity: " textFill="#131212">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                   <TextField fx:id="capacity" prefHeight="26.0" prefWidth="50.0" />
                   <Pane prefHeight="69.0" prefWidth="42.0" />
-                  <Label text="place: ">
+                  <Label text="place: " textFill="#201f1f">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -99,25 +102,34 @@
             </HBox>
          </children>
       </VBox>
-<!--      <Button layoutX="231.0" layoutY="634.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifier" prefHeight="72.0" prefWidth="184.0" stylesheets="@../../../../../Desktop/Gestion%20produits/src/main/resources/Style.css">&ndash;&gt;-->
-<!--         <styleClass>-->
-<!--            <String fx:value="modifBtn" />-->
-<!--            <String fx:value="transparent" />-->
-<!--         </styleClass>-->
-<!--      </Button>-->
-<!--      <Button layoutX="482.0" layoutY="634.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#supprimerProduit" prefHeight="72.0" prefWidth="184.0" stylesheets="@../../../../../Desktop/Gestion%20produits/src/main/resources/Style.css">-->
-<!--         <styleClass>-->
-<!--            <String fx:value="suppBtn" />-->
-<!--            <String fx:value="transparent" />-->
-<!--         </styleClass>-->
-<!--      </Button>-->
-      <Button layoutX="1214.0" layoutY="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToOrders" prefHeight="69.0" prefWidth="70.0">
-         <styleClass>
-            <String fx:value="orders_icon" />
-            <String fx:value="transparent" />
-         </styleClass>
+      <Button layoutX="851.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="40.0" prefWidth="165.0" stylesheets="@style.css" text="supprimer">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font></Button>
+      <Button layoutX="680.0" layoutY="652.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="151.0" stylesheets="@style.css" text="modifier">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font></Button>
+      <Button layoutX="177.0" layoutY="642.0" mnemonicParsing="false" onAction="#ajouterEvent" prefHeight="46.0" prefWidth="246.0" text="ajouter event">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
       </Button>
-      <Button layoutX="924.0" layoutY="668.0" mnemonicParsing="false" onMouseClicked="#supprimer" text="supprimer" />
-      <Button layoutX="837.0" layoutY="668.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
+      <ImageView fitHeight="80.0" fitWidth="150.0" layoutX="1117.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/assil/Desktop/logo%20web.png" />
+         </image>
+      </ImageView>
+      <Label alignment="BASELINE_CENTER" layoutX="294.0" layoutY="53.0" prefHeight="46.0" prefWidth="378.0" text="list of Event ">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchField" alignment="TOP_CENTER" layoutX="587.0" layoutY="64.0" onAction="#search" onKeyPressed="#search" promptText="Search..." />
+      <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="593.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/assil/Desktop/search-icon-png-21.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

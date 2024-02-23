@@ -23,7 +23,7 @@ public class MainProgGUI extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajout Produit");
+        primaryStage.setTitle("les events");
         primaryStage.show();
     }
 }
