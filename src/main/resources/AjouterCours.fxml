@@ -8,21 +8,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="758.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjouterCoursController">
+<AnchorPane prefHeight="758.0" prefWidth="1064.0" styleClass="background" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjouterCoursController">
    <children>
-      <Label layoutX="70.0" layoutY="117.0" text="Nom" />
-      <Label layoutX="70.0" layoutY="200.0" text="Description" />
-      <TextField fx:id="tfNom" layoutX="150.0" layoutY="113.0" />
-      <TextField fx:id="tfDescription" layoutX="169.0" layoutY="196.0" />
-      <Button layoutX="225.0" layoutY="408.0" mnemonicParsing="false" onAction="#addCours" text="Ajouter" />
-      <Text fill="#dc2fa0" fontSmoothingType="LCD" layoutX="160.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Cours">
+      <Label layoutX="70.0" layoutY="117.0" text="Nom">
          <font>
-            <Font size="36.0" />
+            <Font name="Cooper Black" size="16.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="200.0" text="Description">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font></Label>
+      <TextField fx:id="tfNom" layoutX="146.0" layoutY="114.0" />
+      <TextField fx:id="tfDescription" layoutX="178.0" layoutY="197.0" />
+      <Button layoutX="225.0" layoutY="408.0" mnemonicParsing="false" onAction="#addCours" prefHeight="36.0" prefWidth="86.0" text="Ajouter">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font></Button>
+      <Text fill="#816161" fontSmoothingType="LCD" layoutX="132.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Cours">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <Label layoutX="69.0" layoutY="273.0" text="Date de publication" />
-      <DatePicker fx:id="tfDatepub" layoutX="193.0" layoutY="269.0" />
-      <Label layoutX="69.0" layoutY="353.0" text="Image" />
-      <TextField fx:id="tfImage" layoutX="178.0" layoutY="349.0" />
+      <Label layoutX="69.0" layoutY="273.0" text="Date de publication">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font></Label>
+      <DatePicker fx:id="tfDatepub" layoutX="244.0" layoutY="270.0" />
+      <Label layoutX="69.0" layoutY="353.0" text="Image">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font></Label>
+      <TextField fx:id="tfImage" layoutX="153.0" layoutY="350.0" />
+      <Button layoutX="513.0" layoutY="408.0" mnemonicParsing="false" onAction="#afficher" prefHeight="36.0" prefWidth="155.0" text="Liste des Cours">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

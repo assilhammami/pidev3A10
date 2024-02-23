@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import com.esprit.models.cours;
@@ -20,19 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 
 public class AfficheCoursController implements Initializable {
-
-    @FXML
-    private VBox chosen;
 
     @FXML
     private TextField date_pub;
@@ -52,12 +44,12 @@ public class AfficheCoursController implements Initializable {
     @FXML
     private TextField nom;
 
-    @FXML
-    private ScrollPane scroll;
     private int id_cours;
+    @FXML
+    private TextField searchField;
+
     //
     MyListener myListener;
-
 
     public cours selectedCours;
     private List<cours> coursList = new ArrayList<>();
@@ -72,7 +64,6 @@ public class AfficheCoursController implements Initializable {
         Image image;
         image = new Image(cours.getImage());
         img.setImage(image);
-
     }
 
     void Update() {
@@ -88,7 +79,6 @@ public class AfficheCoursController implements Initializable {
 
             }
         };
-
         int c = 0;
         int l = 0;
         try {
@@ -96,7 +86,6 @@ public class AfficheCoursController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CoursCard.fxml") );
                 AnchorPane anchorPane = fxmlLoader.load();
-
                 CoursCardController cardcontroller = fxmlLoader.getController();
                 cardcontroller.setData(coursList.get(i), myListener);
                 if (c > 3) {
@@ -113,8 +102,6 @@ public class AfficheCoursController implements Initializable {
                 grid.setPrefHeight(112);
                 grid.setMaxHeight(112);//
                 grid.setLayoutY(10);
-
-
                 GridPane.setMargin(anchorPane, new Insets(175, 0, 0, 70));
             }
         } catch (IOException ex) {
@@ -122,30 +109,19 @@ public class AfficheCoursController implements Initializable {
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+// Ajouter un écouteur d'événements sur le champ de recherche
+        // Ajouter un écouteur d'événements sur le champ de recherche
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Appeler la fonction de recherche à chaque fois que le texte du champ de recherche change
+            search();
+        });
 
+        // Initialiser l'affichage des travaux
         Update();
     }
-    /*
-         @FXML
-         void ajoutProduit(ActionEvent event) throws SQLException {
-             ProduitsService produit = new ProduitsService();
-             LocalDate dateObj = LocalDate.now();
-             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-             String dateCreation = dateObj.format(formatter);
-
-             String nomProduit = Nom_produit.getText();
-             String descriptionProduit = Description.getText();
-             float prixProduit = Float.parseFloat(Prix.getText());
-             int stockProduit = Integer.parseInt(Stock.getText());
-             String categorieProduit = Categorie.getText();
-             Produits p = new Produits(nomProduit, descriptionProduit, prixProduit, stockProduit, dateCreation, categorieProduit);
-             produit.ajouterProduits(p);
-             Update();
-         }
-*/
+//boutton modifier
     @FXML
     void modifier(ActionEvent event) throws SQLException {
         cours cours = new cours(id_cours, nom.getText(), description.getText(), Date.valueOf(date_pub.getText()),  image.getText());
@@ -154,15 +130,9 @@ public class AfficheCoursController implements Initializable {
         coursList.clear();
         grid.getChildren().clear();
         Update();
-        System.out.println("ghvdshgv");
-        System.out.println(cours.getNom());
     }
 
-    @FXML
-    void search(MouseEvent event) {
-        Update();
-    }
-
+//Boutton supprimer
     @FXML
     void supprimer(MouseEvent event) {
         CoursService cs = new CoursService();
@@ -171,18 +141,63 @@ public class AfficheCoursController implements Initializable {
         grid.getChildren().clear();
         Update();
     }
-
+//Boutton ajouter
     @FXML
-    void GoToOrders(ActionEvent event) throws IOException {
-        URL fxURL = getClass().getResource("/AfficheCours.fxml");
-        FXMLLoader loader = new FXMLLoader(fxURL);
-        Parent root = (Parent) loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Davincci Admin - Orders");
-        stage.setScene(new Scene(root));
+    void ajouter(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
         stage.show();
-
     }
+    @FXML
+    void search() {
+        String searchTerm = searchField.getText().toLowerCase(); // Récupérer le terme de recherche saisi par l'utilisateur
+        List<cours> filteredList = new ArrayList<>(); // Créer une liste pour stocker les éléments filtrés
 
+        // Parcourir la liste des travaux
+        for (cours cc : coursList) {
+            // Vérifier si le terme de recherche est contenu dans la description ou le type du travail
+            if (cc.getNom().toLowerCase().contains(searchTerm))  {
+                // Si oui, ajouter le travail à la liste filtrée
+                filteredList.add(cc);
+            }
+        }
 
+        // Nettoyer la grille actuelle
+        grid.getChildren().clear();
+
+        // Afficher les travaux filtrés
+        int c = 0;
+        int l = 0;
+        try {
+            for (int i = 0; i < filteredList.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/CoursCard.fxml") );
+                AnchorPane anchorPane = fxmlLoader.load();
+                CoursCardController cardcontroller = fxmlLoader.getController();
+                cardcontroller.setData(filteredList.get(i), myListener);
+                if (c > 3) {
+                    c = 0;
+                    l++;
+                }
+                grid.add(anchorPane, c++, l);
+                //grid weight
+                grid.setMinWidth(134);
+                grid.setPrefWidth(134);
+                grid.setMaxWidth(134);//
+                //height
+                grid.setMinHeight(112);
+                grid.setPrefHeight(112);
+                grid.setMaxHeight(112);//
+                grid.setLayoutY(10);
+                GridPane.setMargin(anchorPane, new Insets(175, 0, 0, 70));
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

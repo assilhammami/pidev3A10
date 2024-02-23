@@ -4,12 +4,9 @@ import com.esprit.models.cours;
 import com.esprit.services.MyListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Label;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
