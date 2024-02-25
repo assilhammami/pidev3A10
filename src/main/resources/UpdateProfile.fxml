@@ -101,7 +101,7 @@
                     <children>
                         <Label layoutX="12.0" layoutY="53.0" prefHeight="18.0" prefWidth="150.0" text="Select your profile picture" />
                         <ImageView fx:id="Photo_de_profil" fitHeight="75.0" fitWidth="94.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="Uploadbutton" layoutX="293.0" layoutY="74.0" mnemonicParsing="false" onAction="#UploadImage" text="Upload" />
+                        <Button fx:id="Uploadbutton" layoutX="293.0" layoutY="74.0" mnemonicParsing="false" onAction="#UploadImage" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Upload" />
                         <TextField fx:id="urlimage" layoutX="12.0" layoutY="74.0" promptText="Enter URL here" />
                     </children>
                 </AnchorPane>
@@ -119,8 +119,8 @@
             <TextField fx:id="ok" layoutX="48.0" layoutY="455.0" prefHeight="36.0" prefWidth="175.0" style="-fx-background-color: #90EE90; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #00FF00; -fx-border-radius: 4;" text="Profile changed successfully!" visible="false" />
             <StackPane layoutX="251.0" layoutY="451.0" prefHeight="43.0" prefWidth="121.0">
                <children>
-                      <Button fx:id="Submit" mnemonicParsing="false" onAction="#SaveChanges" prefHeight="26.0" prefWidth="103.0" text="Save changes" />
-                  <Button fx:id="Refreshbutton" mnemonicParsing="false" onAction="#RefreshPage" prefHeight="26.0" prefWidth="103.0" text="Refresh" visible="false" />
+                      <Button fx:id="Submit" mnemonicParsing="false" onAction="#SaveChanges" prefHeight="26.0" prefWidth="103.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Save changes" />
+                  <Button fx:id="Refreshbutton" mnemonicParsing="false" onAction="#RefreshPage" prefHeight="26.0" prefWidth="103.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Refresh" visible="false" />
                </children>
             </StackPane>
             </children></AnchorPane>

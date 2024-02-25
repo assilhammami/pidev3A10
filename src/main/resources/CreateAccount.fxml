@@ -112,11 +112,11 @@
                   <Label layoutY="5.0" prefHeight="18.0" prefWidth="150.0" text="Choose your account Type" />
                   <Label layoutX="12.0" layoutY="53.0" prefHeight="18.0" prefWidth="150.0" text="Select your profile picture" />
                   <ImageView fx:id="Photo_de_profil" fitHeight="75.0" fitWidth="94.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="Uploadbutton" layoutX="293.0" layoutY="74.0" mnemonicParsing="false" onAction="#UploadImage" text="Upload" />
+                  <Button fx:id="Uploadbutton" layoutX="293.0" layoutY="74.0" mnemonicParsing="false" onAction="#UploadImage" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Upload" />
                   <TextField fx:id="urlimage" layoutX="12.0" layoutY="74.0" promptText="Enter URL here" />
                </children>
             </AnchorPane>
-            <Button fx:id="Submit" layoutX="202.0" layoutY="466.0" mnemonicParsing="false" onAction="#Submitdonnes" prefHeight="26.0" prefWidth="76.0" text="Submit" />
+            <Button fx:id="Submit" layoutX="202.0" layoutY="466.0" mnemonicParsing="false" onAction="#Submitdonnes" prefHeight="26.0" prefWidth="76.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Submit" />
             <Hyperlink fx:id="hyperLlogin" layoutX="317.0" layoutY="480.0" onAction="#goToLoginPage" prefHeight="24.0" prefWidth="186.0" text="Already have an account? Signup here.">
                <font>
                   <Font size="10.0" />

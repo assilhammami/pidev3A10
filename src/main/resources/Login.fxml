@@ -26,7 +26,7 @@
                 <Label layoutX="46.0" layoutY="74.0" text="Username :" textFill="#151515" />
                 <Label layoutX="48.0" layoutY="111.0" text="Password :" textFill="#1a1b1a" />
                 <TextField fx:id="usernametext" layoutX="123.0" layoutY="70.0" promptText="Username" />
-                <Button fx:id="Button_Login" layoutX="164.0" layoutY="161.0" mnemonicParsing="false" onAction="#Checklogin" prefHeight="10.0" prefWidth="70.0" style="-fx-background-color: #B7C7C3;" text="Login" />
+                <Button fx:id="Button_Login" layoutX="164.0" layoutY="161.0" mnemonicParsing="false" onAction="#Checklogin" prefHeight="10.0" prefWidth="70.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Login" />
                 <Hyperlink fx:id="CreateAccHL" layoutX="46.0" layoutY="199.0" onAction="#CreateAccount" prefHeight="20.0" prefWidth="221.0" text="New to our application? Create an account here!">
                     <font>
                         <Font size="10.0" />
