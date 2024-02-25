@@ -1,19 +1,26 @@
 package com.esprit.tests;
 
-import com.esprit.models.Admin;
-import com.esprit.models.Artiste;
-import com.esprit.services.ServiceAdmin;
-import com.esprit.services.ServiceArtiste;
+import com.esprit.models.*;
+import com.esprit.services.UserService;
+
+import java.sql.Blob;
 
 public class MainProg {
     public static void main(String[] args) {
-        ServiceAdmin sa=new ServiceAdmin();
-        ServiceArtiste sar=new ServiceArtiste();
-     Admin ad1=new Admin(1,"aa","admin","admin","aaaaa","admin00","admin1");
-        Admin ad2=new Admin(2,"bb","admin2","admin2","bbbb","admin00","admin2");
-        Artiste ar1= new Artiste(23,"cc","admin3","admin3","cccc","admin00","admin3","photoshop","2003");
-       Artiste ar2=new Artiste(13,"aa","admin","admin","aaaaa","admin00","admin1","dessin","2004");
-     sar.modifier(new Artiste(24,"ok","ok","ok","ok","ok","ko","photoshop","2003"));
+        UserService us= new UserService();
+        Admin admin=new Admin("C:\\Users\\user\\Downloads\\Prosits\\pidev2\\src\\main\\java\\com\\esprit\\image\\téléchargé (1).jpg","aa","aaaaa","aaaaaaaaa","a","a",1,"a");
+        Artiste artiste=new Artiste("C:\\Users\\user\\Downloads\\Prosits\\pidev2\\src\\main\\java\\com\\esprit\\image\\téléchargé (1).jpg","aa","aaaaa","aaaaaaaaa","a","a",1,"a");
+        Client client= new Client("C:\\Users\\user\\Downloads\\Prosits\\pidev2\\src\\main\\java\\com\\esprit\\image\\téléchargé (1).jpg","aa","aaaaa","aaaaaaaaa","a","a",1,"a");
+        Admin admin1=new Admin("C:\\Users\\user\\Downloads\\Prosits\\pidev2\\src\\main\\java\\com\\esprit\\image\\téléchargé (1).jpg","aa","aaaaa","aaaaaaaaa","123","weli159",1,"a");
+  //us.ajouter(artiste)
+        //us.modifier(client);
+        Artiste art1 =new Artiste("C:\\Users\\user\\Desktop\\zoro.jpg","zoro","zoro","zoro","zoro","zoro",1,"zoro");
+        us.ajouter(art1);
+        //Blob profileImageBlob = us.convertFileToBlob("\"C:\\Users\\user\\Desktop\\Batman_(black_background).jpg\"");
+        //art1.setPhoto_de_profile(profileImageBlob);
+        //us.modifier(art1);
+
+        //System.out.println(us.afficher());
 
     }
 }
