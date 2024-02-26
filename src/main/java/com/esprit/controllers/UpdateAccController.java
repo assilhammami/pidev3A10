@@ -1,5 +1,6 @@
 package com.esprit.controllers;
 import com.esprit.models.User;
+import com.esprit.services.Encryptor;
 import com.esprit.services.UserDataManager;
 import com.esprit.services.UserService;
 import com.esprit.utils.DataSource;
@@ -15,11 +16,17 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -57,8 +64,9 @@ public class UpdateAccController implements Initializable {
     @FXML
     private Button Uploadbutton;
 
+
     @FXML
-    private TextField birthErr;
+    private TextField weakPasswod;
 
     @FXML
     private TextField birthdate;
@@ -147,6 +155,8 @@ public class UpdateAccController implements Initializable {
     private TextField ok;
     @FXML
     private DatePicker birthdate1;
+    @FXML
+    private TextField alphabeticalErr;
 
 
     @FXML
@@ -250,7 +260,7 @@ public class UpdateAccController implements Initializable {
 
 
     @FXML
-    void SaveChanges(ActionEvent event) throws SQLException, IOException {
+    void SaveChanges(ActionEvent event) throws SQLException, IOException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         String name=nom.getText();
         String lastname=prenom.getText();
         String num=num_telephone.getText();
@@ -277,10 +287,12 @@ public class UpdateAccController implements Initializable {
             phone_err.setVisible(!us.isValidPhoneNumber(num));
             emailinv.setVisible(!us.validateEmail(adresse));
             Emailused.setVisible(testemailold);
-            usernametaken.setVisible(testusernameold);}
+            usernametaken.setVisible(testusernameold);
+             weakPasswod.setVisible(!us.isMdp(pass1));
             //birthErr.setVisible(!us.isValidBirthDate(datenaissance));}
             passerr.setVisible(!(pass1.equals(pass2)));
-        if(us.isValidPhoneNumber(num)&&us.validateEmail(adresse)&&!testemailold&&!testusernameold&&(pass1.equals(pass2))&&/*us.isValidBirthDate(datenaissance)&&*/us.areFieldsNotEmpty(fields))
+            alphabeticalErr.setVisible(!us.isAlpha(name)&&!us.isAlpha(lastname));}
+        if(us.isValidPhoneNumber(num)&&us.validateEmail(adresse)&&!testemailold&&!testusernameold&&(pass1.equals(pass2))&&/*us.isValidBirthDate(datenaissance)&&*/us.areFieldsNotEmpty(fields)&&us.isMdp(pass1)&&us.isAlpha(name)&&us.isAlpha(lastname))
         {currentUser.setEmail(adresse);currentUser.setNom(name);currentUser.setPrenom(lastname);currentUser.setDate_de_naissance(datenaissance);currentUser.setMot_de_passe(pass1);currentUser.setPhoto_de_profile(path);currentUser.setUsername(username1);currentUser.setNum_telephone(Integer.parseInt(num));
          us.modifier(currentUser);
          Submit.setVisible(false);
@@ -296,10 +308,12 @@ public class UpdateAccController implements Initializable {
                 phone_err.setVisible(!us.isValidPhoneNumber(num));
                 emailinv.setVisible(!us.validateEmail(adresse));
                 Emailused.setVisible(testemailold);
-                usernametaken.setVisible(testusernameold);}
+                usernametaken.setVisible(testusernameold);
+                alphabeticalErr.setVisible(!us.isAlpha(name)&&!us.isAlpha(lastname));
                 //birthErr.setVisible(!us.isValidBirthDate(datenaissance));}
             passerr.setVisible(!(pass1.equals(pass2)));
-            if(us.isValidPhoneNumber(num)&&us.validateEmail(adresse)&&!testemailold &&!testusernameold&&(pass1.equals(pass2))&&/*us.isValidBirthDate(datenaissance)&&*/us.areFieldsNotEmpty(fields))
+            alphabeticalErr.setVisible(!us.isAlpha(name)&&!us.isAlpha(lastname));}
+            if(us.isValidPhoneNumber(num)&&us.validateEmail(adresse)&&!testemailold &&!testusernameold&&(pass1.equals(pass2))&&/*us.isValidBirthDate(datenaissance)&&*/us.areFieldsNotEmpty(fields)&&us.isAlpha(name)&&us.isAlpha(lastname))
             {currentUser.setEmail(adresse);currentUser.setNom(name);currentUser.setPrenom(lastname);currentUser.setDate_de_naissance(datenaissance);currentUser.setPhoto_de_profile(path);currentUser.setUsername(username1);currentUser.setNum_telephone(Integer.parseInt(num));
                 us.modifier(currentUser);
                 Submit.setVisible(false);
@@ -357,16 +371,10 @@ public class UpdateAccController implements Initializable {
         if (selectedFile != null) {
             String imagePath = selectedFile.getAbsolutePath();
             urlimage.setText(imagePath);
-
-            // Convertir le chemin du fichier en Blob
-
-
             // Mettre à jour l'image dans l'interface graphique
             Image image = new Image(selectedFile.toURI().toString());
             Photo_de_profil.setImage(image);
             Photo_de_profil.setVisible(true);
-
-            // Utiliser profileImageBlob comme nécessaire, par exemple, l'ajouter à l'utilisateur
             currentUser.setPhoto_de_profile(imagePath);
         } else {
             System.out.println("Aucun fichier sélectionné");

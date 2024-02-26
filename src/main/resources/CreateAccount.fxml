@@ -123,7 +123,7 @@
                </font>
             </Hyperlink>
          </children></AnchorPane>
-      <AnchorPane layoutX="707.0" layoutY="4.0" prefHeight="363.0" prefWidth="209.0">
+      <AnchorPane layoutX="707.0" layoutY="4.0" prefHeight="390.0" prefWidth="256.0">
          <children>
             <TextField fx:id="fieldserr" layoutX="13.0" layoutY="34.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-radius: 4; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: please fill out all the fields" visible="false" />
             <TextField fx:id="Emailused" layoutX="13.0" layoutY="77.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-border-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: this Email is already used" visible="false" />
@@ -131,7 +131,15 @@
             <TextField fx:id="usernametaken" layoutX="14.0" layoutY="168.0" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: this username is taken" visible="false" />
             <TextField fx:id="phone_err" layoutX="13.0" layoutY="213.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: invalid phone number" visible="false" />
             <TextField fx:id="passerr" layoutX="14.0" layoutY="256.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: passwords do not match" visible="false" />
-            <TextField fx:id="birthErr" layoutX="14.0" layoutY="300.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: invalid birth date" visible="false" />
+            <TextField fx:id="weakPassword" layoutX="14.0" layoutY="300.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: the chosen password is weak!" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font></TextField>
+            <TextField fx:id="alphabeticalErr" layoutX="-17.0" layoutY="347.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: Name and Lastname must be only alphabetical!" visible="false">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </children>

@@ -8,6 +8,9 @@ import com.esprit.utils.DataSource;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +22,9 @@ import java.util.regex.Pattern;
 import static java.lang.constant.ConstantDescs.NULL;
 import javafx.scene.image.Image;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +37,10 @@ import java.sql.Blob;
 
 public class UserService implements IService<User> {
     private Connection connection;
+    Encryptor encryptor = new Encryptor();
+
+    byte[] encryptionKey = {65, 12, 12, 12, 12, 12, 12, 12, 12,
+            12, 12, 12, 12, 12, 12, 12 };
 
     public UserService() {
         connection = DataSource.getInstance().getConnection();
@@ -45,7 +55,7 @@ public class UserService implements IService<User> {
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
-            pst.setString(5, a.getMot_de_passe());
+            pst.setString(5, encryptor.encrypt(a.getMot_de_passe(),encryptionKey));
             pst.setString(6, a.getUsername());
             pst.setInt(7, a.getNum_telephone());
             pst.setString(8, a.getType());
@@ -57,6 +67,18 @@ public class UserService implements IService<User> {
             System.out.println("User ajouté !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -70,7 +92,7 @@ public class UserService implements IService<User> {
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
-            pst.setString(5, a.getMot_de_passe());
+            pst.setString(5,  encryptor.encrypt(a.getMot_de_passe(),encryptionKey));
             pst.setString(6, a.getUsername());
             pst.setInt(7, a.getNum_telephone());
             pst.setString(8, a.getType().toString());
@@ -82,6 +104,18 @@ public class UserService implements IService<User> {
             System.out.println("User modifié !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -113,16 +147,28 @@ public class UserService implements IService<User> {
                 System.out.println("UserType from database: " + userType);
 
                 if ("ADMIN".equals(userType)) {
-                    users.add(new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance")));
+                    users.add(new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance")));
                 } else if ("ARTISTE".equals(userType)) {
-                    users.add(new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active")));
+                    users.add(new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active")));
                 } else if ("CLIENT".equals(userType)) {
-                    users.add(new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active")));
+                    users.add(new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active")));
                 }
 
             }
         }catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
         return users;
     }
@@ -134,7 +180,7 @@ public class UserService implements IService<User> {
         try{
         PreparedStatement pst = connection.prepareStatement(req);
         pst.setString(1, username);
-        pst.setString(2, password);
+        pst.setString(2, encryptor.encrypt(password,encryptionKey));
         ResultSet rs = pst.executeQuery();
         while (rs.next()) {
             id = rs.getInt(1);
@@ -142,6 +188,18 @@ public class UserService implements IService<User> {
         }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
         return id != -1;
     }
@@ -199,7 +257,14 @@ public class UserService implements IService<User> {
             }
         }
         return true;
-}public  boolean isValidPhoneNumber(String phoneNumber) {
+}
+    public boolean isAlpha(String chaine) {
+        return chaine.matches("[a-zA-Z- -]+");
+    }
+    public boolean isMdp(String chaine) {
+        return chaine.length() < 6 ? false : chaine.matches("[a-zA-Z-0-9]+");
+    }
+public  boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{8}");
 }
     public  boolean isValidBirthDate(String birthdate) {
@@ -214,15 +279,27 @@ public class UserService implements IService<User> {
         ResultSet rs = pst.executeQuery();
         if (rs.next()) {
             if (rs.getString("UserType").equals("ADMIN")) {
-                connectedUser = new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance"));
+                connectedUser = new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance"));
             } else if (rs.getString("UserType").equals("ARTISTE")) {
-                connectedUser = new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+                connectedUser = new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
             } else {
-                connectedUser = new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+                connectedUser = new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
             }
 
         } } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
         return connectedUser;
     }

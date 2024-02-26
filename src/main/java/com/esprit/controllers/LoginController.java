@@ -1,5 +1,6 @@
 package com.esprit.controllers;
 
+import com.esprit.services.Encryptor;
 import com.esprit.services.UserDataManager;
 import com.esprit.services.UserService;
 import javafx.event.ActionEvent;
@@ -11,7 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class LoginController {
@@ -59,18 +66,7 @@ public class LoginController {
     private ImageView eyeopen1;
 
     UserService us= new UserService();
-    @FXML
-    void ChangeVisibility(ActionEvent event) { if (checkbox.isSelected()) {
-        Visiblepassword.setText(Hiddenpassword.getText());
-        Visiblepassword.setVisible(true);
-        Hiddenpassword.setVisible(false);
-        return;
-    }
-        Hiddenpassword.setText(Visiblepassword.getText());
-        Hiddenpassword.setVisible(true);
-        Visiblepassword.setVisible(false);
 
-    }
     @FXML
     void ShowPassword(ActionEvent event) {
         Visiblepassword.setText(Hiddenpassword.getText());
@@ -89,7 +85,7 @@ public class LoginController {
 
     }
     @FXML
-    void Checklogin(ActionEvent event) throws SQLException, IOException {
+    void Checklogin(ActionEvent event) throws SQLException, IOException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         String username = usernametext.getText();
         String password = us.getPassword(Visiblepassword,Hiddenpassword);
         int userid=us.getUserId(username);

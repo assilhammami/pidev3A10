@@ -2,6 +2,7 @@ package com.esprit.controllers;
 
 import com.esprit.models.Artiste;
 import com.esprit.models.Client;
+import com.esprit.services.Encryptor;
 import com.esprit.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,11 +17,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -35,7 +42,7 @@ public class CreateAccController implements Initializable {
     @FXML
     private Hyperlink hyperLlogin;
     @FXML
-    private TextField birthErr;
+    private TextField weakPassword;
     @FXML
     private TextField Emailused;
     @FXML
@@ -117,6 +124,8 @@ public class CreateAccController implements Initializable {
 
     @FXML
     private ImageView eyeopen1;
+    @FXML
+    private TextField alphabeticalErr;
 
 UserService us=new UserService();
 
@@ -164,7 +173,7 @@ UserService us=new UserService();
     }
 
     @FXML
-    void Submitdonnes(ActionEvent event) throws SQLException, IOException {
+    void Submitdonnes(ActionEvent event) throws SQLException, IOException{
         String name = nom.getText();
         String lastname = prenom.getText();
         String num = num_telephone.getText();
@@ -191,11 +200,13 @@ UserService us=new UserService();
             usernametaken.setVisible(!us.isUsernameAvailable(username1));
             passerr.setVisible(!(pass1.equals(pass2)));
             //birthErr.setVisible(!us.isValidBirthDate(datenaissance));
+            weakPassword.setVisible(!us.isMdp(pass1));
+        alphabeticalErr.setVisible(!us.isAlpha(name)&&!us.isAlpha(lastname));
         }
 
         if (us.isValidPhoneNumber(num) && us.validateEmail(adresse) &&
                 us.isEmailAvailable(adresse) && us.isUsernameAvailable(username1) &&
-                (pass1.equals(pass2)) &&/* us.isValidBirthDate(datenaissance) &&*/ us.areFieldsNotEmpty(fields)) {
+                (pass1.equals(pass2)) &&/* us.isValidBirthDate(datenaissance) &&*/ us.areFieldsNotEmpty(fields)&&us.isMdp(pass1)&&us.isAlpha(name)&&us.isAlpha(lastname)) {
             if (type.equals("CLIENT")) {
                 us.ajouter(new Client(path, name, lastname, adresse, pass1, username1, Integer.parseInt(num), datenaissance));
             } else {
@@ -216,10 +227,7 @@ UserService us=new UserService();
 
     @FXML
     void UploadImage(ActionEvent event) throws IOException {
-        /*String url=urlimage.getText();
-        Image image = new Image(url);
-        Photo_de_profil.setImage(image);
-        Photo_de_profil.setVisible(true);*/
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File selectedFile = fileChooser.showOpenDialog(null);
