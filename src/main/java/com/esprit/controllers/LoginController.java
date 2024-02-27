@@ -106,7 +106,7 @@ public class LoginController {
            {UserDataManager.getInstance().setUserId(userId);
 
            Stage stage = (Stage) Button_Login.getScene().getWindow();
-           Parent root = FXMLLoader.load(getClass().getResource("/test.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("/AdminProducts.fxml"));
            Scene scene = new Scene(root);
            stage.setScene(scene);
 

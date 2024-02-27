@@ -29,10 +29,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class UpdateAccController implements Initializable {
 
@@ -190,7 +187,7 @@ public class UpdateAccController implements Initializable {
                 num_telephone.setText(String.valueOf(currentUser.getNum_telephone()));
                 username.setText(currentUser.getUsername());
                 email.setText(currentUser.getEmail());
-        ((TextField)birthdate1.getEditor()).setText(currentUser.getDate_de_naissance());
+        ((TextField)birthdate1.getEditor()).setText(currentUser.getDate_de_naissance().toString());
                 usernameOld.setText(currentUser.getUsername());
         Image photo_profile=us.loadImage(currentUser.getPhoto_de_profile());
         photoProfile.setImage(photo_profile);

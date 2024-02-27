@@ -1,0 +1,34 @@
+.bgProductsAdmin{
+    -fx-background-image: url("BG_PRODS.png");
+}
+.bgAddProductsAdmin{
+    -fx-background-image: url("add_background.png");
+}
+.bgProdItem{
+    -fx-background-image: url("ProdItem.png");
+}
+.TextField_bg{
+    -fx-background-image: url("TextField_bg.png");
+}
+.TextArea_bg{
+    -fx-background-image: url("TextArea_bg.png");
+}
+.search{
+    -fx-background-image: url("search_bar.png");
+}
+.search_button{
+    -fx-background-image: url("search_btn.png");
+}
+.filtre{
+    -fx-background-image: url("Filtre.png");
+}
+
+.users_management_button{
+    -fx-background-image: url("Users.png");
+}
+.users_management_button:hover{
+    -fx-background-image: url("UsersM_hover.png");
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}

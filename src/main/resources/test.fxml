@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -23,5 +24,6 @@
       </TableView>
       <ScrollBar layoutX="871.0" layoutY="65.0" orientation="VERTICAL" prefHeight="467.0" prefWidth="14.0" />
       <TextField fx:id="searchbar" layoutX="62.0" layoutY="27.0" prefHeight="26.0" prefWidth="427.0" promptText="Search" />
+      <ChoiceBox fx:id="choicebox" layoutX="496.0" layoutY="27.0" prefHeight="26.0" prefWidth="54.0" />
    </children>
 </AnchorPane>

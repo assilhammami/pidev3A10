@@ -1,6 +1,7 @@
 package com.esprit.models;
 
 import java.sql.Blob;
+import java.sql.Date;
 
 public final class Admin extends User {
     public Admin(int id, String photo_de_profil_filepath, String nom, String prenom, String email, String mot_de_passe, String username, int num_telephone, String date_de_naissance) {
