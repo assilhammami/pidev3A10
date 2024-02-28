@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1430.0" styleClass="bgProductsAdmin" stylesheets="@css/Styling.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.admin.products.AdminProductsController">
+   <children>
+      <ImageView fitHeight="40.0" fitWidth="308.0" layoutX="511.0" layoutY="12.0">
+         <image>
+            <Image url="@css/search_bar.png" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="728.0" layoutY="479.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <VBox prefHeight="436.0" prefWidth="237.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="70.0" right="61.0" top="90.0" />
+               </BorderPane.margin>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="194.0">
+                     <children>
+                        <Label fx:id="Nom_produit" prefHeight="41.0" prefWidth="130.0" text="Name">
+                           <font>
+                              <Font name="Hoefler Text" size="32.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="62.0" prefWidth="5.0" />
+                        <Label fx:id="Prix" text="Price: N/A">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="182.0" prefWidth="237.0">
+                     <children>
+                        <ImageView fx:id="Image_produit" fitHeight="150.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="84.0" prefWidth="237.0">
+                     <children>
+                        <Label fx:id="Description" text="Description">
+                           <font>
+                              <Font name="Hoefler Text" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="237.0">
+                     <children>
+                        <Label fx:id="Categorie" text="Category: ....">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="49.0" prefWidth="62.0" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="Stock" text="Stock: N/A">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="73.0" prefWidth="237.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="237.0">
+                           <children>
+                              <Button fx:id="modifierBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifierProduit" prefHeight="42.0" prefWidth="108.0" stylesheets="@css/Styling.css">
+                                 <styleClass>
+                                    <String fx:value="edit_button" />
+                                    <String fx:value="transparent" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="supprimerBtn" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="42.0" prefWidth="108.0" stylesheets="@css/Styling.css">
+                                 <styleClass>
+                                    <String fx:value="delete_button" />
+                                    <String fx:value="transparent" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label fx:id="Date_creation" text="Created: dd/mm/yyyy" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </right>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="705.0" prefWidth="143.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" top="40.0" />
+               </BorderPane.margin>
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" stylesheets="@css/Styling.css">
+                     <styleClass>
+                        <String fx:value="users_management_button" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;" styleClass="transparent" stylesheets="@css/Styling.css" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane fx:id="grid" layoutY="12.0">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                           </columnConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+               <BorderPane.margin>
+                  <Insets bottom="125.0" left="45.0" right="65.0" top="75.0" />
+               </BorderPane.margin>
+            </ScrollPane>
+         </center>
+         <top>
+            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="1430.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="searchInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="232.0" promptText="Search..." styleClass="transparent" stylesheets="@css/Styling.css" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#search" prefHeight="24.0" prefWidth="24.0" stylesheets="@css/Styling.css">
+                     <styleClass>
+                        <String fx:value="search_button" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Pane prefHeight="58.0" prefWidth="83.0">
+                     <children>
+                        <ChoiceBox fx:id="filtreOptions" layoutX="20.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="47.0" stylesheets="@css/Styling.css">
+                           <styleClass>
+                              <String fx:value="filtre" />
+                              <String fx:value="transparent" />
+                           </styleClass>
+                        </ChoiceBox>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <Pane prefHeight="114.0" prefWidth="1342.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="750.0" layoutX="264.0" layoutY="30.0">
+                     <image>
+                        <Image url="@css/ButtonsNav.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="567.0" layoutY="30.0" mnemonicParsing="false" onAction="#ajoutProduit" prefHeight="55.0" prefWidth="184.0" stylesheets="@css/Styling.css">
+                     <styleClass>
+                        <String fx:value="add_button" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </Pane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
