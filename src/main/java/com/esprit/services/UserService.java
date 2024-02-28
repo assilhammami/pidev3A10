@@ -327,12 +327,6 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
     }
     public void ActivateAccount(User user){user.setActive(true);}
     public void DesactivateAccount(User user){user.setActive(false);}
-
-
-
-
-
-
     public  Image loadImage(String filePath) {
         try {
             File file = new File(filePath);

@@ -15,7 +15,6 @@
             <TableColumn fx:id="col_name" prefWidth="75.0" text="name" />
             <TableColumn fx:id="col_lastname" prefWidth="75.0" text="lastname" />
             <TableColumn fx:id="col_email" prefWidth="75.0" text="email" />
-            <TableColumn fx:id="col_path" prefWidth="75.0" text="path" />
             <TableColumn fx:id="col_num" prefWidth="75.0" text="num" />
             <TableColumn fx:id="col_password" prefWidth="75.0" text="password" />
             <TableColumn fx:id="col_birthdate" prefWidth="75.0" text="birthdate" />

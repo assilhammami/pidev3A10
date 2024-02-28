@@ -1,12 +1,7 @@
 .bgProductsAdmin{
-    -fx-background-image: url("BG_PRODS.png");
+    -fx-background-image: url("bgUser.png");
 }
-.bgAddProductsAdmin{
-    -fx-background-image: url("add_background.png");
-}
-.bgProdItem{
-    -fx-background-image: url("ProdItem.png");
-}
+
 .TextField_bg{
     -fx-background-image: url("TextField_bg.png");
 }
@@ -19,7 +14,7 @@
 .search_button{
     -fx-background-image: url("search_btn.png");
 }
-.filtre{
+.tri{
     -fx-background-image: url("Filtre.png");
 }
 
@@ -32,3 +27,5 @@
 .transparent{
     -fx-background-color: rgba(0,0,0,0);
 }
+.filter{
+    -fx-background-image: url("filter2.png");}
