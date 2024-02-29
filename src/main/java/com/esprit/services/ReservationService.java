@@ -2,6 +2,7 @@ package com.esprit.services;
 
 import com.esprit.models.Event;
 import com.esprit.models.Reservation;
+import com.esprit.models.Status;
 import com.esprit.utils.DataSource;
 
 import java.sql.Connection;
@@ -20,12 +21,14 @@ public class ReservationService implements IService<Reservation> {
     }
     @Override
     public void ajouter(Reservation reservation) {
-        String req = "INSERT into reservation(date, statut, nbplaces) values (?, ?, ?);";
+        String req = "INSERT into reservation(date, statut, nbplaces,idevent,iduser) values (?, ?, ?,?,?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setString(1, reservation.getDate());
-            pst.setString(2, reservation.getStatut());
+            pst.setString(2, reservation.getStatut().name());
             pst.setInt(3, reservation.getNbplaces());
+            pst.setInt(4, reservation.getEvent());
+            pst.setInt(5, reservation.getUser());
             pst.executeUpdate();
             System.out.println("reservation ajoutée !");
         } catch (SQLException e) {
@@ -40,7 +43,7 @@ public class ReservationService implements IService<Reservation> {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(4, reservation.getId());
             pst.setString(1, reservation.getDate());
-            pst.setString(2, reservation.getStatut());
+            pst.setString(2, reservation.getStatut().name());
             pst.setInt(4, reservation.getNbplaces());
             pst.executeUpdate();
 
@@ -72,7 +75,8 @@ public class ReservationService implements IService<Reservation> {
             PreparedStatement pst = connection.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                reservations.add(new Reservation(rs.getInt("id"),  rs.getString("date"), rs.getString("statut"), rs.getInt("nbplaces") ));
+                Status status = Status.valueOf(rs.getString("statut"));
+                reservations.add(new Reservation(  rs.getString("date"),Status.attente, rs.getInt("nbplaces") ));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

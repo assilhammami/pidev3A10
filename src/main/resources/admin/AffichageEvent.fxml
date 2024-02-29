@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="724.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.admin.AffichageEventcontroller">
+   <children>
+      <Label layoutX="111.0" layoutY="43.0" text="Nom" />
+      <Label fx:id="lbnom" layoutX="366.0" layoutY="43.0" text="Label" />
+      <Label layoutX="111.0" layoutY="82.0" text="Date" />
+      <Label layoutX="111.0" layoutY="135.0" text="Description" />
+      <Label layoutX="111.0" layoutY="174.0" text="Capacity" />
+      <Label layoutX="111.0" layoutY="215.0" text="Place" />
+      <Label fx:id="lbdate" layoutX="366.0" layoutY="82.0" text="Label" />
+      <Label fx:id="lbdescription" layoutX="366.0" layoutY="135.0" text="Label" />
+      <Label fx:id="lbcapacity" layoutX="366.0" layoutY="174.0" text="Label" />
+      <Label fx:id="lbplace" layoutX="366.0" layoutY="215.0" text="Label" />
+      <Label layoutX="111.0" layoutY="252.0" text="Image" />
+      <Label fx:id="lbimage" layoutX="366.0" layoutY="252.0" text="Label" />
+   </children>
+</AnchorPane>

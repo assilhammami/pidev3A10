@@ -4,17 +4,47 @@ public class Reservation {
 
     private int id;
     private String date;
-    private String statut;
+    private Status statut;
     private int nbplaces;
+    private int user;
 
-    public Reservation(int id, String date, String statut, int nbplaces) {
+    public void setEvent(int event) {
+        this.event = event;
+    }
+
+    private int event;
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
+    }
+
+    public int getEvent() {
+        return event;
+    }
+
+    public Reservation() {
+
+    }
+
+    public Reservation(String date, Status statut, int nbplaces, int user, int event) {
+        this.date = date;
+        this.statut = statut;
+        this.nbplaces = nbplaces;
+        this.user = user;
+        this.event = event;
+    }
+
+    public Reservation(int id, String date, Status statut, int nbplaces) {
         this.id = id;
         this.date = date;
         this.statut = statut;
         this.nbplaces = nbplaces;
     }
 
-    public Reservation(String date, String statut, int nbplaces) {
+    public Reservation(String date, Status statut, int nbplaces) {
         this.date = date;
         this.statut = statut;
         this.nbplaces = nbplaces;
@@ -28,7 +58,7 @@ public class Reservation {
         return date;
     }
 
-    public String getStatut() {
+    public Status getStatut() {
         return statut;
     }
 
@@ -44,7 +74,7 @@ public class Reservation {
         this.date = date;
     }
 
-    public void setStatut(String statut) {
+    public void setStatut(Status statut) {
         this.statut = statut;
     }
 
