@@ -13,8 +13,12 @@ public class Travail {
     private StatusTravail status;
     private Date date_demande ;
     private Date date_fin;
+    private String titre;
 
-    public Travail(int id, String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
+    private int idp;
+
+
+    public Travail(int id, String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin, String titre, int idp ) {
         this.id = id;
         this.description = description;
         this.prix = prix;
@@ -22,9 +26,22 @@ public class Travail {
         this.status = status;
         this.date_demande = date_demande;
         this.date_fin = date_fin;
+        this.titre=titre;
+        this.idp=idp;
     }
 
-    public Travail( String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin) {
+    public Travail(int id, String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin, String titre) {
+        this.id = id;
+        this.description = description;
+        this.prix = prix;
+        this.type = type;
+        this.status = status;
+        this.date_demande = date_demande;
+        this.date_fin = date_fin;
+        this.titre=titre;
+    }
+
+    public Travail( String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin,String titre) {
 
         this.description = description;
         this.prix = prix;
@@ -32,8 +49,29 @@ public class Travail {
         this.status = status;
         this.date_demande = date_demande;
         this.date_fin = date_fin;
+        this.titre=titre;
     }
 
+    public Travail( String description, int prix, String type, StatusTravail status, Date date_demande, Date date_fin,String titre,int idp) {
+
+        this.description = description;
+        this.prix = prix;
+        this.type = type;
+        this.status = status;
+        this.date_demande = date_demande;
+        this.date_fin = date_fin;
+        this.titre=titre;
+        this.idp=idp;
+    }
+
+
+    public int getIdp() {
+        return idp;
+    }
+
+    public void setIdp(int idp) {
+        this.idp = idp;
+    }
 
     public int getId() {
         return id;
@@ -61,6 +99,10 @@ public class Travail {
 
     public Date getDate_fin() {
         return date_fin;
+    }
+
+    public String getTitre() {
+        return titre;
     }
 
     public void setId(int id) {
@@ -91,18 +133,22 @@ public class Travail {
         this.date_fin = date_fin;
     }
 
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Travail travail = (Travail) o;
-        return id == travail.id && prix == travail.prix && Objects.equals(description, travail.description) && Objects.equals(type, travail.type) && status == travail.status && Objects.equals(date_demande, travail.date_demande) && Objects.equals(date_fin, travail.date_fin);
+        return id == travail.id && prix == travail.prix && Objects.equals(description, travail.description) && Objects.equals(type, travail.type) && status == travail.status && Objects.equals(date_demande, travail.date_demande) && Objects.equals(date_fin, travail.date_fin) && Objects.equals(titre, travail.titre) && this.idp == ((Travail) o).getIdp();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, prix, type, status, date_demande, date_fin);
+        return Objects.hash(id, description, prix, type, status, date_demande, date_fin, titre);
     }
 
     @Override
@@ -115,7 +161,7 @@ public class Travail {
                 ", status=" + status +
                 ", date_demande=" + date_demande +
                 ", date_fin=" + date_fin +
+                ", titre='" + titre + '\'' +
                 '}';
     }
-
 }

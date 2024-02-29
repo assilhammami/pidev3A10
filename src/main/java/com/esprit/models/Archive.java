@@ -4,31 +4,39 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Archive {
-    private int id ;
+    private int idU ;
     private String  description;
-    private int nb_offre;
-    private Date date_acceptation;
+    private Travail travail;
+    private String path;
 
-    public Archive(int id, String description, int nb_offre, Date date_acceptation) {
-        this.id = id;
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    Date dateCreation;
+
+    public Archive(int id, String description, String path, Travail travail) {
+        this.idU = id;
         this.description = description;
-        this.nb_offre = nb_offre;
-        this.date_acceptation = date_acceptation;
+        this.path = path;
+        this.travail = travail;
     }
 
-    public Archive(String description, int nb_offre, Date date_acceptation) {
-        this.description = description;
-        this.nb_offre = nb_offre;
-        this.date_acceptation = date_acceptation;
+    public Archive() {
+
     }
 
 
-    public int getId() {
-        return id;
+    public int getIdU() {
+        return idU;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdU(int id) {
+        this.idU = id;
     }
 
     public String getDescription() {
@@ -39,42 +47,39 @@ public class Archive {
         this.description = description;
     }
 
-    public int getNb_offre() {
-        return nb_offre;
+    public Travail getTravail() {
+        return this.travail;
     }
 
-    public void setNb_offre(int nb_offre) {
-        this.nb_offre = nb_offre;
+    public void setTravail(Travail travail) {
+        this.travail = travail;
     }
 
-    public Date getDate_acceptation() {
-        return date_acceptation;
-    }
+    public String getPath() {return this.path;}
 
-    public void setDate_acceptation(Date date_acceptation) {
-        this.date_acceptation = date_acceptation;
-    }
+    public void setPath(String path) { this.path = path;}
 
 
     @Override
     public String toString() {
         return "Archive{" +
-                "id=" + id +
+                "id=" + idU +
                 ", description='" + description + '\'' +
-                ", nb_offre=" + nb_offre +
-                ", date_acceptation=" + date_acceptation +
+                ", IDT=" + travail.getId() +
+                ", Path " + path +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Archive archive)) return false;
-        return getId() == archive.getId() && getNb_offre() == archive.getNb_offre() && Objects.equals(getDescription(), archive.getDescription()) && Objects.equals(getDate_acceptation(), archive.getDate_acceptation());
+        if (o instanceof Archive archive)
+            return travail.getId() == archive.getTravail().getId() && archive.getIdU() == this.idU;
+        return false;
     }
 
-    @Override
+    /*@Override
     public int hashCode() {
         return Objects.hash(getId(), getDescription(), getNb_offre(), getDate_acceptation());
-    }
+    }*/
 }

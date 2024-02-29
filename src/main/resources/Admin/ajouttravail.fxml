@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="609.0" prefWidth="794.0" styleClass="background" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.AjoutTravailController">
+   <children>
+      <Label layoutX="61.0" layoutY="164.0" text="Description">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="93.0" layoutY="263.0" text="Prix">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="57.0" layoutY="391.0" text="Date de demande">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="84.0" layoutY="455.0" text="Date fin">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <Label layoutX="91.0" layoutY="323.0" text="Type">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font></Label>
+      <TextField fx:id="tfPrix" layoutX="219.0" layoutY="255.0" prefHeight="35.0" prefWidth="248.0" promptText="Prix" />
+      <TextField fx:id="tfType" layoutX="219.0" layoutY="315.0" prefHeight="35.0" prefWidth="248.0" promptText="Type" />
+      <Button layoutX="214.0" layoutY="514.0" mnemonicParsing="false" onAction="#addTravail" prefHeight="35.0" prefWidth="77.0" text="Publier">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <TextArea fx:id="tfDescription" layoutX="219.0" layoutY="141.0" prefHeight="81.0" prefWidth="248.0" promptText="Description" />
+      <Button layoutX="359.0" layoutY="514.0" mnemonicParsing="false" onAction="#annulerEvent" prefHeight="35.0" prefWidth="77.0" text="Annuler">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <DatePicker fx:id="tfDatedemande" disable="true" layoutX="219.0" layoutY="384.0" prefHeight="35.0" prefWidth="248.0" promptText="Date de demande" />
+      <DatePicker fx:id="tfDatefin" layoutX="219.0" layoutY="447.0" prefHeight="35.0" prefWidth="248.0" promptText="Date de fin" />
+      <Text fill="#a80f0f" layoutX="252.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Travail" wrappingWidth="211.7412109375">
+         <font>
+            <Font name="Algerian" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="65.0" fitWidth="103.0" layoutX="638.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/Firas/Desktop/ESPRIT/3éme%20cycle%20ing/P2/Pi/LOGO.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="237.0" fitWidth="269.0" layoutX="511.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../ESPRIT/3éme%20cycle%20ing/P2/Pi/Ajout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="99.0" layoutY="78.0" text="Titre">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfTitre" layoutX="217.0" layoutY="76.0" prefHeight="35.0" prefWidth="248.0" promptText="Titre" />
+   </children>
+</AnchorPane>

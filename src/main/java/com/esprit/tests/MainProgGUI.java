@@ -16,7 +16,9 @@ public class MainProgGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficheTravail.fxml")); // Créer un objet et charger la page fxml
+       //FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/AfficheTravail.fxml")); // Créer un objet et charger la page fxml
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("/Artiste/AfficheTravailArtiste.fxml")); // Créer un objet et charger la page fxml
+
         Parent root = loader.load(); // Charger le contenu du fichier FXML
         Scene scene = new Scene(root); // Créer une nouvelle scène à partir de la racine de l'interface
         primaryStage.setScene(scene); // Définir la scène créer comme scène principale

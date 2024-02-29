@@ -17,9 +17,11 @@ public class TravailService2 implements IService<Travail> {
     }
     @Override
     public void ajouter(Travail travail) {
-        String req = "INSERT into travail(description, prix,type,status,date_demande,date_fin) values (?,?,?,?,?,?);";
+        String req = "INSERT into travail(description, prix,type,status,date_demande,date_fin,titre,idp) values (?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
+            pst.setInt(8, travail.getIdp());
+            pst.setString(7, travail.getTitre());
             pst.setDate(6, travail.getDate_fin());
             pst.setDate(5, travail.getDate_demande());
 
@@ -37,16 +39,19 @@ public class TravailService2 implements IService<Travail> {
 
     @Override
     public void modifier(Travail travail) {
-        String req = "UPDATE travail set description = ?, prix = ?, type= ?,status= ?, date_demande= ? , date_fin = ? where id = ?;";
+        String req = "UPDATE travail set description = ?, prix = ?, type= ?,status= ?, date_demande= ? , date_fin = ? , titre= ?, idp= ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(7, travail.getId());
+            pst.setInt(9, travail.getId());
             pst.setString(1, travail.getDescription());
             pst.setInt(2, travail.getPrix());
             pst.setString(3, travail.getType());
             pst.setString(4, travail.getStatus().name());
             pst.setDate(5, travail.getDate_demande());
             pst.setDate(6, travail.getDate_fin());
+            pst.setString(7, travail.getTitre());
+            pst.setInt(8, travail.getIdp());
+
             pst.executeUpdate();
             System.out.println("Travail modifié !");
         } catch (SQLException e) {
@@ -84,8 +89,10 @@ public class TravailService2 implements IService<Travail> {
                 StatusTravail status = StatusTravail.valueOf(rs.getString("status"));
                 Date date_demande = rs.getDate("date_demande");
                 Date date_fin = rs.getDate("date_fin");
+                String titre = rs.getString("titre");
+                int idp = rs.getInt("idp");
 
-                travails.add(new Travail(id, description, prix, type, status, date_demande, date_fin));
+                travails.add(new Travail(id, description, prix, type, status, date_demande, date_fin,titre,idp));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,4 +101,30 @@ public class TravailService2 implements IService<Travail> {
         return travails;
     }
 
+    public Travail getByID(int id) {
+
+        Travail t = null;
+        String req = "SELECT * FROM travail WHERE id= "+ Integer.toString(id);
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int idt = rs.getInt("id");
+                String description = rs.getString("description");
+                int prix = rs.getInt("prix");
+                String type = rs.getString("type");
+                StatusTravail status = StatusTravail.valueOf(rs.getString("status"));
+                Date date_demande = rs.getDate("date_demande");
+                Date date_fin = rs.getDate("date_fin");
+                String titre = rs.getString("titre");
+                int idp = rs.getInt("idp");
+
+                t = new Travail(id, description, prix, type, status, date_demande, date_fin,titre,idp);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return t;
+    }
 }
