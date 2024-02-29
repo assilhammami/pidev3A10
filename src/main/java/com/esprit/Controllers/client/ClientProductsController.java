@@ -1,8 +1,10 @@
 package com.esprit.Controllers.client.products;
 
 import com.esprit.Controllers.admin.ProductItemController;
+import com.esprit.models.Panier;
 import com.esprit.models.Produits;
 import com.esprit.service.MyListener;
+import com.esprit.service.PanierService;
 import com.esprit.service.ProduitsService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,10 +24,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -172,9 +176,12 @@ public class ClientProductsController implements Initializable {
 }
 
     @FXML
-    void acheterProduit(ActionEvent event) {
+    void acheterProduit(ActionEvent event) throws SQLException {
         ProduitsService produit = new ProduitsService();
-        produit.acheterProduit(id_prod, 8);
+        //produit.acheterProduit(id_prod, 8);
+        PanierService panier = new PanierService();
+        Panier pan = new Panier(selectedProduct.getNom(), selectedProduct.getImage_produit(), selectedProduct.getPrix(), 1 , true, selectedProduct.getId_produit(), 8);
+        panier.ajouterAuPanier(pan);
         checkStock--;
         if(checkStock < 4){
             Stock.setText("       only "+Integer.toString(checkStock)+" left");
@@ -217,6 +224,24 @@ public class ClientProductsController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+    @FXML
+    void openMyCart(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/my_cart.fxml"));
+            Parent parent = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Add Product");
+            stage.setScene(new Scene(parent));
+
+            //block until closed
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
