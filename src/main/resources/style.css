@@ -1,0 +1,18 @@
+.ajoutBtn{
+    -fx-background-image:url("graphics/ajout_hover.png");
+}
+
+.searchInput{
+    -fx-background-image:url("graphics/SearchInput.png");
+}
+
+.searchBtn{
+    -fx-background-image:url("graphics/SearchButton.png");
+}
+
+.ChosenBG{
+    -fx-background-image:url("graphics/ChosenBG.png");
+}
+.modifBtn{
+    -fx-background-image:url("graphics/modifier_button.png");
+}
