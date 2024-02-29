@@ -1,72 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="coback" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.client.ClientOrdersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1430.0" styleClass="bgOrdersAdmin" stylesheets="@css/Styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.client.orders.ClientOrdersController">
    <children>
-      <ScrollPane fx:id="scroll" layoutX="89.0" layoutY="40.0" prefHeight="550.0" prefWidth="1000.0" stylesheets="@Style.css">
-         <styleClass>
-            <String fx:value="PaneBg" />
-            <String fx:value="transparent" />
-         </styleClass>
-         <content>
-            <GridPane fx:id="grid" prefHeight="125.0" prefWidth="114.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
-      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG" stylesheets="@Style.css">
-         <children>
-            <VBox alignment="CENTER" prefHeight="126.0" prefWidth="286.0" />
-         </children>
-      </VBox>
-      <TextField layoutX="124.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" promptText="Search..." stylesheets="@Style.css">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <styleClass>
-            <String fx:value="searchInput" />
-            <String fx:value="transparent" />
-         </styleClass>
-      </TextField>
-      <Button layoutX="346.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#search" prefHeight="40.0" prefWidth="44.0" stylesheets="@Style.css">
-         <styleClass>
-            <String fx:value="searchBtn" />
-            <String fx:value="transparent" />
-         </styleClass>
-      </Button>
-      <Button layoutX="1204.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToShop" prefHeight="69.0" prefWidth="70.0" stylesheets="@Style.css">
-         <styleClass>
-            <String fx:value="transparent" />
-            <String fx:value="shop_icon" />
-         </styleClass>
-      </Button>
-      <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="17.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="308.0" layoutX="511.0" layoutY="12.0">
          <image>
-            <Image url="@graphics/order_title.png" />
+            <Image url="@css/search_bar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="750.0" layoutX="275.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@graphics/bottom_navigation.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="137.0" fitWidth="153.0" layoutX="-27.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@graphics/davincci_logo-removebg-preview.png" />
-         </image>
-      </ImageView>
+      <BorderPane layoutX="728.0" layoutY="479.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <VBox prefHeight="436.0" prefWidth="237.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="70.0" right="61.0" top="90.0" />
+               </BorderPane.margin>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="194.0">
+                     <children>
+                        <Label fx:id="Nom_produit" prefHeight="47.0" prefWidth="346.0" text="Product Name ">
+                           <font>
+                              <Font name="Hoefler Text" size="32.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="182.0" prefWidth="237.0">
+                     <children>
+                        <ImageView fx:id="Image_produit" fitHeight="150.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="84.0" prefWidth="237.0">
+                     <children>
+                        <Label fx:id="Montant_total" prefHeight="18.0" prefWidth="97.0" text="Montant Total" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="237.0" />
+                  <VBox alignment="CENTER" prefHeight="73.0" prefWidth="237.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="237.0" />
+                        <Label fx:id="Date_commande" text="Order Date: dd/mm/yyyy" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </right>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="705.0" prefWidth="143.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" top="40.0" />
+               </BorderPane.margin>
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" stylesheets="@css/Styling.css">
+                     <styleClass>
+                        <String fx:value="users_management_button" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <ScrollPane fx:id="scroll" prefHeight="479.0" prefWidth="874.0" style="-fx-background-color: transparent; -fx-background: transparent;" styleClass="transparent" stylesheets="@css/Styling.css" BorderPane.alignment="CENTER">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane fx:id="grid" layoutY="12.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                           </columnConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="45.0" right="65.0" top="65.0" />
+               </BorderPane.margin>
+            </ScrollPane>
+         </center>
+         <top>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1381.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="56.0" prefWidth="1557.0">
+                     <children>
+                        <Button layoutX="774.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#search" prefHeight="24.0" prefWidth="24.0" stylesheets="@css/Styling.css">
+                           <styleClass>
+                              <String fx:value="search_button" />
+                              <String fx:value="transparent" />
+                           </styleClass>
+                        </Button>
+                        <TextField fx:id="searchInput" layoutX="528.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="232.0" promptText="Search..." styleClass="transparent" stylesheets="@css/Styling.css" />
+                        <ChoiceBox fx:id="filtreOptions" layoutX="823.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="47.0" stylesheets="@css/Styling.css">
+                           <styleClass>
+                              <String fx:value="filtre" />
+                              <String fx:value="transparent" />
+                           </styleClass>
+                        </ChoiceBox>
+                        <Pane layoutX="1088.0" layoutY="-5.0" prefHeight="143.0" prefWidth="340.0">
+                           <children>
+                              <Button layoutX="270.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToProducts" prefHeight="69.0" prefWidth="70.0" stylesheets="@Style.css">
+                                 <styleClass>
+                                    <String fx:value="transparent" />
+                                    <String fx:value="shop_icon" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+               <BorderPane.margin>
+                  <Insets right="7.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <bottom>
+            <Pane prefHeight="114.0" prefWidth="1342.0" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>

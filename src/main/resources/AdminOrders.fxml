@@ -37,14 +37,16 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="194.0">
                            <children>
-                              <Label fx:id="Nom_produit" prefHeight="47.0" prefWidth="346.0" text="Product Name ">
-                                 <font>
-                                    <Font name="Hoefler Text" size="32.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Label>
+                              <Pane prefHeight="62.0" prefWidth="246.0">
+                                 <children>
+                                    <Label fx:id="Nom_produit" layoutX="14.0" layoutY="6.0" prefHeight="47.0" prefWidth="216.0" text="Product Name ">
+                                       <font>
+                                          <Font name="Hoefler Text" size="32.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Nom_produit_edit" layoutX="15.0" layoutY="20.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
+                                 </children>
+                              </Pane>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="182.0" prefWidth="237.0">
@@ -52,32 +54,39 @@
                               <ImageView fx:id="Image_produit" fitHeight="150.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
-                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="237.0">
+                        <VBox alignment="CENTER" prefHeight="72.0" prefWidth="238.0">
                            <children>
-                              <Label fx:id="user_name" text="USER_NAME" />
-                              <Label fx:id="user_email" text="EMAIL" />
+                              <Pane prefHeight="67.0" prefWidth="238.0">
+                                 <children>
+                                    <Label fx:id="user_name" layoutX="85.0" layoutY="14.0" text="USER_NAME" />
+                                    <Label fx:id="user_email" layoutX="68.0" layoutY="39.0" text="EMAIL" />
+                                    <TextField fx:id="user_email_edit" layoutX="28.0" layoutY="35.0" prefHeight="25.0" prefWidth="186.0" visible="false" />
+                                 </children>
+                              </Pane>
                            </children>
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="49.0" prefWidth="237.0">
                            <children>
-                              <Label fx:id="Montant_total" prefHeight="18.0" prefWidth="97.0" text="Montant Total">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Pane prefHeight="49.0" prefWidth="62.0" HBox.hgrow="ALWAYS" />
-                              <Label fx:id="Quantité" prefHeight="18.0" prefWidth="87.0" text="Stock: N/A">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
+                              <Pane prefHeight="49.0" prefWidth="62.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="Quantité" layoutX="151.0" layoutY="16.0" prefHeight="18.0" prefWidth="87.0" text="Stock: N/A" />
+                                    <Label fx:id="Montant_total" layoutX="14.0" layoutY="16.0" prefHeight="18.0" prefWidth="97.0" text="Montant Total" />
+                                    <TextField fx:id="Montant_total_edit" layoutX="14.0" layoutY="12.0" prefHeight="25.0" prefWidth="79.0" visible="false" />
+                                    <TextField fx:id="Quantité_edit" layoutX="181.0" layoutY="12.0" prefHeight="25.0" prefWidth="33.0" visible="false" />
+                                 </children></Pane>
                            </children>
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="73.0" prefWidth="237.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="237.0">
                                  <children>
-                                    <Button fx:id="supprimerBtn" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#supprimerCommande" prefHeight="42.0" prefWidth="108.0" stylesheets="@css/Styling.css">
+                                    <Button fx:id="modifierBtn" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifierCommande" prefHeight="42.0" prefWidth="108.0" stylesheets="@css/Styling.css">
+                                       <styleClass>
+                                          <String fx:value="edit_button" />
+                                          <String fx:value="transparent" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="supprimerBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#supprimerCommande" prefHeight="42.0" prefWidth="108.0" stylesheets="@css/Styling.css">
                                        <styleClass>
                                           <String fx:value="delete_button" />
                                           <String fx:value="transparent" />
