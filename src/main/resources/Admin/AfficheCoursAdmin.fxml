@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="747.0" prefWidth="1246.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.AfficheCoursAdminController">
+   <children>
+      <ScrollPane fx:id="scroll" layoutX="252.0" layoutY="105.0" prefHeight="538.0" prefWidth="953.0">
+         <styleClass>
+            <String fx:value="PaneBg" />
+            <String fx:value="transparent" />
+         </styleClass>
+         <content>
+            <GridPane fx:id="grid" prefHeight="125.0" prefWidth="114.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1205.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background" stylesheets="@../Style.css">
+         <children>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="286.0">
+               <children>
+                  <TextField fx:id="nom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="188.0" promptText="Nom_cours" />
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="179.0" prefWidth="286.0">
+               <children>
+                  <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#upload" text="Upload">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font></Button>
+            <VBox prefHeight="169.0" prefWidth="286.0">
+               <children>
+                  <Label text="Date Publication">
+                     <font>
+                        <Font name="Cooper Black" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="date_pub" disable="true">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Description">
+                     <font>
+                        <Font name="Cooper Black" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="description" prefHeight="61.0" prefWidth="286.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="286.0">
+               <children>
+                  <Pane prefHeight="69.0" prefWidth="42.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="1123.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#supprimer" text="Supprimer" textFill="#816161">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font></Button>
+      <Button layoutX="1003.0" layoutY="691.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="104.0" text="Modifier" textFill="#816161">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font></Button>
+      <Button layoutX="435.0" layoutY="691.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="32.0" prefWidth="178.0" text="Ajouter un Cours" textFill="#816161">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font>
+      </Button>
+      <Label contentDisplay="CENTER" layoutX="548.0" layoutY="20.0" text="LISTE DES COURS" textFill="#816161">
+         <font>
+            <Font name="Britannic Bold" size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="82.0" fitWidth="169.0" layoutX="1275.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/fersi/OneDrive/Bureau/logo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="searchField" alignment="TOP_CENTER" layoutX="1003.0" layoutY="74.0" onKeyPressed="#search" promptText="Search..." />
+      <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1003.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/fersi/OneDrive/Bureau/search.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

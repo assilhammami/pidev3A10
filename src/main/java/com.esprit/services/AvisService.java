@@ -1,6 +1,7 @@
 package com.esprit.services;
 
 
+import com.esprit.models.NoteCours;
 import com.esprit.models.avis;
 import com.esprit.utils.DataSource;
 import java.sql.Connection;
@@ -19,13 +20,14 @@ public class AvisService implements IService<avis>{
     }
     @Override
     public void ajouter(avis avis) {
-        String req = "INSERT into avis(id, note, commentaire_pos, commentaire_neg) values (?, ?, ?, ?);";
+        String req = "INSERT into avis(note, commentaire, id_cour, id_user) values (?, ?, ?, ?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setString(4, avis.getCommentaire_neg());
-            pst.setString(3, avis.getCommentaire_pos());
-            pst.setInt(2, avis.getNote());
-            pst.setInt(1, avis.getId());
+
+            pst.setInt(4, avis.getIdu());
+            pst.setInt(3, avis.getIdc());
+            pst.setString(2, avis.getCommentaire());
+            pst.setInt(1, avis.getNote().getValue());
             pst.executeUpdate();
             System.out.println("avis ajoutée !");
         } catch (SQLException e) {
@@ -35,13 +37,12 @@ public class AvisService implements IService<avis>{
 
     @Override
     public void modifier(avis avis) {
-        String req = "UPDATE avis set note = ?, commentaire_pos = ?, commentaire_neg = ? where id = ?;";
+        String req = "UPDATE avis set note = ?, commentaire = ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(4, avis.getId());
-            pst.setString(3, avis.getCommentaire_neg());
-            pst.setString(2, avis.getCommentaire_pos());
-            pst.setInt(1, avis.getNote());
+            pst.setInt(3, avis.getId());
+            pst.setString(2, avis.getCommentaire());
+            pst.setInt(1, avis.getNote().getValue());
             pst.executeUpdate();
             System.out.println("avis modifiée !");
         } catch (SQLException e) {
@@ -62,10 +63,6 @@ public class AvisService implements IService<avis>{
         }
     }
 
-
-
-
-
     @Override
     public List<avis> afficher() {
         List<avis> aviss = new ArrayList<>();
@@ -76,10 +73,11 @@ public class AvisService implements IService<avis>{
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int note = rs.getInt("note");
-                String commentaire_pos = rs.getString("commentaire_pos");
-                String commentaire_neg = rs.getString("commentaire_neg");
-                aviss.add(new avis(id, note, commentaire_pos, commentaire_neg));
+                int noteValue = rs.getInt("note");
+                int i = 1;
+                NoteCours note = NoteCours.values()[ 1 ];
+                String commentaire = rs.getString("commentaire");
+                aviss.add(new avis(id, note, commentaire));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

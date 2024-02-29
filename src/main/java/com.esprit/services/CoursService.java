@@ -14,6 +14,7 @@ public class CoursService implements IService<cours> {
     public CoursService() {
         connection = DataSource.getInstance().getConnection();
     }
+
     @Override
     public void ajouter(cours cours) {
         String req = "INSERT into cours(nom, description, date_pub, image) values (?, ?, ?, ?);";
@@ -82,27 +83,17 @@ public class CoursService implements IService<cours> {
 
         return courss;
     }
-    public cours getcoursparId(int id) {
 
-        String req = "SELECT * FROM cours WHERE id = ?";
-        cours courses = null;
+    public boolean isNomUnique(String nom) {
+        String req = "SELECT * FROM cours WHERE nom = ?";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
+            pst.setString(1, nom);
             ResultSet rs = pst.executeQuery();
-            pst.setInt(1, id);
-
-            while (rs.next()) {
-                int id1 = rs.getInt("id");
-                String nom = rs.getString("nom");
-                String description = rs.getString("description");
-                Date date_pub = rs.getDate("date_pub");
-                String image = rs.getString("image");
-                courses = new cours(nom, description, date_pub, image);
-            }
+            return !rs.next();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
         }
-
-        return courses;
     }
 }

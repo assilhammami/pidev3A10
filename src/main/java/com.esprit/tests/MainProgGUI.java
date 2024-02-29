@@ -1,7 +1,6 @@
 package com.esprit.tests;
 
-import com.esprit.models.cours;
-import javafx.application.Application;
+import  javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +16,7 @@ public class MainProgGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficheCours.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
