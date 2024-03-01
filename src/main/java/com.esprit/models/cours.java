@@ -94,4 +94,6 @@ private String image;
     public int hashCode() {
         return Objects.hash(id, nom, description, date_pub, image);
     }
-}
+
+    }
+

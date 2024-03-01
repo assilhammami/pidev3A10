@@ -3,6 +3,7 @@ import com.esprit.models.NoteCours;
 import com.esprit.models.avis;
 import com.esprit.services.AvisService;
 import com.esprit.controllers.Admin.CoursCardAdminController;
+import com.esprit.services.UserDataManager;
 import javafx.event.ActionEvent;
 import com.esprit.services.CoursService;
 import javafx.fxml.FXML;
@@ -56,10 +57,13 @@ public class AfficheCoursClientController implements Initializable {
     private TextField searchField;
     @FXML
     ToggleGroup toggleGroup;
+    @FXML
+    private Button voirdetails;
 
     MyListener myListener;
     private NoteCours noteCours;
     private  int userId;
+    private  int selectedCoursId;
 
     public cours selectedCours;
     private List<cours> coursList = new ArrayList<>();
@@ -68,6 +72,9 @@ public class AfficheCoursClientController implements Initializable {
         selectedCours = cours;
         id_cours = cours.getId();
         nom.setText(cours.getNom());
+        selectedCoursId =cours.getId();
+        UserDataManager.getInstance().setSelectedCoursId(selectedCoursId);
+        voirdetails.setVisible(true);
         ImageView imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
@@ -93,6 +100,7 @@ public class AfficheCoursClientController implements Initializable {
             @Override
             public void onClickListener(cours cours) {
                 setChosenCours(cours);
+                selectedCoursId = cours.getId();
             }
         };
 
@@ -135,6 +143,7 @@ public class AfficheCoursClientController implements Initializable {
         });
 
         Update();
+        voirdetails.setVisible(false);
     }
 
 
@@ -211,4 +220,19 @@ public class AfficheCoursClientController implements Initializable {
 
     }
 
+    @FXML
+    void voirdetails(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/DétailsCours.fxml"));
+        System.out.println();
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+        stage.show();
+
+
+
+    }
 }

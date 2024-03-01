@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +14,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -64,11 +69,18 @@ public class AjouterCoursAdminController implements Initializable {
                     alert.show();
                 } else if (cs.isNomUnique(tfNom.getText())) {
                     cs.ajouter(new cours(tfNom.getText(), tfDescription.getText(), Date.valueOf(tfDatepub.getValue()), tfImage.getText()));
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Cours ajouté ");
-                    alert.setContentText("Cours ajouté avec succès !");
-                    alert.show();
+                    //Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                   // alert.setTitle("Cours ajouté ");
+                    //alert.setContentText("Cours ajouté avec succès !");
+                    //alert.show();
                     Stage stage = (Stage) tfNom.getScene().getWindow();
+
+                    Notifications.create()
+                            .darkStyle()
+                            .title("Cours Ajouté avec succès")
+                            .position(Pos.TOP_RIGHT) // Modifier la position ici
+                            .hideAfter(Duration.seconds(20))
+                            .show();
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -96,4 +96,26 @@ public class CoursService implements IService<cours> {
             return false;
         }
     }
+
+    public List<cours> getByIDUser(int idd) {
+        List<cours> cours = new ArrayList<>();
+
+        String req = "SELECT * FROM cours WHERE id="+idd;
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String description = rs.getString("description");
+                Date date_pub = rs.getDate("date_pub");
+                String image = rs.getString("image");
+                cours.add(new cours(id,nom,description,date_pub,image));}
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cours;
+    }
+
 }

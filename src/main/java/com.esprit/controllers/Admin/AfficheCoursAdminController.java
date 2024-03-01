@@ -68,7 +68,7 @@ public class AfficheCoursAdminController implements Initializable {
 
     public cours selectedCours;
     private List<cours> coursList = new ArrayList<>();
-    private String imagePathStr;
+    private String imagePathStr ;
 
     private void setChosenCours(cours cours) {
         selectedCours = cours;
@@ -76,6 +76,7 @@ public class AfficheCoursAdminController implements Initializable {
         nom.setText(cours.getNom());
         date_pub.setText((String.valueOf(cours.getDate_pub())));
         description.setText(cours.getDescription());
+        imagePathStr=cours.getImage();
         ImageView imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
@@ -148,7 +149,7 @@ public class AfficheCoursAdminController implements Initializable {
     //boutton modifier
     @FXML
     void modifier(ActionEvent event) throws SQLException {
-        cours cours = new cours(id_cours, nom.getText(), description.getText(), Date.valueOf(date_pub.getText()),  imagePathStr);
+        cours cours = new cours(id_cours, nom.getText(), description.getText(), Date.valueOf(date_pub.getText()),imagePathStr);
         CoursService cs = new CoursService();
         cs.modifier(cours);
         coursList.clear();
@@ -233,6 +234,7 @@ public class AfficheCoursAdminController implements Initializable {
                 Path imagePath = resourcesDir.resolve(selectedFile.getName());
                 Files.copy(selectedFile.toPath(), imagePath, StandardCopyOption.REPLACE_EXISTING);
                 imagePathStr = selectedFile.getName();
+
 
                 // Charger et afficher l'image
                 try {

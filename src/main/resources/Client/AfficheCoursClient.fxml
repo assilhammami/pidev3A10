@@ -44,7 +44,7 @@
                         <ImageView id="note" fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </VBox>
-            <Button mnemonicParsing="false" text="Voir Détails">
+            <Button fx:id="voirdetails" mnemonicParsing="false" onAction="#voirdetails" text="Voir Détails">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
@@ -62,7 +62,7 @@
                         <Font name="Cooper Black" size="18.0" />
                      </font>
                   </Label>
-                  <HBox>
+                  <HBox styleClass="button">
                      <children>
                         <RadioButton fx:id="choix1" mnemonicParsing="false" prefHeight="18.0" prefWidth="22.0" text="1">
                            <toggleGroup>

@@ -3,11 +3,10 @@ package com.esprit.services;
 
 import com.esprit.models.NoteCours;
 import com.esprit.models.avis;
+import com.esprit.models.cours;
 import com.esprit.utils.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +83,27 @@ public class AvisService implements IService<avis>{
         }
 
         return aviss;
+    }
+    public List<avis> getByIDCours(int idd) {
+        List<avis> avis = new ArrayList<>();
+
+        String req = "SELECT * FROM avis WHERE id_cour="+idd;
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int noteValue = rs.getInt("note");
+                int i = 1;
+                NoteCours note = NoteCours.values()[ 1 ];
+                String commentaire = rs.getString("commentaire");
+                avis.add(new avis(id, note, commentaire));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return avis;
     }
 }
 
