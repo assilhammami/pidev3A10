@@ -256,11 +256,7 @@ UserService us=new UserService();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Login");
-
     }
-
-
-
 }
 
 

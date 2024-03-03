@@ -20,6 +20,9 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginController {
 
@@ -65,6 +68,9 @@ public class LoginController {
     @FXML
     private ImageView eyeopen1;
 
+    @FXML
+    private TextField fieldserr;
+
     UserService us= new UserService();
 
     @FXML
@@ -88,45 +94,50 @@ public class LoginController {
     void Checklogin(ActionEvent event) throws SQLException, IOException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         String username = usernametext.getText();
         String password = us.getPassword(Visiblepassword,Hiddenpassword);
-        int userid=us.getUserId(username);
-        System.out.println(us.getUser(userid).getActive());
 
-       if (us.verifierLogin(username,password)){
-           System.out.println("Login successful");
-           if(us.getUser(userid).getActive())
-           { System.out.println("Account is active");
-               System.out.println("logged in successfully!");
-           loggedinfield.setVisible(true);
-           errorField.setVisible(false);
-           activateErr.setVisible(false);
+        List<String> fields = new ArrayList<>(Arrays.asList(username,password));
+        if (!us.areFieldsNotEmpty(fields)) {
+            fieldserr.setVisible(true);}
+        else {fieldserr.setVisible(false);
+            int userid=us.getUserId(username);
 
-           int userId = us.getUserId(username);
+            if (us.verifierLogin(username,password)){
+                System.out.println("Login successful");
+                if(us.getUser(userid).getActive())
+                { System.out.println("Account is active");
+                    System.out.println("logged in successfully!");
+                    loggedinfield.setVisible(true);
+                    errorField.setVisible(false);
+                    activateErr.setVisible(false);
 
-           if(us.getUser(userId).getType().equals("ADMIN"))
-           {UserDataManager.getInstance().setUserId(userId);
+                    int userId = us.getUserId(username);
 
-           Stage stage = (Stage) Button_Login.getScene().getWindow();
-           Parent root = FXMLLoader.load(getClass().getResource("/AdminUsers.fxml"));
-           Scene scene = new Scene(root);
-           stage.setScene(scene);
+                    if(us.getUser(userId).getType().equals("ADMIN"))
+                    {UserDataManager.getInstance().setUserId(userId);
 
-           System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
+                        Stage stage = (Stage) Button_Login.getScene().getWindow();
+                        Parent root = FXMLLoader.load(getClass().getResource("/AdminUsers.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
 
-              Stage stage = (Stage) Button_Login.getScene().getWindow();
-               Parent root = FXMLLoader.load(getClass().getResource("/UpdateProfile.fxml"));
-               Scene scene = new Scene(root);
-               stage.setScene(scene);}}
-           else {System.out.println("Account is not active");
-               activateErr.setVisible(true);};
+                        System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
+
+                        Stage stage = (Stage) Button_Login.getScene().getWindow();
+                        Parent root = FXMLLoader.load(getClass().getResource("/UpdateProfile.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);}}
+                else {System.out.println("Account is not active");
+                    activateErr.setVisible(true);};
 
 
 
-       }else {
-           System.out.println("Invalid login");
-           System.out.println("invalid !");
-           errorField.setVisible(true);
-           loggedinfield.setVisible(false);
-       }
+            }else {
+                System.out.println("Invalid login");
+                System.out.println("invalid !");
+                errorField.setVisible(true);
+                loggedinfield.setVisible(false);
+            }
+        }
 
 
     }

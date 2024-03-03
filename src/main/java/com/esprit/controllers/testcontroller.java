@@ -3,6 +3,7 @@ package com.esprit.controllers;
 import com.esprit.models.User;
 import com.esprit.models.UserType;
 import com.esprit.services.UserService;
+import com.esprit.utils.Mail;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -560,6 +561,11 @@ public void searchByType(String tri) { System.out.println("Search by type method
 
                             us.ActivateAccount(data);
                             us.modifier(data);
+                            try {
+                                Mail.sendActivatedMail(data.getEmail());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                             tableuser.refresh();
 
                         });
@@ -568,6 +574,11 @@ public void searchByType(String tri) { System.out.println("Search by type method
                             User data = getTableView().getItems().get(getIndex());
                             us.DesactivateAccount(data);
                             us.modifier(data);
+                            try {
+                                Mail.sendDeactivateMail(data.getEmail());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                             tableuser.refresh();
 
                         });

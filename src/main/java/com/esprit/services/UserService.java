@@ -265,7 +265,7 @@ public class UserService implements IService<User> {
         return chaine.length() < 6 ? false : chaine.matches("[a-zA-Z-0-9]+");
     }
 public  boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\\d{8}");
+        return phoneNumber.matches("\"[2|4|5|9]\\\\d{7}\"");
 }
     public  boolean isValidBirthDate(String birthdate) {
         return birthdate.matches("^(\\d{4})-(\\d{2})-(\\d{2})$");
@@ -325,7 +325,8 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
 
         return i;
     }
-    public void ActivateAccount(User user){user.setActive(true);}
+    public void ActivateAccount(User user){user.setActive(true);
+    }
     public void DesactivateAccount(User user){user.setActive(false);}
     public  Image loadImage(String filePath) {
         try {

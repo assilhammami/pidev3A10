@@ -43,6 +43,7 @@
                   <TextField fx:id="loggedinfield" prefHeight="10.0" prefWidth="211.0" style="-fx-background-color: #90EE90; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #00FF00; -fx-border-radius: 4;" text="Logged in successfully!" visible="false" />
                   <TextField fx:id="errorField" prefHeight="10.0" prefWidth="211.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #e60000; -fx-border-radius: 4;" text="Invalid Login ! please try again." visible="false" />
                   <TextField fx:id="activateErr" prefHeight="10.0" prefWidth="211.0" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #e60000; -fx-border-radius: 4;" text="Please activate your account ." visible="false" />
+                  <TextField fx:id="fieldserr" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #ffc1bd; -fx-border-radius: 4; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #e60000;" text="Error: please fill out all the fields" visible="false" />
                </children>
             </StackPane>
                 <Label layoutX="14.0" prefHeight="39.0" prefWidth="236.0" text="Welcome to Davincci's Data">
