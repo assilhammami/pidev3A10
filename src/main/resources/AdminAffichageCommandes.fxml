@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="coback" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Controllers.admin.AdminAffichageCommandesController">
+   <children>
+      <ScrollPane fx:id="scroll" layoutX="79.0" layoutY="30.0" prefHeight="550.0" prefWidth="1000.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="PaneBg" />
+            <String fx:value="transparent" />
+         </styleClass>
+         <content>
+            <GridPane fx:id="grid" prefHeight="125.0" prefWidth="114.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG" stylesheets="@Style.css">
+         <children>
+            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="286.0">
+               <children>
+                  <Label text="Id_produit: " />
+                  <TextField fx:id="Id_produit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="Date_commande" text="Date Commande: " />
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="49.0" prefWidth="286.0">
+               <children>
+                  <Label text="Montant total:" />
+                  <TextField fx:id="montant_total" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" />
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="138.0" prefWidth="286.0">
+               <children>
+                  <Label text="Quantite" />
+                  <TextField fx:id="quantite" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" />
+                  <Label text="Id_user:" />
+                  <TextField fx:id="Id" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <TextField layoutX="114.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="286.0" promptText="Search..." stylesheets="@Style.css">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="searchInput" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </TextField>
+      <Button layoutX="336.0" layoutY="5.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#search" prefHeight="40.0" prefWidth="44.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="searchBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="80.0" fitWidth="750.0" layoutX="265.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/crudBottom.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="288.0" layoutY="622.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ajoutCommande" prefHeight="72.0" prefWidth="184.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="ajoutBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1204.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToProducts" prefHeight="69.0" prefWidth="70.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="shop_icon" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="7.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@graphics/order_title.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="734.0" layoutY="622.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#supprimerCommande" prefHeight="72.0" prefWidth="184.0" stylesheets="@Style.css">
+         <styleClass>
+            <String fx:value="suppBtn" />
+            <String fx:value="transparent" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>
