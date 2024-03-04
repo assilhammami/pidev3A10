@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -336,6 +337,33 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
             e.printStackTrace();
             return null;
         }}
+    public User getUtilisateurUsernameouEmail(String username) throws SQLException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        User connectedUser=null;
+
+        String req="SELECT * FROM user WHERE Nom_Utilisateur=? OR email=? ;";
+
+        PreparedStatement pst =connection.prepareStatement(req);
+        pst.setString(1,username);
+        pst.setString(2,username);
+
+        ResultSet rs=pst.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("UserType").equals("ADMIN")) {
+                connectedUser = new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance"));
+            } else if (rs.getString("UserType").equals("ARTISTE")) {
+                connectedUser = new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            } else {
+                connectedUser = new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            }
+
+        }
+    {return connectedUser;}}
+    public int generer(){
+        Random rand = new Random();
+        int code = rand.nextInt((9999 - 1000) + 1) + 1000;
+        return code;
+    }
+
 }
 
 

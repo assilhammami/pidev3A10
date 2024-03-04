@@ -180,10 +180,6 @@ UserService us=new UserService();
         String username1 = username.getText();
         String adresse = email.getText();
         String path = urlimage.getText();
-
-        // Convertir le chemin de l'image en Blob
-
-
         String datenaissance = ((TextField)birthdate1.getEditor()).getText();
         String type = Choicebox.getValue();
         String pass1 = us.getPassword(password1, hiddenpassword1);

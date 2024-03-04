@@ -34,7 +34,7 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = UserType.CLIENT.toString();
         this.date_de_naissance = date_de_naissance;
-        this.Active=false;
+        this.Active=true;
     }
 
 
@@ -52,7 +52,7 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = UserType.CLIENT.toString();
         this.date_de_naissance = date_de_naissance;
-        this.Active=false;
+        this.Active=true;
     }
 
     public User(String photo_de_profile_path, String nom, String prenom, String email, String mot_de_passe, String username, int num_telephone, String type, String date_de_naissance, Boolean active) {
@@ -65,7 +65,7 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = type;
         this.date_de_naissance = date_de_naissance;
-        this.Active = active;
+        this.Active = true;
     }
 
     public User(int id, String photo_de_profile_path, String nom, String prenom, String email, String mot_de_passe, String username, int num_telephone, String type, String date_de_naissance, Boolean active) {

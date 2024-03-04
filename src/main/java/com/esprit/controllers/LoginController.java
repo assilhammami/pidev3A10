@@ -47,9 +47,6 @@ public class LoginController {
     @FXML
     private TextField loggedinfield;
     @FXML
-    private CheckBox rememberme;
-
-    @FXML
     private Hyperlink CreateAccHL;
     @FXML
     private Button hide;
@@ -70,6 +67,8 @@ public class LoginController {
 
     @FXML
     private TextField fieldserr;
+    @FXML
+    private Hyperlink hlpassword;
 
     UserService us= new UserService();
 
@@ -154,11 +153,16 @@ public class LoginController {
     }
 
 
+
+
     @FXML
-    void SauvegarderDonnees(ActionEvent event) {
-
+    void mdpoublier(ActionEvent event) throws IOException {
+        Stage stage=(Stage) hlpassword.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MdpOublie.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Forgot Password");
     }
-
-
 
 }
