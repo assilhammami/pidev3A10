@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="625.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.listecommentairesadminController">
+<AnchorPane prefHeight="628.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.listecommentairesadminController">
     <children>
         <AnchorPane layoutX="-2.0" prefHeight="626.0" prefWidth="230.0">
             <children>
@@ -21,9 +21,9 @@
                 <Button layoutX="14.0" layoutY="587.0" mnemonicParsing="false" onAction="#refreshTableView" text="Refresh" />
             </children>
         </AnchorPane>
-        <ScrollPane layoutX="224.0" prefHeight="628.0" prefWidth="612.0">
+        <ScrollPane layoutX="224.0" prefHeight="628.0" prefWidth="615.0">
             <content>
-                <TableView fx:id="tabcom" prefHeight="632.0" prefWidth="614.0">
+                <TableView fx:id="tabcom" prefHeight="632.0" prefWidth="611.0">
                     <columns>
                         <TableColumn fx:id="tfuser" prefWidth="181.60003358125687" text="Username" />
                         <TableColumn fx:id="tfcontenu" prefWidth="226.40003967285156" text="Contenu" />

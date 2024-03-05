@@ -18,7 +18,7 @@ public class PublicationService implements IService<Publication> {
     }
     @Override
     public void ajouter(Publication publication) {
-        String req = "INSERT into publication(titre, description, datepublication, image) values (?, ?, ?, ?);";
+        String req = "INSERT into publication(titre, description, datepublication, image, iduser,favori) values (?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setString(2, publication.getDescription());
@@ -26,6 +26,8 @@ public class PublicationService implements IService<Publication> {
             pst.setObject(3, java.sql.Date.valueOf(publication.getDatepublication()));
 
             pst.setString(4, publication.getImage());
+            pst.setInt(5, publication.getIduser());
+            pst.setBoolean(6, publication.isFavori());
             pst.executeUpdate();
             System.out.println("Publication ajoutée !");
         } catch (SQLException e) {
@@ -35,13 +37,14 @@ public class PublicationService implements IService<Publication> {
 
     @Override
     public void modifier(Publication publication) {
-        String req = "UPDATE publication set titre = ?, description = ?, image= ?   where id = ?;";
+        String req = "UPDATE publication set titre = ?, description = ?, image= ?, favori = ?   where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(4, publication.getId());
+            pst.setInt(5, publication.getId());
             pst.setString(1, publication.getTitre());
             pst.setString(2, publication.getDescription());
             pst.setString(3, publication.getImage());
+            pst.setBoolean(4, publication.isFavori());
             pst.executeUpdate();
             System.out.println("Publication modifiée !");
         } catch (SQLException e) {
@@ -71,7 +74,7 @@ public class PublicationService implements IService<Publication> {
             PreparedStatement pst = connection.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                publication.add(new Publication(rs.getInt("id"),rs.getString("image"),rs.getString("titre"),rs.getString("description"),rs.getObject("datepublication", LocalDate.class)));
+                publication.add(new Publication(rs.getInt("id"),rs.getString("image"),rs.getString("titre"),rs.getString("description"),rs.getObject("datepublication", LocalDate.class),rs.getInt("iduser")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -131,9 +134,13 @@ public class PublicationService implements IService<Publication> {
     public List<String> getPublicationTitlesFromDatabase() {
         List<String> publicationTitles = new ArrayList<>();
 
-        String query = "SELECT titre FROM publication"; // Supposons que le titre est une colonne dans votre table
+        String query = "SELECT titre FROM publication where iduser=91";
+
+
+
 
         try (PreparedStatement pst = connection.prepareStatement(query);
+
              ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
@@ -188,6 +195,35 @@ public class PublicationService implements IService<Publication> {
     }
 
 
+    public List<Publication> rechercherParDate(LocalDate date) {
+        List<Publication> publications = new ArrayList<>();
+        String sql = "SELECT * FROM publication WHERE datepublication = ?";
 
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            // Convertissez la LocalDate en java.sql.Date
+            java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+
+            pst.setDate(1, sqlDate);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                   String image= rs.getString("image");
+                    String titre = rs.getString("titre");
+                    String description = rs.getString("description");
+                    LocalDate datePublication = rs.getDate("datepublication").toLocalDate(); // Convertir en LocalDate
+
+                    // Créer un objet Publication et l'ajouter à la liste
+                    Publication publication = new Publication(id,image, titre, description, datePublication);
+                    publications.add(publication);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions correctement dans votre application
+        }
+
+        return publications;
+    }
 
 }

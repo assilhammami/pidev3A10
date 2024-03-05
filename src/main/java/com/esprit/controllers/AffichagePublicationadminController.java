@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class AffichagePublicationController {
+public class AffichagePublicationadminController {
 
     @FXML
     private Label lbdate;
@@ -31,11 +31,7 @@ public class AffichagePublicationController {
     @FXML
     private ImageView lbimage;
 
-    public void setLbimage(Image imageUrl) {
 
-        lbimage.setImage(imageUrl);
-        lbimage.setVisible(true);
-    }
 
     @FXML
 
@@ -64,7 +60,7 @@ public class AffichagePublicationController {
     @FXML
     void back(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/test.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/forumadmin.fxml"));
             Parent root = loader.load();
 
             // Vous pouvez éventuellement passer des données ou initialiser des contrôleurs ici
@@ -84,5 +80,8 @@ public class AffichagePublicationController {
     }
 
 
-
+    public void setLbimage(Image imageUrl) {
+        lbimage.setImage(imageUrl);
+        lbimage.setVisible(true);
+    }
 }

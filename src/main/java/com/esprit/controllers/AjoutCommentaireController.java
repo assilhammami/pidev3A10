@@ -40,7 +40,6 @@ public class AjoutCommentaireController {
     }
     @FXML
     void confirmer(ActionEvent event) throws IOException {
-
         String noteText = note.getText();
 
         // Vérifier si le champ de note est vide
@@ -53,9 +52,9 @@ public class AjoutCommentaireController {
             // Convertir la note en entier
             int noteValue = Integer.parseInt(noteText);
 
-            // Vérifier si la note est numérique et ne dépasse pas 20
-            if (noteValue < 0 || noteValue > 20) {
-                showAlert("La note doit être un nombre entre 0 et 20.");
+            // Vérifier si la note est numérique et est dans la plage de 0 à 5
+            if (noteValue < 0 || noteValue > 5) {
+                showAlert("La note doit être un nombre entre 0 et 5 (inclus).");
                 return;
             }
 
@@ -69,14 +68,6 @@ public class AjoutCommentaireController {
             alert.setContentText("Commentaire ajouté !");
             alert.show();
             ((Stage) tfajouter.getScene().getWindow()).close();
-
-
-
-
-
-
-
-
         } catch (NumberFormatException e) {
             // Gérer l'exception si la conversion en entier échoue
             showAlert("Veuillez saisir une valeur numérique valide pour la note.");

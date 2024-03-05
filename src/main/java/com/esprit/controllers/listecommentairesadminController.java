@@ -120,63 +120,68 @@ public class listecommentairesadminController implements Initializable {
             rafraichirTableView(idPublicationSelectionnee);
 
             // Colonne Actions
-            TableColumn<commentaire, String> actionsColumn = new TableColumn<>("Actions");
+            TableColumn<commentaire, Void> actionsColumn = new TableColumn<>("Actions");
             actionsColumn.setSortable(false);
 
-            // Ajouter les boutons Supprimer et Modifier dans la même cellule
-            actionsColumn.setCellValueFactory(param -> new SimpleStringProperty("Actions"));
+            actionsColumn.setCellFactory(col -> new TableCell<>() {
+                private final HBox container = new HBox(); // Conteneur pour les boutons
+                private final Button deleteButton = new Button("Supprimer");
+                private final Button editButton = new Button("Modifier");
 
-            actionsColumn.setCellFactory(col -> {
-                HBox container = new HBox(); // Conteneur pour les boutons
+                {
+                    deleteButton.setOnAction(event -> {
+                        commentaire commentaire = tabcom.getItems().get(getIndex());
 
-                // Bouton Supprimer
-                Button deleteButton = new Button("Supprimer");
-                deleteButton.setOnAction(event -> {
-                    commentaire commentaire = tabcom.getSelectionModel().getSelectedItem();
-                    if (commentaire != null) {
-                        cs.supprimer(commentaire);
-                        tabcom.getItems().remove(commentaire);
-                    }
-                });
+                            cs.supprimer(commentaire);
+                            tabcom.getItems().remove(commentaire);
 
-                // Bouton Modifier
-                Button editButton = new Button("Modifier");
-                editButton.setOnAction(event -> {
-                    commentaire commentaire = tabcom.getSelectionModel().getSelectedItem();
-                    if (commentaire != null) {
-                        // Rediriger vers AjoutCommentaireController avec les champs remplis
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifCommentaire.fxml"));
-                        Parent root;
-                        try {
-                            root = loader.load();
+                    });
 
-                            ModifCommentaire modifCommentaire = loader.getController();
-                            modifCommentaire.setCommentaireToModify(commentaire);
+                    editButton.setOnAction(event -> {
+                        commentaire commentaire = tabcom.getItems().get(getIndex());
+                        int currentIdUser = 91;
+                        if (commentaire != null && commentaire.getIduser() == currentIdUser) {
+                            // Rediriger vers ModifCommentaireController avec les champs remplis
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifCommentaire.fxml"));
+                            Parent root;
+                            try {
+                                root = loader.load();
 
-                            Scene scene = new Scene(root);
-                            Stage stage = new Stage();
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                                ModifCommentaire modifCommentaire = loader.getController();
+                                modifCommentaire.setCommentaireToModify(commentaire);
+
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
-                // Ajouter les boutons au conteneur
-                container.getChildren().addAll(deleteButton, editButton);
+                @Override
+                protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        commentaire selectedComment = tabcom.getItems().get(getIndex());
+                        int currentIdUser = 91;
 
-                return new TableCell<commentaire, String>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
+                        // Ajouter les boutons au conteneur en fonction de la condition
+                        container.getChildren().clear(); // Effacer les boutons précédents
+
+                        if (selectedComment.getIduser() == currentIdUser) {
+                            container.getChildren().addAll(deleteButton, editButton);
                         } else {
-                            setGraphic(container);
+                            container.getChildren().add(deleteButton);
                         }
+
+                        setGraphic(container);
                     }
-                };
+                }
             });
 
             // Ajouter la colonne à la TableView
@@ -187,7 +192,6 @@ public class listecommentairesadminController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 
 
 

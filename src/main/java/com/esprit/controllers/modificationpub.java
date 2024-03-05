@@ -30,16 +30,20 @@ public class modificationpub {
 
     @FXML
     void confirmer(ActionEvent event) {
-
         String newDescription = tfdescription.getText();
         String newImage = tfimage.getText();
         String newTitre = tftitre.getText();
+
+        // Vérifier si le champ d'image est vide
+        if (newImage.isEmpty()) {
+            showAlert("Veuillez saisir l'URL de l'image.");
+            return;  // Arrêter le traitement si l'image est vide
+        }
 
         // Mettre à jour la publication avec les nouvelles valeurs
         selectedPublication.setDescription(newDescription);
         selectedPublication.setImage(newImage);
         selectedPublication.setTitre(newTitre);
-
 
         // Appeler le service (ou la classe d'accès aux données) pour mettre à jour la publication dans la base de données
         PublicationService publicationService = new PublicationService();
@@ -49,14 +53,17 @@ public class modificationpub {
         Stage stage = (Stage) tfdescription.getScene().getWindow();
         stage.close();
 
-
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Publication modifiée");
         alert.setContentText("Publication modifiée !");
         alert.show();
-
-
+    }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 

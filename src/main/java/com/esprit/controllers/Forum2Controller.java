@@ -1,8 +1,10 @@
 package com.esprit.controllers;
 
 import com.esprit.models.Publication;
+import com.esprit.models.commentaire;
 import com.esprit.services.MyListener;
 import com.esprit.services.PublicationService;
+import com.esprit.services.commentaireService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
+import org.controlsfx.control.Rating;
 
 
 public class Forum2Controller implements Initializable {
@@ -53,12 +57,47 @@ public class Forum2Controller implements Initializable {
 
     @FXML
     private TextField titre;
-    @FXML
-    private Button tfcom;
+
     @FXML
     private TextField searchfiled;
     @FXML
     private ChoiceBox<String> choicebox;
+    @FXML
+    private Rating starrating;
+    @FXML
+    private Button sousmettre;
+    @FXML
+    private TextArea contenu;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private ImageView iconefavori;
+    private boolean estFavori = false;
+
+    @FXML
+    void toggleFavori(MouseEvent event) {
+        // Vérifier si une publication est sélectionnée
+        if (selectedPublication != null) {
+            // Basculer l'état de favori pour la publication sélectionnée
+            selectedPublication.setFavori(!selectedPublication.isFavori());
+
+            // Mettre à jour l'icône en fonction de l'état de favori
+            if (selectedPublication.isFavori()) {
+                iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
+            } else {
+                iconefavori.setImage(new Image(getClass().getResource("/css/img.png").toExternalForm()));
+            }
+
+            // Ajoutez ici le code pour mettre à jour votre modèle de données avec l'état de favori
+            // ...
+
+            // Sauvegardez les modifications dans la base de données (exemple hypothétique)
+            PublicationService publicationService = new PublicationService();
+            publicationService.modifier(selectedPublication);
+        } else {
+            showAlert("Veuillez sélectionner une publication avant de marquer comme favori.");
+        }
+    }
 
 
     @FXML
@@ -107,32 +146,76 @@ public class Forum2Controller implements Initializable {
         Image image;
         image = loadImage(p.getImage());
         img.setImage(image);
-        updateCommentButtonVisibility();
 
-
-    }
-    @FXML
-    void comlist(ActionEvent event) throws IOException, SQLException {
-        int idPublicationSelectionnee = getIdPublicationSelectionnee();
-        // System.out.println(idPublicationSelectionnee);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/listecommentaires.fxml"));
-        Parent root = loader.load();
-        // Passez l'id de la publication sélectionnée au contrôleur de la liste des commentaires
-        listecommentairesController listCommentairesController = loader.getController();
-        listCommentairesController.setIdPublicationSelectionnee(idPublicationSelectionnee);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Liste des Commentaires");
-        stage.show();
-
-    }
-    private void updateCommentButtonVisibility() {
-        if (selectedPublication != null) {
-            tfcom.setVisible(true);
+        starrating.setVisible(true);
+        contenu.setVisible(true);
+        sousmettre.setVisible(true);
+        iconefavori.setVisible(true);
+        if (p.isFavori()) {
+            iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
         } else {
-            tfcom.setVisible(false);
+            iconefavori.setImage(new Image(getClass().getResource("/css/img.png").toExternalForm()));
+        }
+
+
+    }
+
+    @FXML
+    void nzidcom(ActionEvent event) {
+        int noteValue = (int) starrating.getRating();
+
+        // Vérifier si une publication est sélectionnée
+        if (selectedPublication != null) {
+            int idPublication = selectedPublication.getId();
+            System.out.println(idPublication);
+            commentaireService cs = new commentaireService();
+            cs.ajouter(new commentaire(contenu.getText(), noteValue, idPublication, 91));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Commentaire ajouté");
+            alert.setContentText("Commentaire ajouté !");
+            alert.show();
+
+            // Charger la scène listecommentaires.fxml
+            loadListeCommentairesScene(idPublication, event);
+        } else {
+            showAlert("Veuillez sélectionner une publication avant d'ajouter un commentaire.");
         }
     }
+
+    // ... Autres méthodes ...
+
+    // Méthode pour charger la scène listecommentaires.fxml
+    private void loadListeCommentairesScene(int idPublication, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aalzab.fxml"));
+            Parent root = loader.load();
+
+            // Passez l'id de la publication sélectionnée et le chemin de l'image au contrôleur de la liste des commentaires
+            listecommentairesController listCommentairesController = loader.getController();
+            listCommentairesController.initializeData(idPublication, selectedPublication.getImage());
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Liste des Commentaires");
+            stage.show();
+
+            // Fermez la scène actuelle
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
     public void Update() {
 
         PublicationService ps= new PublicationService();
@@ -181,7 +264,10 @@ public class Forum2Controller implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tfcom.setVisible(false);
+        starrating.setVisible(false);
+        contenu.setVisible(false);
+        sousmettre.setVisible(false);
+        iconefavori.setVisible(false);
 
 
         Update();
@@ -258,6 +344,66 @@ public class Forum2Controller implements Initializable {
     void refreshForum(ActionEvent event) {
         Update();
     }
+    @FXML
+    void filterByDate(ActionEvent event) {
+        LocalDate selectedDate = datePicker.getValue();
+
+        PublicationService ps = new PublicationService();
+        List<Publication> filteredList;
+
+        if (selectedDate != null) {
+            filteredList = ps.rechercherParDate(Date.valueOf(selectedDate).toLocalDate());
+        } else {
+            // Si aucune date n'est sélectionnée, récupérez toutes les publications
+            filteredList = ps.afficher();
+        }
+
+        grid.getChildren().clear();
+        updateGrid(filteredList);
+    }
+    public void updateGrid(List<Publication> publications) {
+        myListener = new MyListener() {
+            @Override
+            public void onClickListener(Publication p) {
+                setChosenProduct(p);
+            }
+        };
+
+        int column = 0;
+        int row = 1;
+        try {
+            for (Publication ev : publications) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pub.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                PubController pubcontroller = fxmlLoader.getController();
+                pubcontroller.setData(ev, myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        scroll.setFitToWidth(true);
+        scroll.setContent(grid);
+        grid.requestLayout();
+    }
+
+
+
 
 
 

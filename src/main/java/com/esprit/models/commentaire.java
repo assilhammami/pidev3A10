@@ -64,6 +64,9 @@ public class commentaire {
         this.iduser = iduser;
     }
 
+    public commentaire() {
+    }
+
     public int getIdcommentaire() {
         return idcommentaire;
     }
@@ -124,6 +127,7 @@ public class commentaire {
     }
 
 
+
     public  int getIduser() {
        return iduser;
     }
@@ -131,4 +135,9 @@ public class commentaire {
     public void setId_user(int iduser) {
         this.iduser = iduser;
     }
+    public LocalDate getDateCommentaire() {
+        return datecommentaire;
+    }
+
+
 }

@@ -27,21 +27,53 @@ public class ModifCommentaire {
 
     @FXML
     void submit(ActionEvent event) {
-        commentaireToModify.setContenu(contenu.getText());
-        commentaireToModify.setNote(Integer.parseInt(note.getText()));
-        commentaireService commentaireService =new commentaireService();
-        commentaireService.modifier(commentaireToModify);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Publication modifiée");
-        alert.setContentText("Publication modifiée !");
+        // Récupérer les valeurs des champs
+        String contenuText = contenu.getText();
+        String noteText = note.getText();
+
+        // Vérifier si le champ de note est vide
+        if (noteText.isEmpty()) {
+            showAlert("Veuillez saisir une note.");
+            return;
+        }
+
+        try {
+            // Convertir la note en entier
+            int noteValue = Integer.parseInt(noteText);
+
+            // Vérifier si la note est entre 0 et 5
+            if (noteValue < 0 || noteValue > 5) {
+                showAlert("La note doit être un nombre entre 0 et 5.");
+                return;
+            }
+
+            // Mettre à jour le commentaire
+            commentaireToModify.setContenu(contenuText);
+            commentaireToModify.setNote(noteValue);
+
+            // Appeler le service pour effectuer la modification
+            commentaireService commentaireService = new commentaireService();
+            commentaireService.modifier(commentaireToModify);
+
+            // Afficher une boîte de dialogue d'information
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Commentaire modifiée");
+            alert.setContentText("Commentaire modifiée !");
+            alert.show();
+
+            // Fermer la fenêtre de modification
+            ((Stage) tfsubmit.getScene().getWindow()).close();
+
+        } catch (NumberFormatException e) {
+            showAlert("Veuillez saisir une note valide (entier entre 0 et 5).");
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setContentText(message);
         alert.show();
-
-
-
-
-        // Fermer la fenêtre de modification
-        ((Stage) tfsubmit.getScene().getWindow()).close();
-
     }
 
 

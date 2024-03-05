@@ -17,7 +17,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 
-public class AjoutPublicationController {
+public class AjoutPublicationadminController {
     @FXML
     private ImageView post;
     @FXML
@@ -50,10 +50,10 @@ public class AjoutPublicationController {
             alert.setTitle("Publication ajoutée");
             alert.setContentText("Publication ajoutée !");
             alert.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichagePublication.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichagePublicationadmin.fxml"));
             Parent root = loader.load();
             tftitre.getScene().setRoot(root);
-            AffichagePublicationController apc = loader.getController();
+            AffichagePublicationadminController apc = loader.getController();
             apc.setLbtitre(tftitre.getText());
             apc.setLbdescription(tfdescription.getText());
             apc.setLbimage(post.getImage());
@@ -84,8 +84,8 @@ public class AjoutPublicationController {
             System.out.println("file is not valid");
         }
 
-        }
-
     }
+
+}
 
 

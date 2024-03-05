@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -17,6 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="coback" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Forum2Controller">
     <children>
@@ -33,7 +35,7 @@
                 </GridPane>
             </content>
         </ScrollPane>
-        <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="ChosenBG" stylesheets="@style.css">
+        <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="918.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="296.0" styleClass="ChosenBG" stylesheets="@style.css">
             <children>
                 <HBox alignment="CENTER" prefHeight="71.0" prefWidth="286.0">
                     <children>
@@ -61,13 +63,20 @@
                             </VBox.margin>
                         </TextArea>
                       <Label fx:id="Date_creation" text="Date creation: " />
+                  <Rating fx:id="starrating" rating="0.0" />
                     </children>
                 </VBox>
                 <HBox alignment="CENTER" prefHeight="54.0" prefWidth="286.0">
-                    <children>
-                  <Button fx:id="tfcom" mnemonicParsing="false" onAction="#comlist" text="Commentaire" />
-                    </children>
+               <children>
+                  <Button fx:id="sousmettre" mnemonicParsing="false" onAction="#nzidcom" text="sousmettre" />
+                  <ImageView fx:id="iconefavori" fitHeight="24.0" fitWidth="30.0" onMouseClicked="#toggleFavori" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/21625/Pictures/favorite-heart-outline-button_icon-icons.com_72758.png" />
+                     </image>
+                  </ImageView>
+               </children>
                 </HBox>
+            <TextArea fx:id="contenu" prefHeight="119.0" prefWidth="296.0" />
             </children>
         </VBox>
         <TextField fx:id="searchfiled" layoutX="114.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#search" prefHeight="50.0" prefWidth="286.0" promptText="Search..." stylesheets="@style.css">
@@ -79,6 +88,7 @@
                 <String fx:value="transparent" />
             </styleClass>
         </TextField>
+        <DatePicker fx:id="datePicker" onAction="#filterByDate" />
         <Button layoutX="336.0" layoutY="5.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" stylesheets="@style.css">
             <styleClass>
                 <String fx:value="searchBtn" />
