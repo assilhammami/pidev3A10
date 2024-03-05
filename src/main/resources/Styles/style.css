@@ -4,3 +4,15 @@
 .background2{
     -fx-background-color: linear-gradient(to bottom, #A5C1BA, #ffffffff);;
 }
+.demoFont {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 38px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #878787;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}

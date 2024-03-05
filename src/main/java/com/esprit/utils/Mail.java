@@ -24,8 +24,8 @@ public class Mail {
 
     public static void sendActivatedMail(String recipient) {
         try {
-            String myAccountEmail = "oualiyoussef9@gmail.com";
-            String password = "sfao xxpf cfau zsps";
+            String myAccountEmail = "davincisdata@gmail.com";
+            String password = "gxke jnqk tzig jjoo";
 
             Session session = createMailSession(myAccountEmail, password);
 
@@ -44,8 +44,8 @@ public class Mail {
 
     public static void sendDeactivateMail(String recipient) {
         try {
-            String myAccountEmail = "oualiyoussef9@gmail.com";
-            String password = "sfao xxpf cfau zsps";
+            String myAccountEmail = "davincisdata@gmail.com";
+            String password = "gxke jnqk tzig jjoo";
 
             Session session = createMailSession(myAccountEmail, password);
 

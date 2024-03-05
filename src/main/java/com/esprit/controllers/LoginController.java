@@ -117,14 +117,15 @@ public class LoginController {
                         Stage stage = (Stage) Button_Login.getScene().getWindow();
                         Parent root = FXMLLoader.load(getClass().getResource("/AdminUsers.fxml"));
                         Scene scene = new Scene(root);
-                        stage.setScene(scene);
+                        stage.setScene(scene);stage.setTitle("Admin Dashboard");
 
                         System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
 
                         Stage stage = (Stage) Button_Login.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("/UpdateProfile.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
                         Scene scene = new Scene(root);
-                        stage.setScene(scene);}}
+                        stage.setScene(scene);
+                        stage.setTitle("Home");}}
                 else {System.out.println("Account is not active");
                     activateErr.setVisible(true);};
 

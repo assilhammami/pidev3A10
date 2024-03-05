@@ -266,7 +266,7 @@ public class UserService implements IService<User> {
         return chaine.length() < 6 ? false : chaine.matches("[a-zA-Z-0-9]+");
     }
 public  boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\"[2|4|5|9]\\\\d{7}\"");
+        return phoneNumber.matches("[2459]\\d{7}");
 }
     public  boolean isValidBirthDate(String birthdate) {
         return birthdate.matches("^(\\d{4})-(\\d{2})-(\\d{2})$");

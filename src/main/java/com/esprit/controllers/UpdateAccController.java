@@ -158,6 +158,8 @@ public class UpdateAccController implements Initializable {
 
     @FXML
     private TextField weakPasswod;
+    @FXML
+    private Button HomeButton;
 
     UserService us=new UserService();
 
@@ -391,7 +393,14 @@ public class UpdateAccController implements Initializable {
 
     }
 
-
+    @FXML
+    void goToHome(ActionEvent event) throws IOException {
+        Stage stage = (Stage) HomeButton.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Home");
+    }
 
 }
 

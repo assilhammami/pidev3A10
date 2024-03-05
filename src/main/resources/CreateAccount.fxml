@@ -110,10 +110,9 @@
                <children>
                   <ChoiceBox fx:id="Choicebox" layoutX="171.0" layoutY="1.0" onMouseClicked="#ChoisirType" prefWidth="150.0" />
                   <Label layoutY="5.0" prefHeight="18.0" prefWidth="150.0" text="Choose your account Type" />
-                  <Label layoutX="12.0" layoutY="53.0" prefHeight="18.0" prefWidth="150.0" text="Select your profile picture" />
-                  <ImageView fx:id="Photo_de_profil" fitHeight="75.0" fitWidth="94.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="Uploadbutton" layoutX="293.0" layoutY="74.0" mnemonicParsing="false" onAction="#UploadImage" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Upload" />
-                  <TextField fx:id="urlimage" layoutX="12.0" layoutY="74.0" promptText="Enter URL here" />
+                  <ImageView fx:id="Photo_de_profil" fitHeight="75.0" fitWidth="94.0" layoutX="156.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="Uploadbutton" layoutX="264.0" layoutY="73.0" mnemonicParsing="false" onAction="#UploadImage" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Upload" />
+                  <TextField fx:id="urlimage" layoutX="12.0" layoutY="74.0" promptText="Enter URL here" visible="false" />
                </children>
             </AnchorPane>
             <Button fx:id="Submit" layoutX="202.0" layoutY="466.0" mnemonicParsing="false" onAction="#Submitdonnes" prefHeight="26.0" prefWidth="76.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Submit" />
