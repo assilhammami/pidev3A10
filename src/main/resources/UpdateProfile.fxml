@@ -54,25 +54,6 @@
                         </StackPane>
                         <TextField fx:id="username" layoutX="256.0" layoutY="14.0" />
                         <Label layoutX="256.0" prefHeight="14.0" prefWidth="94.0" text="Username" />
-                  <StackPane layoutX="156.0" layoutY="61.0" prefHeight="24.0" prefWidth="24.0">
-                     <children>
-                        <Button fx:id="hide" mnemonicParsing="false" onAction="#hidePassword" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: transparent;" visible="false">
-                           <graphic>
-                              <ImageView fx:id="eyeclosed" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Styles/hide.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="show" mnemonicParsing="false" onAction="#ShowPassword" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: transparent;" />
-                        <ImageView fx:id="eyeopen" fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/show.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
                   <StackPane layoutX="407.0" layoutY="61.0" prefHeight="24.0" prefWidth="24.0">
                      <children>
                         <Button fx:id="hide1" mnemonicParsing="false" onAction="#Hidepassword11" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: transparent;" visible="false">
@@ -87,6 +68,28 @@
                         <Button fx:id="show1" mnemonicParsing="false" onAction="#Showpassword11" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fx:id="eyeopen1" fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/show.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane layoutX="157.0" layoutY="61.0" prefHeight="24.0" prefWidth="24.0">
+                     <children>
+                        <Button fx:id="hide" mnemonicParsing="false" onAction="#Hidepassword" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: transparent;" visible="false">
+                           <graphic>
+                              <ImageView fx:id="eyeclosed" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Styles/hide.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="show" mnemonicParsing="false" onAction="#Showpassword" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fx:id="eyeopen" fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/show.png" />
                                  </image>

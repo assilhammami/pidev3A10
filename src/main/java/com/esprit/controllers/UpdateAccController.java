@@ -37,6 +37,9 @@ public class UpdateAccController implements Initializable {
     private Button CoursesButton;
 
     @FXML
+    private Button DeleteButton;
+
+    @FXML
     private TextField Emailused;
 
     @FXML
@@ -44,7 +47,6 @@ public class UpdateAccController implements Initializable {
 
     @FXML
     private Button JobsButton;
-
 
     @FXML
     private ImageView Photo_de_profil;
@@ -56,28 +58,29 @@ public class UpdateAccController implements Initializable {
     private Button ProfileButton;
 
     @FXML
+    private Button Refreshbutton;
+
+    @FXML
     private Button Submit;
 
     @FXML
     private Button Uploadbutton;
 
+    @FXML
+    private Label UserType;
 
     @FXML
-    private TextField weakPasswod;
+    private TextField alphabeticalErr;
 
     @FXML
-    private TextField birthdate;
+    private DatePicker birthdate1;
 
     @FXML
-    private Button show;
+    private TextField email;
 
     @FXML
-    private Button show1;
-    @FXML
-    private Button hide;
+    private TextField emailinv;
 
-    @FXML
-    private Button hide1;
     @FXML
     private ImageView eyeclosed;
 
@@ -91,12 +94,6 @@ public class UpdateAccController implements Initializable {
     private ImageView eyeopen1;
 
     @FXML
-    private TextField email;
-
-    @FXML
-    private TextField emailinv;
-
-    @FXML
     private TextField fieldserr;
 
     @FXML
@@ -106,6 +103,12 @@ public class UpdateAccController implements Initializable {
     private PasswordField hiddenpassword2;
 
     @FXML
+    private Button hide;
+
+    @FXML
+    private Button hide1;
+
+    @FXML
     private Button logoutButton;
 
     @FXML
@@ -113,6 +116,9 @@ public class UpdateAccController implements Initializable {
 
     @FXML
     private TextField num_telephone;
+
+    @FXML
+    private TextField ok;
 
     @FXML
     private TextField passerr;
@@ -133,7 +139,10 @@ public class UpdateAccController implements Initializable {
     private TextField prenom;
 
     @FXML
-    private Label UserType;
+    private Button show;
+
+    @FXML
+    private Button show1;
 
     @FXML
     private TextField urlimage;
@@ -146,18 +155,9 @@ public class UpdateAccController implements Initializable {
 
     @FXML
     private TextField usernametaken;
-    @FXML
-    private Button Refreshbutton;
-    @FXML
-    private TextField ok;
-    @FXML
-    private DatePicker birthdate1;
-    @FXML
-    private TextField alphabeticalErr;
-
 
     @FXML
-    private Button DeleteButton;
+    private TextField weakPasswod;
 
     UserService us=new UserService();
 
@@ -333,7 +333,7 @@ public class UpdateAccController implements Initializable {
     }
 
     @FXML
-    void ShowPassword(ActionEvent event) {
+    void Showpassword(ActionEvent event) {
         password1.setText(hiddenpassword1.getText());
         password1.setVisible(true);
         hiddenpassword1.setVisible(false);
@@ -341,7 +341,7 @@ public class UpdateAccController implements Initializable {
         show.setVisible(false);
     }
     @FXML
-    void hidePassword(ActionEvent event) {
+    void Hidepassword(ActionEvent event) {
         hiddenpassword1.setText(password1.getText());
         hiddenpassword1.setVisible(true);
         password1.setVisible(false);
