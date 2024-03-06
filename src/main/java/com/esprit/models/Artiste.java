@@ -42,4 +42,8 @@ public final class Artiste extends User {
                 ", Active=" + Active +
                 '}';
     }
+
 }
+
+}
+

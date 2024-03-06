@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.util.Random;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,12 +123,21 @@ public class UserService implements IService<User> {
     }
 
 
+
     @Override
     public void supprimer(int id ) {
         String req = "DELETE from user where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(1, id);
+
+
+    public void supprimer(User a) {
+        String req = "DELETE from user where id = ?;";
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setInt(1, a.getId());
+
             pst.executeUpdate();
             System.out.println("User supprmié !");
         } catch (SQLException e) {
@@ -178,6 +190,7 @@ public class UserService implements IService<User> {
         String req = "SELECT * FROM user WHERE username=? AND password=? ;";
         int id = -1;
         try{
+
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setString(1, username);
             pst.setString(2, encryptor.encrypt(password,encryptionKey));
@@ -186,6 +199,16 @@ public class UserService implements IService<User> {
                 id = rs.getInt(1);
 
             }
+
+        PreparedStatement pst = connection.prepareStatement(req);
+        pst.setString(1, username);
+        pst.setString(2, encryptor.encrypt(password,encryptionKey));
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            id = rs.getInt(1);
+
+        }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (InvalidAlgorithmParameterException e) {
@@ -212,10 +235,17 @@ public class UserService implements IService<User> {
     }
     public  boolean isUsernameAvailable(String username) throws SQLException {
         int id=-1;
+
         String req = "SELECT * FROM user WHERE username = ?";
         PreparedStatement pst = connection.prepareStatement(req) ;
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
+
+            String req = "SELECT * FROM user WHERE username = ?";
+           PreparedStatement pst = connection.prepareStatement(req) ;
+                pst.setString(1, username);
+                ResultSet rs = pst.executeQuery();
+
         while (rs.next()) {
             id = rs.getInt(1);
 
@@ -226,6 +256,7 @@ public class UserService implements IService<User> {
         int id=-1;
         String req = "SELECT * FROM user WHERE email = ?";
         try{
+
             PreparedStatement pst = connection.prepareStatement(req) ;
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
@@ -233,6 +264,15 @@ public class UserService implements IService<User> {
                 id = rs.getInt(1);
 
             } } catch (SQLException e) {
+
+        PreparedStatement pst = connection.prepareStatement(req) ;
+        pst.setString(1, email);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            id = rs.getInt(1);
+
+        } } catch (SQLException e) {
+
             System.out.println(e.getMessage());
         }
         return id== -1;
@@ -258,15 +298,24 @@ public class UserService implements IService<User> {
         }
         return true;
     }
+
+}
+
     public boolean isAlpha(String chaine) {
         return chaine.matches("[a-zA-Z- -]+");
     }
     public boolean isMdp(String chaine) {
         return chaine.length() < 6 ? false : chaine.matches("[a-zA-Z-0-9]+");
     }
+
     public  boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{8}");
     }
+
+public  boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("[2459]\\d{7}");
+}
+
     public  boolean isValidBirthDate(String birthdate) {
         return birthdate.matches("^(\\d{4})-(\\d{2})-(\\d{2})$");
     }
@@ -274,6 +323,7 @@ public class UserService implements IService<User> {
         User connectedUser = null;
         String req = "SELECT * FROM user WHERE id = ?";
         try{
+
             PreparedStatement pst = connection.prepareStatement(req);
             pst.setInt(1, i);
             ResultSet rs = pst.executeQuery();
@@ -287,6 +337,21 @@ public class UserService implements IService<User> {
                 }
 
             } } catch (SQLException e) {
+
+        PreparedStatement pst = connection.prepareStatement(req);
+        pst.setInt(1, i);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("UserType").equals("ADMIN")) {
+                connectedUser = new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance"));
+            } else if (rs.getString("UserType").equals("ARTISTE")) {
+                connectedUser = new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            } else {
+                connectedUser = new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            }
+
+        } } catch (SQLException e) {
+
             System.out.println(e.getMessage());
         } catch (InvalidAlgorithmParameterException e) {
             throw new RuntimeException(e);
@@ -325,7 +390,12 @@ public class UserService implements IService<User> {
 
         return i;
     }
+
     public void ActivateAccount(User user){user.setActive(true);}
+
+    public void ActivateAccount(User user){user.setActive(true);
+    }
+
     public void DesactivateAccount(User user){user.setActive(false);}
     public  Image loadImage(String filePath) {
         try {
@@ -335,4 +405,51 @@ public class UserService implements IService<User> {
             e.printStackTrace();
             return null;
         }}
+
 }
+
+    public User getUtilisateurUsernameouEmail(String username) throws SQLException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        User connectedUser=null;
+
+        String req="SELECT * FROM user WHERE username=? OR email=? ;";
+
+        PreparedStatement pst =connection.prepareStatement(req);
+        pst.setString(1,username);
+        pst.setString(2,username);
+
+        ResultSet rs=pst.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("UserType").equals("ADMIN")) {
+                connectedUser = new Admin(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("date_de_naissance"));
+            } else if (rs.getString("UserType").equals("ARTISTE")) {
+                connectedUser = new Artiste(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            } else {
+                connectedUser = new Client(rs.getInt("id"), rs.getString("photo_de_profile"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), encryptor.decrypt(rs.getString("password"),encryptionKey), rs.getString("username"), rs.getInt("num_telephone"), rs.getString("UserType"), rs.getString("date_de_naissance"),rs.getBoolean("Active"));
+            }
+
+        }
+    {return connectedUser;}}
+    public int generer(){
+        Random rand = new Random();
+        int code = rand.nextInt((9999 - 1000) + 1) + 1000;
+        return code;
+    }
+    @Override
+    public void supprimer(int id ) {
+        String req = "DELETE from user where id = ?;";
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            System.out.println("User supprmié !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+}
+
+
+

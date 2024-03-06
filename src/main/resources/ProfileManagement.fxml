@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="612.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.ProfileManagementController">
+    <children>
+        <AnchorPane layoutX="231.0" layoutY="85.0" prefHeight="526.0" prefWidth="724.0" style="-fx-border-color: #D9D9D9; -fx-border-width: 10; -fx-border-radius: 10;">
+            <children>
+                <AnchorPane layoutX="90.0" layoutY="80.0" prefHeight="104.0" prefWidth="102.0" style="-fx-border-color: Black;">
+               <children>
+                        <ImageView fx:id="photoProfile" fitHeight="86.0" fitWidth="94.0" layoutX="5.0" layoutY="9.0" pickOnBounds="true" />
+               </children>
+                </AnchorPane>
+                <Label fx:id="UserType" layoutX="206.0" layoutY="143.0" prefHeight="27.0" prefWidth="61.0" text="Artiste">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+                <Label fx:id="usernameOld" layoutX="206.0" layoutY="107.0" prefHeight="36.0" prefWidth="119.0" text="weli">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane prefHeight="85.0" prefWidth="954.0" styleClass="background" stylesheets="@Styles/style.css">
+            <children>
+                <ImageView fitHeight="124.0" fitWidth="150.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/logo_web.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="85.0" prefHeight="525.0" prefWidth="231.0" styleClass="background2" stylesheets="@Styles/style.css">
+            <children>
+                <VBox layoutX="7.0" layoutY="58.0" prefHeight="265.0" prefWidth="222.0">
+                    <children>
+                        <Button fx:id="ProfileButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#EditProfilebutton" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="My profile" textAlignment="CENTER">
+                            <graphic>
+                                <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/user.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="PostsButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#EditPostsbutton" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="My posts">
+                            <graphic>
+                                <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/mona-lisa.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="EventsButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#EditEventsbutton" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="My events">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/party.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="JobsButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#EditJobsbutton" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="My jobs">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/portfolio.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="CoursesButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#EditCoursesbutton" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="My courses" textAlignment="CENTER">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/learning.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="logoutButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#LogOut" prefHeight="44.0" prefWidth="230.0" stylesheets="@Styles/buttonstyle.css" text="Log out" textAlignment="CENTER">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="file:/C:/Users/user/Downloads/Prosits/pidev2/src/main/resources/Styles/sign-out_2990306.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
