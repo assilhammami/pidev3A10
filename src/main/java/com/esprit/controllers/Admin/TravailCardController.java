@@ -17,9 +17,13 @@ import javafx.scene.input.MouseEvent;
 public class TravailCardController implements Initializable {
 
     @FXML
-    private Label Titre;
+    private Label titre;
 
+    @FXML
+    private Label date_demande;
 
+    @FXML
+    private Label date_fin;
     private Travail travail;
     private MyListener myListener;
 
@@ -28,7 +32,9 @@ public class TravailCardController implements Initializable {
         this.travail = travail;
 
         this.myListener = myListener;
-        Titre.setText(travail.getTitre());
+        titre.setText(travail.getTitre());
+        date_fin.setText(travail.getDate_fin().toString());
+        date_demande.setText(travail.getDate_demande().toString());
 
 
     }

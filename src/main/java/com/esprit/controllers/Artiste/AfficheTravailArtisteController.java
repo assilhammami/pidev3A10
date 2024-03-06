@@ -1,6 +1,5 @@
 package com.esprit.controllers.Artiste;
 import com.esprit.controllers.Client.ArchiveCardClientController;
-import com.esprit.controllers.Client.TravailCardClientController;
 import com.esprit.models.Archive;
 import com.esprit.models.StatusTravail;
 import com.esprit.models.Travail;
@@ -10,7 +9,6 @@ import com.esprit.services.TravailService2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,12 +22,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class AfficheTravailArtisteController {
 
@@ -103,6 +99,7 @@ public class AfficheTravailArtisteController {
         };
 
         if(travau) {
+            chosen.setVisible(true);
             int column = 0;
             int row = 1;
             try {
@@ -146,10 +143,10 @@ public class AfficheTravailArtisteController {
         try {
             for (Archive ev : archives) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/Client/TravauCardClient.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/Artiste/ArchiveCardArtiste.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ArchiveCardClientController travailcontroller = fxmlLoader.getController();
+                ArchiveCardArtisteController travailcontroller = fxmlLoader.getController();
                 travailcontroller.setData(ev);
 
                 if (column == 3) {

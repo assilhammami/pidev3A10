@@ -1,0 +1,31 @@
+
+f	java:S117e"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÅÂï
+k	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ä¸ôıÿÿÿÿ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÅÂï
+l	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ä¸ôıÿÿÿÿ
+j
+java:S2095]"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+q
+java:S2095@"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8µ¬¡‰á1
+j
+java:S2095,"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+j
+java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+q
+java:S2095y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8‚€Šá1
+@	java:S106!"+Replace this use of System.out by a logger.(¥ëŞ
+E	java:S106#"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+@	java:S1068"+Replace this use of System.out by a logger.(œÎ‹È
+E	java:S106:"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+@	java:S106D"+Replace this use of System.out by a logger.(º˜øÊ
+E	java:S106F"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106Q"+Replace this use of System.out by a logger.(¢¶Âáúÿÿÿÿ
+E	java:S106S"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+L	java:S106m"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8À¬¡‰á1
+R
+java:S1854|"7Remove this useless assignment to local variable "idt".(÷”ˆùÿÿÿÿ
+C
+java:S1481|"(Remove this unused "idt" local variable.(÷”ˆùÿÿÿÿ
+M	java:S106‰"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8’€Šá1

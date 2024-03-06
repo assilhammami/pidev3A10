@@ -40,5 +40,6 @@
                 <Image url="file:/C:/Users/Firas/Desktop/ESPRIT/3éme%20cycle%20ing/P2/Pi/LOGO.png" />
             </image>
         </ImageView>
+      <Button layoutX="494.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleUploadImage" text="upload" />
     </children>
 </AnchorPane>

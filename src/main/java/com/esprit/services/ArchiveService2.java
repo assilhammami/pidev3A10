@@ -4,8 +4,10 @@ import com.esprit.models.Archive;
 import com.esprit.models.StatusTravail;
 import com.esprit.models.Travail;
 import com.esprit.utils.DataSource;
+import javafx.util.Pair;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,54 @@ public class ArchiveService2 implements IService<Archive> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public int countRecentArchives() {
+        String req = "SELECT COUNT(*) FROM archive WHERE dateCreation > ?";
+        int count = 0;
+
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            // Subtract 24 hours from the current time
+            pst.setTimestamp(1, new Timestamp(System.currentTimeMillis() - 24 * 3600 * 1000));
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return count;
+    }
+    public List<Pair<String, Archive>> getRecentArchivesWithUserName() {
+        List<Pair<String, Archive>> recentArchives = new ArrayList<>();
+        String req = "SELECT a.*, u.nom as userName FROM archive a " +
+                "JOIN user u ON a.idU = u.id " +  // Replace 'users' and 'name' with your actual user table and column names
+                "WHERE a.dateCreation > ?";
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now().minusHours(24)));
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int idU = rs.getInt("idU");
+                String description = rs.getString("description");
+                String path = rs.getString("image");
+                Date dateCreation = rs.getDate("dateCreation");
+                int idT = rs.getInt("idT");
+                String userName = rs.getString("userName");
+
+                TravailService2 travailService = new TravailService2();
+                Travail travail = travailService.getByID(idT);
+
+                Archive archive = new Archive(idU, description, path, dateCreation, travail);
+                recentArchives.add(new Pair<>(userName, archive));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return recentArchives;
     }
 
     @Override
@@ -109,5 +159,22 @@ public class ArchiveService2 implements IService<Archive> {
         }
 
         return archives;
+    }
+    public int countArchivesForTravail(int travailId) {
+        // SQL query to count archives for a specific travail
+        String req = "SELECT COUNT(*) FROM archive WHERE idT = ?";
+        int count = 0;
+
+        try (PreparedStatement pst = connection.prepareStatement(req)) {
+            pst.setInt(1, travailId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return count;
     }
 }

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +21,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -109,7 +112,7 @@ public class AfficheController implements Initializable {
                 TravailCardController travailcontroller = fxmlLoader.getController();
                 travailcontroller.setData(ev, myListener);
 
-                if (column == 4) {
+                if (column == 3) {
                     column = 0;
                     row++;
                 }
@@ -190,6 +193,20 @@ public class AfficheController implements Initializable {
             // Nettoyer et mettre à jour l'affichage
             TravailList.clear();
             grid.getChildren().clear();
+            Notifications.create()
+                    .styleClass(
+                            "-fx-background-color: #28a745; " + // Couleur de fond
+                                    "-fx-text-fill: white; " + // Couleur du texte
+                                    "-fx-background-radius: 5px; " + // Bord arrondi
+                                    "-fx-border-color: #ffffff; " + // Couleur de la bordure
+                                    "-fx-border-width: 2px;" // Largeur de la bordure
+                    )
+                    .position(Pos.TOP_RIGHT)
+                    .title("modification avec succès")
+                    .hideAfter(Duration.seconds(10))
+                    .show();
+
+
             Update();
         } catch (NumberFormatException e) {
             // Gérer les erreurs de conversion de texte en nombre

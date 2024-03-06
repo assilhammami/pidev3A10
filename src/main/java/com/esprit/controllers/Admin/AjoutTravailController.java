@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -136,6 +139,18 @@ public class AjoutTravailController implements Initializable {
             alert.setTitle("Travail ajouté");
             alert.setContentText("Travail ajouté avec succès !");
             alert.show();
+            Notifications.create()
+                    .styleClass(
+                            "-fx-background-color: #28a745; " + // Couleur de fond
+                                    "-fx-text-fill: white; " + // Couleur du texte
+                                    "-fx-background-radius: 5px; " + // Bord arrondi
+                                    "-fx-border-color: #ffffff; " + // Couleur de la bordure
+                                    "-fx-border-width: 2px;" // Largeur de la bordure
+                    )
+                    .position(Pos.TOP_RIGHT)
+                    .title("Travail ajouté avec succès")
+                    .hideAfter(Duration.seconds(10))
+                    .show();
         } catch (NumberFormatException e) {
             // Gérer les erreurs de conversion de texte en nombre
             Alert alert = new Alert(Alert.AlertType.ERROR);

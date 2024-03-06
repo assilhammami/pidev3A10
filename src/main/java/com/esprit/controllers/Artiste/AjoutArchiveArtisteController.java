@@ -8,15 +8,24 @@ import com.esprit.services.TravailService2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -27,7 +36,9 @@ public class AjoutArchiveArtisteController {
     @FXML
     private TextField tfType;
 
+
     Travail t;
+    private String imagePathStr;
 
 
     public void setTravail(Travail t)
@@ -72,7 +83,7 @@ public class AjoutArchiveArtisteController {
                    ArchiveService2 service = new ArchiveService2();
                    Archive a = new Archive();
                    a.setDescription(tfDescription.getText());
-                   a.setIdU(9);
+                   a.setIdU(10);
                    a.setPath(tfType.getText());
                    a.setTravail(t);
                    Date d = Date.valueOf(aujourdhui);
@@ -82,6 +93,18 @@ public class AjoutArchiveArtisteController {
             alert.setTitle("Archive ajouté");
             alert.setContentText("Archive ajouté avec succès !");
             alert.show();
+                   Notifications.create()
+                           .styleClass(
+                                   "-fx-background-color: #28a745; " + // Couleur de fond
+                                           "-fx-text-fill: white; " + // Couleur du texte
+                                           "-fx-background-radius: 5px; " + // Bord arrondi
+                                           "-fx-border-color: #ffffff; " + // Couleur de la bordure
+                                           "-fx-border-width: 2px;" // Largeur de la bordure
+                           )
+                           .position(Pos.TOP_RIGHT)
+                           .title("Proposition ajouté avec succès")
+                           .hideAfter(Duration.seconds(10))
+                           .show();
         } catch (NumberFormatException e) {
             // Gérer les erreurs de conversion de texte en nombre
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -100,4 +123,37 @@ public class AjoutArchiveArtisteController {
 
 
     }
+
+    @FXML
+    private void handleUploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose an Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", ".png", ".jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            try {
+                java.nio.file.Path resourcesDir = Paths.get("src/main/resources/images");
+                if (!Files.exists(resourcesDir)) {
+                    Files.createDirectories(resourcesDir);
+                }
+
+                java.nio.file.Path imagePath = resourcesDir.resolve(selectedFile.getName());
+                Files.copy(selectedFile.toPath(), imagePath, StandardCopyOption.REPLACE_EXISTING);
+
+                tfType.setText(selectedFile.getName());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to upload image.");
+                alert.showAndWait();
+            }
+        }
+    }
+
+
+
+
 }

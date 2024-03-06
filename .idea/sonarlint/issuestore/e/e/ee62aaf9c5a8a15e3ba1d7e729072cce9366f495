@@ -1,0 +1,32 @@
+
+h
+java:S1192E"FDefine a constant instead of duplicating this literal "image" 3 times.(æÛ©…úÿÿÿÿ8úóÚˆá1
+i
+java:S1192D"LDefine a constant instead of duplicating this literal "description" 3 times.(Ãõ›8ûóÚˆá1
+j
+java:S2095>"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+k
+java:S2095’"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+q
+java:S2095*"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8Ï—›ˆá1
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ö¥Úş8Í¤ßˆá1
+j
+java:S2095l"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+j
+java:S2095Z"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+j
+java:S2095{"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+E	java:S106 "+Replace this use of System.out by a logger.(çÈ’òúÿÿÿÿ
+E	java:S106""+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S1063"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106Q"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106a"+Replace this use of System.out by a logger.(øğÎÉıÿÿÿÿ
+E	java:S106c"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+?	java:S106o"+Replace this use of System.out by a logger.(º·
+L	java:S106q"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8é—›ˆá1
+M	java:S106‡"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8Á½Éˆá1
+M	java:S106"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8´ôÚˆá1
+M	java:S106¯"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8šèŠá1
+^
+java:S1128"<Remove this unused import 'com.esprit.models.StatusTravail'.(·‹„ûÿÿÿÿ8Ş¤ßˆá1

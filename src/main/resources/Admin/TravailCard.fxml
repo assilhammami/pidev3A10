@@ -1,38 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane cache="true" prefHeight="142.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.TravailCardController">
+<AnchorPane cache="true" onMouseClicked="#click" prefHeight="150.0" prefWidth="300.0" styleClass="PaneBg" stylesheets="@../Stylee.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.TravailCardController">
     <children>
-        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="36.0" prefWidth="134.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="97.0">
-            <styleClass>
-                <String fx:value="product_item_screen" />
-                <String fx:value="transparent" />
-            </styleClass>
-         <children>
-            <Label layoutY="10.0" text="Titre" />
-         </children>
+        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="163.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="68.0">
+            <children>
+                <Label fx:id="titre" layoutY="10.0" text="Titre" />
+            </children>
         </AnchorPane>
-          <VBox alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="28.0" prefWidth="126.0">
-              <children>
-                  <Label fx:id="Titre" text="Titre">
-                      <font>
-                          <Font name="System Bold" size="18.0" />
-                      </font>
-            </Label>
-              </children>
-          </VBox>
-      <Label layoutX="10.0" layoutY="63.0" text="Date de demande" />
-      <Label layoutX="10.0" layoutY="103.0" text="Date de fin" />
-      <Label fx:id="Date_demande" layoutX="164.0" layoutY="63.0" text="Date" />
-      <Label fx:id="Date_fin" layoutX="163.0" layoutY="103.0" text="Date" />
+        <Label fx:id="date_demande" layoutX="10.0" layoutY="63.0" text="Date de demande" />
+        <Label fx:id="date_fin" layoutX="10.0" layoutY="103.0" text="Date de fin" />
     </children>
-   <effect>
-      <Glow level="0.42" />
-   </effect>
+    <effect>
+        <Glow level="0.42" />
+    </effect>
 </AnchorPane>

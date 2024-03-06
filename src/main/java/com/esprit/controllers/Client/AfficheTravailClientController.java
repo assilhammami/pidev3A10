@@ -16,20 +16,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.fx.ChartViewer;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AfficheTravailClientController implements Initializable {
 
@@ -67,7 +72,10 @@ public class AfficheTravailClientController implements Initializable {
     private TextField searchField; // Champ de texte pour la recherche
 
     int idUser;
-
+    @FXML
+    private Label notificationCounter;
+    @FXML
+    private ImageView bellIcon;
     @FXML
     private Button ajoutBT;
     @FXML
@@ -82,7 +90,8 @@ public class AfficheTravailClientController implements Initializable {
 
     public Travail selectedTravail;
     private List<Travail> TravailList = new ArrayList<>();
-
+    @FXML
+    private Button showStatsButton;
     boolean loaded = false;
 
     private void setChosenTravail(Travail travail) {
@@ -138,6 +147,32 @@ public class AfficheTravailClientController implements Initializable {
                     TravailCardClientController travailcontroller = fxmlLoader.getController();
                     travailcontroller.setData(ev, myListener);
 
+                    // Load the correct heart icon based on whether the Travail is a favorite
+                    String heartIconPath = ev.isFavorite() ? "/heart_filled.png" : "/heart_outline.jpg";
+                    System.out.println(heartIconPath);
+                    Image heartImage = new Image(getClass().getResourceAsStream(heartIconPath), 30, 30, true, true);
+                    ImageView heartIcon = new ImageView(heartImage);
+
+                    heartIcon.setPickOnBounds(true);
+                    heartIcon.setPreserveRatio(true);
+                    heartIcon.setOnMouseClicked(event -> {
+                        // Toggle the favorite status
+                        boolean newFavoriteStatus = !ev.isFavorite();
+                        ev.setFavorite(newFavoriteStatus); // Update the model (might need to refresh your list or UI to reflect this change)
+
+                        // Update the database
+                        TravailService2 travailService = new TravailService2();
+                        travailService.toggleFavorite(ev.getId(), newFavoriteStatus);
+
+                        // Update the icon image based on the new favorite status
+                        Image newHeartImage = new Image(getClass().getResourceAsStream(newFavoriteStatus ? "/heart_filled.png" : "/heart_outline.jpg"), 30, 30, true, true);
+                        heartIcon.setImage(newHeartImage);
+                    });
+
+                    // Add the heart icon to the travail card's designated container
+                    travailcontroller.getContainerForHeartIcon().getChildren().add(heartIcon);
+
+
                     if (column == 3) {
                         column = 0;
                         row++;
@@ -170,13 +205,13 @@ public class AfficheTravailClientController implements Initializable {
             modBT.setDisable(true);
             suppBT.setVisible(false);
             suppBT.setDisable(true);
-            archives = service.getByIDUser(10);
+            archives = service.getByIDUser(9);
             int column = 0;
             int row = 1;
             try {
                 for (Archive ev : archives) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/Client/TravauCardClient.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/Client/ArchiveCardClient.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     ArchiveCardClientController travailcontroller = fxmlLoader.getController();
@@ -204,21 +239,47 @@ public class AfficheTravailClientController implements Initializable {
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        // Ajouter un écouteur d'événements sur le champ de recherche
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Appeler la fonction de recherche à chaque fois que le texte du champ de recherche change
             search();
         });
-
-        // Initialiser l'affichage des travaux
         Update();
+        updateNotificationCounter();
 
-    }// lors d execution d'interface
+        bellIcon.setOnMouseClicked(event -> {
+            // Show archives and reset counter
+            showArchives();
+            resetNotificationCounter();
+        });
 
+    }
+    private void updateNotificationCounter() {
+        int recentArchivesCount = service.countRecentArchives();
+        notificationCounter.setText(String.valueOf(recentArchivesCount));
+    }
+
+    private void resetNotificationCounter() {
+        notificationCounter.setText("0");
+    }
+    private void showArchives() {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL); // Block input events for other stages
+        stage.setTitle("Archives added in the last 24 hours");
+        ListView<String> listView = new ListView<>();
+        List<Pair<String, Archive>> recentArchivesWithUserNames = service.getRecentArchivesWithUserName(); // Adjusted method call
+
+        for (Pair<String, Archive> pair : recentArchivesWithUserNames) {
+            String userAndTravail = pair.getKey() + " a appliqué à " + pair.getValue().getTravail().getTitre();
+            listView.getItems().add(userAndTravail);
+        }
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(listView);
+
+        stage.setScene(new Scene(layout));
+        stage.showAndWait(); // Show the modal window and wait for it to close
+    }
 
     @FXML
     void modifier(ActionEvent event) {
@@ -265,6 +326,8 @@ public class AfficheTravailClientController implements Initializable {
             // Nettoyer et mettre à jour l'affichage
             TravailList.clear();
             grid.getChildren().clear();
+
+
             Update();
         } catch (NumberFormatException e) {
             // Gérer les erreurs de conversion de texte en nombre
@@ -381,7 +444,164 @@ public class AfficheTravailClientController implements Initializable {
         }
     }
 
+    @FXML
+    private void showStatistics(ActionEvent event) {
+        try {
+            // Create a dataset for the chart
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+            // Retrieve the statistics (you need to implement this method)
+            Map<String, Integer> stats = getStatisticsForTravails();
+
+            // Fill the dataset with values
+            for (Map.Entry<String, Integer> entry : stats.entrySet()) {
+                dataset.addValue(entry.getValue(), "Archives", entry.getKey());
+            }
+
+            // Create the chart
+            JFreeChart barChart = ChartFactory.createBarChart(
+                    "Statistique des Archives",
+                    "Travail",
+                    "Nombre d'Archives",
+                    dataset,
+                    PlotOrientation.VERTICAL,
+                    true, true, false);
+
+            // Convert the chart to a JavaFX node
+            ChartViewer viewer = new ChartViewer(barChart);
+            Scene scene = new Scene(viewer, 800, 600);
+
+            // Create a new stage for the chart and display it
+            Stage stage = new Stage();
+            stage.setTitle("Statistique des Archives par Travail");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Map<String, Integer> getStatisticsForTravails() {
+        // Initialize the map to hold the statistics
+        Map<String, Integer> statistics = new HashMap<>();
+
+        // Retrieve the list of all travails (you might need to adjust this method call)
+        List<Travail> allTravails = new TravailService2().afficher();
+
+        // For each travail, count the archives and add it to the map
+        ArchiveService2 archiveService = new ArchiveService2();
+        for (Travail travail : allTravails) {
+            // Count archives for each travail (implement a method in ArchiveService2 for this)
+            int archiveCount = archiveService.countArchivesForTravail(travail.getId());
+            statistics.put(travail.getTitre(), archiveCount);
+        }
+
+        return statistics;
+    }
+
+    public static List<Travail> filtrerTravauxParId(List<Travail> listeTravaux, int idRecherche) {
+        return listeTravaux.stream()
+                .filter(travail -> travail.getIdp() == idRecherche)
+                .collect(Collectors.toList());
+    }
+
+    @FXML
+    void mestravaux(ActionEvent event) {
+      //  List<Travail> a =filtrerTravauxParId(TravailList,10);
+       // System.out.println(a);
+
+        TravailService2 es = new TravailService2();
+
+        TravailList.clear();
+
+
+        chosen.setDisable(false);
+
+        chosen.setVisible(true);
+        ajoutBT.setVisible(true);
+        ajoutBT.setDisable(false);
+        modBT.setVisible(true);
+        modBT.setDisable(false);
+        suppBT.setVisible(true);
+        suppBT.setDisable(false);
+        grid.getChildren().clear();
+        loaded = true;
+
+        TravailList.addAll(es.afficherbyid(10));
+        myListener = new MyListener() {
+            @Override
+            public void onClickListener(Travail p) {
+                setChosenTravail(p);
+            }
+        };
+
+        int column = 0;
+        int row = 1;
+        try {
+            for (Travail ev : TravailList) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Client/TravailCardClient.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                TravailCardClientController travailcontroller = fxmlLoader.getController();
+                travailcontroller.setData(ev, myListener);
+
+                // Load the correct heart icon based on whether the Travail is a favorite
+                String heartIconPath = ev.isFavorite() ? "/heart_filled.png" : "/heart_outline.jpg";
+                System.out.println(heartIconPath);
+                Image heartImage = new Image(getClass().getResourceAsStream(heartIconPath), 30, 30, true, true);
+                ImageView heartIcon = new ImageView(heartImage);
+
+                heartIcon.setPickOnBounds(true);
+                heartIcon.setPreserveRatio(true);
+                heartIcon.setOnMouseClicked(event1 -> {
+                    // Toggle the favorite status
+                    boolean newFavoriteStatus = !ev.isFavorite();
+                    ev.setFavorite(newFavoriteStatus); // Update the model (might need to refresh your list or UI to reflect this change)
+
+                    // Update the database
+                    TravailService2 travailService = new TravailService2();
+                    travailService.toggleFavorite(ev.getId(), newFavoriteStatus);
+
+                    // Update the icon image based on the new favorite status
+                    Image newHeartImage = new Image(getClass().getResourceAsStream(newFavoriteStatus ? "/heart_filled.png" : "/heart_outline.jpg"), 30, 30, true, true);
+                    heartIcon.setImage(newHeartImage);
+                });
+
+                // Add the heart icon to the travail card's designated container
+                travailcontroller.getContainerForHeartIcon().getChildren().add(heartIcon);
+
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        scroll.setFitToWidth(true);
+        scroll.setContent(grid);
+        grid.requestLayout();
+    }
 
 
 
-}
+
+
+    }
+
+
+
+
+
+
+

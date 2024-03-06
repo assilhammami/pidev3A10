@@ -1,0 +1,26 @@
+
+F
+java:S1604ƒ"(Make this anonymous inner class a lambda(¿¼‹ñ8¬©Ó‰á1
+w
+java:S1104Z"[Make selectedTravail a static final constant or non-public and provide accessors if needed.(¦´D8­©Ó‰á1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Èğ²Á8¯©Ó‰á1
+s	java:S116,"WRename this field "date_demande" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±²–‚8…¶ş‰á1
+t	java:S116/"SRename this field "date_fin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œï¸‡úÿÿÿÿ8…¶ş‰á1
+v	java:S116A"URename this field "id_travail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯ô½öûÿÿÿÿ8…¶ş‰á1
+w	java:S116["VRename this field "TravailList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾™Œÿÿÿÿÿ8†¶ş‰á1
+L	java:S106i"+Replace this use of System.out by a logger.(òŠñÒúÿÿÿÿ8Œ¶ş‰á1
+j	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ƒƒà8Œ¶ş‰á1
+o
+java:S3776o"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(®ƒƒà8¶ş‰á1
+_
+java:S1854Ä"<Remove this useless assignment to local variable "archives".(ıù‡£ÿÿÿÿÿ8¶ş‰á1
+D
+java:S1125p"'Remove the unnecessary boolean literal.(Øğ½¡8¶ş‰á1
+M	java:S106—"+Replace this use of System.out by a logger.(“íõªÿÿÿÿÿ8•¶ş‰á1
+M	java:S106¸"+Replace this use of System.out by a logger.(ı™øøÿÿÿÿ8š¶ş‰á1
+M	java:S106ä"+Replace this use of System.out by a logger.(ı™øøÿÿÿÿ8¶ş‰á1
+J
+java:S1602ó",Remove useless curly braces around statement(ÏÅÎ8¶ş‰á1
+M	java:S106«"+Replace this use of System.out by a logger.(ı™øøÿÿÿÿ8²¶ş‰á1
+I
+java:S1172°",Remove this unused method parameter "event".(Áæ®68³¶ş‰á1

@@ -9,6 +9,14 @@ public class Archive {
     private Travail travail;
     private String path;
 
+    public Archive(int idU, String description, String path, Date dateCreation, Travail travail) {
+        this.idU = idU;
+        this.description = description;
+        this.path = path;
+        this.travail = travail;
+        this.dateCreation = dateCreation ;
+    }
+
     public Date getDateCreation() {
         return dateCreation;
     }

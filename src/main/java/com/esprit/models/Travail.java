@@ -14,7 +14,7 @@ public class Travail {
     private Date date_demande ;
     private Date date_fin;
     private String titre;
-
+    private boolean favorite;
     private int idp;
 
 
@@ -64,7 +64,26 @@ public class Travail {
         this.idp=idp;
     }
 
+    public Travail(int id, String description, int prix, String type, StatusTravail status, Date dateDemande, Date dateFin, String titre, int idp, boolean favorite) {
+        this.id = id;
+        this.description = description;
+        this.prix = prix;
+        this.type = type;
+        this.status = status;
+        this.date_demande = dateDemande;
+        this.date_fin = dateFin;
+        this.titre=titre;
+        this.idp=idp;
+        this.favorite=favorite ;
+    }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
     public int getIdp() {
         return idp;
     }
