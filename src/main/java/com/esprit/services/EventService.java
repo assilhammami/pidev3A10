@@ -83,4 +83,27 @@ public class EventService implements IService<Event> {
         return events;
     }
 
+    public Event afficher_si_hakim(int id) {
+        List<Event> events = new ArrayList<>();
+
+        String req = "SELECT * from event where id = ?";
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+
+
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            System.out.println(pst.toString());
+            while (rs.next()) {
+                return (new Event(rs.getInt("id"), rs.getString("nom"), rs.getString("date"), rs.getString("description"), rs.getInt("capacity"), rs.getString("place"), rs.getString("image")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+
+
 }

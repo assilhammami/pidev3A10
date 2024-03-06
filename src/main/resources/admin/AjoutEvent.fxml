@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="761.0" prefWidth="1069.0" styleClass="background" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.admin.AjoutEventcontroller">
+<AnchorPane prefHeight="761.0" prefWidth="1069.0" styleClass="coback" stylesheets="@../Stylee.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.admin.AjoutEventcontroller">
    <children>
       <Label layoutX="80.0" layoutY="139.0" prefWidth="39.0" text="Nom">
          <font>
@@ -59,7 +59,7 @@
             <Font name="Britannic Bold" size="64.0" />
          </font>
       </Label>
-      <ImageView fitHeight="101.0" fitWidth="165.0" layoutX="763.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="101.0" fitWidth="165.0" layoutX="884.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/assil/Desktop/logo%20web.png" />
          </image>

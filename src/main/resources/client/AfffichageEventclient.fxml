@@ -32,7 +32,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1350.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background" stylesheets="@style.css">
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1350.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background">
          <children>
             <HBox alignment="CENTER" prefHeight="56.0" prefWidth="289.0">
                <children>
@@ -120,7 +120,7 @@
             <Font name="Britannic Bold" size="24.0" />
          </font>
       </Button>
-      <VBox fx:id="chosen1" alignment="TOP_CENTER" layoutX="1050.0" layoutY="121.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background" stylesheets="@style.css">
+      <VBox fx:id="chosen1" alignment="TOP_CENTER" layoutX="1050.0" layoutY="121.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background">
          <children>
             <HBox alignment="CENTER" prefHeight="185.0" prefWidth="286.0">
                <VBox.margin>
@@ -157,10 +157,20 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="286.0">
                <children>
-                  <Pane prefHeight="69.0" prefWidth="42.0" />
+                  <Pane prefHeight="69.0" prefWidth="42.0">
+                     <children>
+                        <Button fx:id="supprime" layoutX="-54.0" layoutY="15.0" mnemonicParsing="false" onAction="#supprimer" text="supprimerr" />
+                     </children></Pane>
+                  <Button mnemonicParsing="false" onAction="#modifierres" text="modifier" />
                </children>
             </HBox>
          </children>
       </VBox>
+      <Button layoutX="639.0" layoutY="644.0" mnemonicParsing="false" onAction="#reservation" prefHeight="40.0" prefWidth="112.0" text="Mes Reservations " />
+      <Button fx:id="events" layoutX="288.0" layoutY="646.0" mnemonicParsing="false" onAction="#afficherr" prefHeight="40.0" prefWidth="140.0" text="Events">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -5,6 +5,7 @@ import com.esprit.services.EventService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Paths;
@@ -54,18 +58,28 @@ public class AjoutEventcontroller {
     void addEvent(ActionEvent event) throws IOException {
         if (isInputValid()) {
             EventService ev = new EventService();
+
             ev.ajouter(new Event(tfNom.getText(), tfdate.getText(), tfdes.getText(), Integer.parseInt(tfcapa.getText()), tfpla.getText(), tfimage.getText()));
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Event ajoutée");
-            alert.setContentText("Event ajoutée !");
-            alert.show();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setContentText("Veuillez remplir tous les champs correctement !");
             alert.show();
         }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AfffichageEvent.fxml"));
+        Parent root =loader.load(); // initialise la vue qui sera affichée à l'utilisateur
+        AfffichageEventcontroller ev =loader.getController();
+        ev.Update();
+        tfNom.getScene().setRoot(root);
+        Notifications.create()
+                .darkStyle()
+                .title("Event Ajouté avec succès")
+                .position(Pos.TOP_RIGHT) // Modifier la position ici
+                .hideAfter(Duration.seconds(20))
+                .show();
+
 
 
     }
@@ -109,12 +123,11 @@ public class AjoutEventcontroller {
         }
 
         // Ajoutez d'autres validations au besoin
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AfffichageEvent.fxml"));
-        Parent root =loader.load(); // initialise la vue qui sera affichée à l'utilisateur
-        tfNom.getScene().setRoot(root);
+
         return true;
 
     }
+
 
 
 

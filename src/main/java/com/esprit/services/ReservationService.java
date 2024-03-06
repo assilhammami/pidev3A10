@@ -85,4 +85,36 @@ public class ReservationService implements IService<Reservation> {
         return reservations;
     }
 
+
+    public List<Reservation> afficher_si_hakim(int id) {
+        List<Reservation> reservations = new ArrayList<>();
+
+        String req = "SELECT * from reservation where iduser = ?";
+        try {
+
+
+
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setInt(1, id);
+
+
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Status status = Status.valueOf(rs.getString("statut"));
+                reservations.add(new Reservation( rs.getInt("id"), rs.getString("date"),Status.attente, rs.getInt("nbplaces"),rs.getInt("idevent")  ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return reservations;
+    }
+
+
+
+
+
+
+
 }

@@ -44,4 +44,5 @@ public class AffichageEventcontroller {
         lbdate.setText(image);
     }
 
+
 }

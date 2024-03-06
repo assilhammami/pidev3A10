@@ -17,8 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import com.esprit.models.Event;
-import com.esprit.services.MyListener;
-import javafx.scene.image.Image;
+import com.esprit.services.MyListener1;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
@@ -30,9 +29,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 public class AfffichageEventcontroller implements Initializable {
 
     @FXML
@@ -63,8 +61,14 @@ public class AfffichageEventcontroller implements Initializable {
     private ScrollPane scroll;
 
     private int id_evnt;
+    @FXML
+    private ChoiceBox<String> filtreOptions;
+
+    @FXML
+    private ChoiceBox<Integer> filtredBycapacity;
+
     //
-    MyListener myListener;
+    MyListener1 myListener;
 
 
     public Event selectedProduct;
@@ -81,8 +85,8 @@ public class AfffichageEventcontroller implements Initializable {
         description.setText(ev.getDescription());
         capacity.setText(Integer.toString(ev.getCapacity()));
         place.setText(ev.getPlace());
+        imagePathStr=ev.getImage();
         chosen.setVisible(true);
-        chosen.setLayoutX(1050);
         ImageView imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
@@ -102,24 +106,26 @@ public class AfffichageEventcontroller implements Initializable {
 
     public void Update() {
 
-        EventService es= new EventService();
+        EventService es = new EventService();
         eventsList.clear();
         grid.getChildren().clear();
         eventsList.addAll(es.afficher());
-        myListener= new MyListener() {
+        myListener = new MyListener1() {
             @Override
             public void onClickListener(Event p) {
                 setChosenProduct(p);
             }
+
         };
 
         int column = 0;
         int row = 1;
         try {
-            for (Event  ev : eventsList) {
+            for (Event ev : eventsList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/admin/evvv.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
+
 
                 Evvvcontroller evvvcontroller = fxmlLoader.getController();
                 evvvcontroller.setData(ev, myListener);
@@ -131,9 +137,20 @@ public class AfffichageEventcontroller implements Initializable {
 
                 grid.add(anchorPane, column++, row);
                 GridPane.setMargin(anchorPane, new Insets(10));
+
+                grid.setMinWidth(134);
+                grid.setPrefWidth(134);
+                grid.setMaxWidth(134);//
+                //height
+                grid.setMinHeight(112);
+                grid.setPrefHeight(112);
+                grid.setMaxHeight(112);//
+                grid.setLayoutY(10);
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
         grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -144,6 +161,7 @@ public class AfffichageEventcontroller implements Initializable {
         grid.requestLayout();
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         chosen.setVisible(false);
@@ -151,6 +169,16 @@ public class AfffichageEventcontroller implements Initializable {
 
             search();
         });
+       /* filtreOptions.getItems().addAll("Nom (ASC)", "Nom (DESC)");
+        filtreOptions.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            Update();
+        });
+        //ajout des options a choisir dans filter categorie
+        filtredBycapacity.getItems().addAll("All Categories","Table", "Tools");
+        //prendre l'option all categories par defaut
+        filtredBycapacity.getSelectionModel().select("All Categories");
+        filtredBycapacity.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> Update());
+        Update();*/
         Update();
     }
 
@@ -234,7 +262,7 @@ public class AfffichageEventcontroller implements Initializable {
         eventsList.clear();
         grid.getChildren().clear();
         eventsList.addAll(es.afficher());
-        myListener= new MyListener() {
+        myListener= new MyListener1() {
             @Override
             public void onClickListener(Event p) {
                 setChosenProduct(p);
@@ -262,6 +290,8 @@ public class AfffichageEventcontroller implements Initializable {
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
         grid.setPrefHeight(Region.USE_COMPUTED_SIZE);

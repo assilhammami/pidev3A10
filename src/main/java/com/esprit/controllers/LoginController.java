@@ -112,13 +112,13 @@ public class LoginController {
                     Parent root = FXMLLoader.load(getClass().getResource("/admin/AfffichageEvent.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-
                     System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
 
                     Stage stage = (Stage) Button_Login.getScene().getWindow();
                     Parent root = FXMLLoader.load(getClass().getResource("/client/AfffichageEventclient.fxml"));
                     Scene scene = new Scene(root);
-                    stage.setScene(scene);}}
+                    stage.setScene(scene);
+                    }}
 
             else {System.out.println("Account is not active");
                 activateErr.setVisible(true);};

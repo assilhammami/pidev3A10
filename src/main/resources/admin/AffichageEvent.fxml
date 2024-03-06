@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="724.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.admin.AffichageEventcontroller">
+<AnchorPane prefHeight="400.0" prefWidth="637.0" stylesheets="@Css/Captcha.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.admin.AffichageEventcontroller">
    <children>
-      <Label layoutX="111.0" layoutY="43.0" text="Nom" />
-      <Label fx:id="lbnom" layoutX="366.0" layoutY="43.0" text="Label" />
-      <Label layoutX="111.0" layoutY="82.0" text="Date" />
-      <Label layoutX="111.0" layoutY="135.0" text="Description" />
-      <Label layoutX="111.0" layoutY="174.0" text="Capacity" />
-      <Label layoutX="111.0" layoutY="215.0" text="Place" />
-      <Label fx:id="lbdate" layoutX="366.0" layoutY="82.0" text="Label" />
-      <Label fx:id="lbdescription" layoutX="366.0" layoutY="135.0" text="Label" />
-      <Label fx:id="lbcapacity" layoutX="366.0" layoutY="174.0" text="Label" />
-      <Label fx:id="lbplace" layoutX="366.0" layoutY="215.0" text="Label" />
-      <Label layoutX="111.0" layoutY="252.0" text="Image" />
-      <Label fx:id="lbimage" layoutX="366.0" layoutY="252.0" text="Label" />
+      <Label layoutX="130.0" layoutY="14.0" text="VERIFY IF YOU ARE NOT A ROBOT">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="captchaTf" layoutX="173.0" layoutY="200.0" prefHeight="26.0" prefWidth="253.0" />
+      <Button layoutX="273.0" layoutY="256.0" mnemonicParsing="false" onAction="#Verify" text="Verify" />
+      <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" opacity="0.62">
+         <image>
+            <Image url="@Images/2%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="521.0" layoutY="14.0" opacity="0.62">
+         <image>
+            <Image url="@Images/2%20(1).png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="captchaLabel" layoutX="233.0" layoutY="163.0" prefHeight="26.0" prefWidth="152.0" />
    </children>
 </AnchorPane>

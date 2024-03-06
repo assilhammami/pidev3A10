@@ -43,11 +43,26 @@ public class Reservation {
         this.statut = statut;
         this.nbplaces = nbplaces;
     }
-
-    public Reservation(String date, Status statut, int nbplaces) {
+    public Reservation(int id, String date, Status statut, int nbplaces,int eventid ) {
+        this.id = id;
         this.date = date;
         this.statut = statut;
         this.nbplaces = nbplaces;
+        this.event=eventid;
+    }
+
+    public Reservation(String date, Status statut, int nbplaces ) {
+        this.date = date;
+        this.statut = statut;
+        this.nbplaces = nbplaces;
+    }
+
+
+    public Reservation(String date, Status statut, int nbplaces ,int eventid ) {
+        this.date = date;
+        this.statut = statut;
+        this.nbplaces = nbplaces;
+        this.event=eventid;
     }
 
     public int getId() {
