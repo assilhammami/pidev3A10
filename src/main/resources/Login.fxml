@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="448.0" prefWidth="905.0" style="-fx-background-color: #e0fbd6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.LoginController">
+<AnchorPane prefHeight="448.0" prefWidth="905.0" style="-fx-background-color: #e0fbd6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.LoginCoursController">
     <children>
         <ImageView fitHeight="510.0" fitWidth="916.0" pickOnBounds="true" preserveRatio="true">
             <image>
