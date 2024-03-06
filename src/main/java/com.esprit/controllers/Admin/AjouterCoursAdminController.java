@@ -75,12 +75,7 @@ public class AjouterCoursAdminController implements Initializable {
                     //alert.show();
                     Stage stage = (Stage) tfNom.getScene().getWindow();
 
-                    Notifications.create()
-                            .darkStyle()
-                            .title("Cours Ajouté avec succès")
-                            .position(Pos.TOP_RIGHT) // Modifier la position ici
-                            .hideAfter(Duration.seconds(20))
-                            .show();
+
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

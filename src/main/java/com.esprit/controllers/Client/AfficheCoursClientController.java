@@ -145,6 +145,7 @@ public class AfficheCoursClientController implements Initializable {
 
         Update();
         voirdetails.setVisible(false);
+        userId=UserDataManager.getInstance().getUserId();
     }
 
 
@@ -199,7 +200,7 @@ public class AfficheCoursClientController implements Initializable {
         } else {
             // Proceed to add the comment if no bad words are found
             AvisService as = new AvisService();
-            userId = 10; // Make sure to set the user ID appropriately
+             // Make sure to set the user ID appropriately
             avis a = new avis(commentText);
             a.setIdu(userId);
             a.setIdc(id_cours);

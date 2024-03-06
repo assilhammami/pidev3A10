@@ -17,12 +17,17 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -43,6 +48,8 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.kernel.colors.ColorConstants;
+import javafx.stage.Stage;
+
 public class DetailsCoursClientController implements Initializable {
 
     @FXML
@@ -279,6 +286,17 @@ public class DetailsCoursClientController implements Initializable {
         int[] counts = cs.getLikesAndDislikes(selectedCoursId);
         likeLabel.setText("Likes: " + counts[0]);
         dislikeLabel.setText("Dislikes: " + counts[1]);
+    }
+    @FXML
+    void retuuurn(MouseEvent  event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/AfficheCoursClient.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+        stage.show();
     }
 
 }

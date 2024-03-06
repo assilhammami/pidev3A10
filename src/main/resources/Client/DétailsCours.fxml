@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="752.0" prefWidth="1489.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Client.DetailsCoursClientController">
+<AnchorPane prefHeight="752.0" prefWidth="1489.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Client.DetailsCoursClientController">
    <children>
       <ScrollPane fx:id="scroll1" layoutX="18.0" layoutY="193.0" prefHeight="434.0" prefWidth="420.0">
          <content>
@@ -85,5 +86,10 @@
       <Label fx:id="dislikeLabel" layoutX="1210.0" layoutY="118.0" style="-fx-font-weight: bold; -fx-text-fill: #8b0000;" text="Dislikes: 0" />
       <ListView fx:id="listview" layoutX="940.0" layoutY="137.0" prefHeight="615.0" prefWidth="403.0" />
       <Button layoutX="1134.0" layoutY="84.0" onAction="#handleExportToPDF" text="Export to PDF" />
+      <ImageView fitHeight="36.0" fitWidth="32.0" layoutX="39.0" layoutY="35.0" onMouseClicked="#retuuurn" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/fersi/OneDrive/Bureau/PIMouadh25/PIMouadh/src/main/resources/images/return.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

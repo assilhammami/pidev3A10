@@ -48,28 +48,27 @@ public class CoursCardAdminController implements Initializable {
         dislikeCount.setText(String.valueOf(cours.getDislikes()));
 
         likeButton.setOnAction(event -> {
-            if (!UserDataManager.getInstance().hasLiked(cours.getId())) {
+            if (!UserDataManager.getInstance().hasLiked(cours.getId()) && !UserDataManager.getInstance().hasDisliked(cours.getId())) {
                 cs.incrementLikes(cours.getId());
                 cours.setLikes(cours.getLikes() + 1);
                 likeCount.setText(String.valueOf(cours.getLikes()));
                 UserDataManager.getInstance().addLike(cours.getId());
             } else {
-                System.out.println("You have already liked this course.");
+                System.out.println("You have already reacted to this course.");
             }
         });
 
         dislikeButton.setOnAction(event -> {
-            if (!UserDataManager.getInstance().hasDisliked(cours.getId())) {
+            if (!UserDataManager.getInstance().hasDisliked(cours.getId()) && !UserDataManager.getInstance().hasLiked(cours.getId())) {
                 cs.incrementDislikes(cours.getId());
                 cours.setDislikes(cours.getDislikes() + 1);
                 dislikeCount.setText(String.valueOf(cours.getDislikes()));
                 UserDataManager.getInstance().addDislike(cours.getId());
             } else {
-                System.out.println("You have already disliked this course.");
+                System.out.println("You have already reacted to this course.");
             }
         });
         try {
-
             File file = new File("src/main/resources/images/" + cours.getImage());
             String imageUrl = file.toURI().toURL().toExternalForm();
             Image image = new Image(imageUrl);
@@ -78,7 +77,7 @@ public class CoursCardAdminController implements Initializable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

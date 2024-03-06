@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<AnchorPane prefHeight="264.0" prefWidth="268.0" xmlns="http://javafx.com/javafx/21" stylesheets="@../Style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.CoursCardAdminController">
+
+<AnchorPane prefHeight="264.0" prefWidth="268.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.CoursCardAdminController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="112.0" prefWidth="134.0">
          <children>
@@ -17,19 +18,19 @@
                   <ImageView fx:id="img" fitHeight="180.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
-            <Button fx:id="likeButton" layoutX="14.0" layoutY="200.0">
+            <Button fx:id="likeButton" layoutX="14.0" layoutY="200.0" prefHeight="28.0" prefWidth="42.0">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0"> <!-- Small size icons -->
-                     <Image url="@../thumbs-up.png"/>
+                     <Image url="@../thumbs-up.png" />
                   </ImageView>
                </graphic>
             </Button>
             <Label fx:id="likeCount" layoutX="40.0" layoutY="205.0" styleClass="like-dislike-label" /> <!-- Adjust layoutX and layoutY as needed -->
 
-            <Button fx:id="dislikeButton" layoutX="60.0" layoutY="200.0">
+            <Button fx:id="dislikeButton" layoutX="60.0" layoutY="200.0" prefHeight="28.0" prefWidth="42.0">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0"> <!-- Small size icons -->
-                     <Image url="@../thumbs-down.png"/>
+                     <Image url="@../thumbs-down.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -40,7 +41,7 @@
             <String fx:value="transparent" />
          </styleClass>
       </AnchorPane>
-      <Label fx:id="nom" layoutX="62.0" layoutY="191.0" text="Nom cours">
+      <Label fx:id="nom" layoutX="62.0" layoutY="178.0" text="Nom cours">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
