@@ -1,7 +1,7 @@
 package com.esprit.controllers;
 
 import com.esprit.models.User;
-import com.esprit.models.UserType;
+import com.esprit.services.UserDataManager;
 import com.esprit.services.UserService;
 import com.esprit.utils.Mail;
 import javafx.collections.FXCollections;
@@ -17,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
@@ -27,12 +29,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class testcontroller implements Initializable {
+public class AdminDashboardUsersController implements Initializable {
 
 
 
@@ -75,11 +75,45 @@ public class testcontroller implements Initializable {
 
     @FXML
     private TableView<User> tableuser;
+    @FXML
+    private Button CoursesButton;
 
+    @FXML
+    private Button EventsButton;
 
+    @FXML
+    private Button ForumButton;
+
+    @FXML
+    private Button JobsButton;
+
+    @FXML
+    private Button MarketButton;
+
+    @FXML
+    private Button ProfileButton;
+
+    @FXML
+    private Label UserType;
+
+    @FXML
+    private Button UsersButton;
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private ImageView photoProfile;
+    @FXML
+    private Label usernameOld;
+    private UserDataManager userDataManager = UserDataManager.getInstance();
+    private int CurrentUserId = userDataManager.getUserId();
     UserService us=new UserService();
+
+    User currentUser = us.getUser(CurrentUserId);
     ObservableList<User> ListUser;
 
+    public AdminDashboardUsersController() throws SQLException {
+    }
 
 
     @FXML
@@ -512,6 +546,9 @@ public void searchByType(String tri) { System.out.println("Search by type method
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameOld.setText(currentUser.getUsername());
+        Image photo_profile=us.loadImage(currentUser.getPhoto_de_profile());
+        photoProfile.setImage(photo_profile);
         trichoicebox.getItems().addAll("Ascendant", "Descendant", "None");
         filterchoicebox.getItems().addAll("Username", "Name", "Lastname", "Email", "Phone Number",  "BirthDate", "UserType", "All");
         col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -618,6 +655,50 @@ public void searchByType(String tri) { System.out.println("Search by type method
                 return cell;
             }
         };
+    }
+    @FXML
+    void LogOut(ActionEvent event) throws IOException {
+        userDataManager.logout();
+        CurrentUserId =0;
+        currentUser=null;
+        Stage stage=(Stage) logoutButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void goToCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToEvents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToForum(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToJobs(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToMarket(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToUsers(ActionEvent event) throws IOException {
+        Stage stage = (Stage) UsersButton.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/AdminDashboardUsers.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);stage.setTitle("Users management");
     }
 
     }

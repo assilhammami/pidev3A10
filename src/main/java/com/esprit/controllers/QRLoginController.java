@@ -120,7 +120,7 @@ public class QRLoginController {
 
                             // Rediriger vers le tableau de bord de l'administrateur
                             Stage stage = (Stage) Button_continue.getScene().getWindow();
-                            Parent root = FXMLLoader.load(getClass().getResource("/AdminUsers.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/AdminDashboard.fxml"));
                             Scene scene = new Scene(root);
                             stage.setScene(scene);
                             stage.setTitle("Admin Dashboard");
