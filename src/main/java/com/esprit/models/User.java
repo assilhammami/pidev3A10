@@ -6,10 +6,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+
+import java.sql.SQLException;
+
+public  class User  {
+
 import java.sql.Date;
 import java.sql.SQLException;
 
 public  sealed class User permits Admin,Artiste,Client {
+
 
     protected int id;
     protected String photo_de_profile;
@@ -34,7 +40,11 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = UserType.CLIENT.toString();
         this.date_de_naissance = date_de_naissance;
+
+        this.Active=false;
+
         this.Active=true;
+
     }
 
 
@@ -52,7 +62,11 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = UserType.CLIENT.toString();
         this.date_de_naissance = date_de_naissance;
+
+        this.Active=false;
+
         this.Active=true;
+
     }
 
     public User(String photo_de_profile_path, String nom, String prenom, String email, String mot_de_passe, String username, int num_telephone, String type, String date_de_naissance, Boolean active) {
@@ -65,12 +79,20 @@ public  sealed class User permits Admin,Artiste,Client {
         this.num_telephone = num_telephone;
         this.type = type;
         this.date_de_naissance = date_de_naissance;
+
+        this.Active = active;
+
         this.Active = true;
+
     }
 
     public User(int id, String photo_de_profile_path, String nom, String prenom, String email, String mot_de_passe, String username, int num_telephone, String type, String date_de_naissance, Boolean active) {
         this.id = id;
+
+        this.photo_de_profile = photo_de_profile_path;
+
        this.photo_de_profile = photo_de_profile_path;
+
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

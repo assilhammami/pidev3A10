@@ -1,13 +1,21 @@
 package com.esprit.utils;
 
+
+import java.sql.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DataSource {
 
     private Connection connection;
+
+    private static DataSource instance;
+
     private static com.esprit.utils.DataSource instance;
+
 
     private final String URL = "jdbc:mysql://localhost:3306/pidev";
     private final String USER = "root";
@@ -22,6 +30,19 @@ public class DataSource {
         }
     }
 
+
+    public static DataSource getInstance() {
+        if(instance == null){
+            instance = new DataSource();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+}
+
     public static com.esprit.utils.DataSource getInstance() {
         if(instance == null){
             instance = new com.esprit.utils.DataSource();
@@ -35,4 +56,5 @@ public class DataSource {
 }
 
 }
+
 

@@ -20,9 +20,11 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class LoginController {
 
@@ -47,6 +49,11 @@ public class LoginController {
     @FXML
     private TextField loggedinfield;
     @FXML
+s
+    private CheckBox rememberme;
+
+    @FXML
+
     private Hyperlink CreateAccHL;
     @FXML
     private Button hide;
@@ -64,6 +71,7 @@ public class LoginController {
 
     @FXML
     private ImageView eyeopen1;
+
 
     @FXML
     private TextField fieldserr;
@@ -95,6 +103,50 @@ public class LoginController {
     void Checklogin(ActionEvent event) throws SQLException, IOException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         String username = usernametext.getText();
         String password = us.getPassword(Visiblepassword,Hiddenpassword);
+
+        int userid=us.getUserId(username);
+        System.out.println(us.getUser(userid).getActive());
+
+        if (us.verifierLogin(username,password)){
+            System.out.println("Login successful");
+            if (us.verifierLogin(username, password))
+            { int userId = us.getUserId(username);
+                UserDataManager.getInstance().setUserId(userId);}
+            if(us.getUser(userid).getActive())
+            { System.out.println("Account is active");
+                System.out.println("logged in successfully!");
+                loggedinfield.setVisible(true);
+                errorField.setVisible(false);
+                activateErr.setVisible(false);
+
+                int userId = us.getUserId(username);
+
+                if(us.getUser(userId).getType().equals("ADMIN"))
+                {UserDataManager.getInstance().setUserId(userId);
+
+                    Stage stage = (Stage) Button_Login.getScene().getWindow();
+                    Parent root = FXMLLoader.load(getClass().getResource("/admin/AfffichageEvent.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
+
+                    Stage stage = (Stage) Button_Login.getScene().getWindow();
+                    Parent root = FXMLLoader.load(getClass().getResource("/client/AfffichageEventclient.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    }}
+
+            else {System.out.println("Account is not active");
+                activateErr.setVisible(true);};
+
+
+
+        }else {
+            System.out.println("Invalid login");
+            System.out.println("invalid !");
+            errorField.setVisible(true);
+            loggedinfield.setVisible(false);
+
 
         List<String> fields = new ArrayList<>(Arrays.asList(username,password));
         if (!us.areFieldsNotEmpty(fields)) {
@@ -139,6 +191,7 @@ public class LoginController {
                 errorField.setVisible(true);
                 loggedinfield.setVisible(false);
             }
+
         }
 
 
@@ -154,6 +207,15 @@ public class LoginController {
         stage.setTitle("Create Account");
 
     }
+
+
+
+    @FXML
+    void SauvegarderDonnees(ActionEvent event) {
+
+    }
+
+
 
 
 
@@ -176,4 +238,5 @@ public class LoginController {
         stage.setScene(scene);
         stage.setTitle("QR code Login");
     }
+
 }

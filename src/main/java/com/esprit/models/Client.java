@@ -45,4 +45,8 @@ public final class Client extends User {
                 ", Active=" + Active +
                 '}';
     }
+
 }
+
+}
+
