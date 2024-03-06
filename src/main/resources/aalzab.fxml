@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="686.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.aalzabController">
+    <children>
+          <ImageView fx:id="imageview" fitHeight="229.0" fitWidth="434.0" layoutX="77.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tabcom" layoutY="300.0" prefHeight="399.0" prefWidth="622.0">
+        <columns>
+          <TableColumn fx:id="tfuser" prefWidth="112.0" text="Username" />
+          <TableColumn fx:id="tfcontenu" prefWidth="305.60003662109375" text="Contenu" />
+            <TableColumn fx:id="tfnote" prefWidth="74.39996337890625" text="Note" />
+            <TableColumn fx:id="tfdatecom" prefWidth="128.00006103515625" text="Date_commentaire" />
+        </columns>
+      </TableView>
+      <Label layoutX="224.0" layoutY="24.0" prefHeight="33.0" prefWidth="174.0" text="Les commentaires">
+         <font>
+            <Font name="Algerian" size="17.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
