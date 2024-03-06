@@ -27,6 +27,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -187,37 +188,31 @@ public class AfficheCoursClientController implements Initializable {
     }
     @FXML
     void ajouteravis(ActionEvent event) throws IOException {
-          AvisService as = new AvisService();
-        System.out.println(toggleGroup.getToggles());
-          RadioButton radioButton = (RadioButton) toggleGroup.getSelectedToggle();
-        System.out.println(radioButton);
-        switch(Integer.parseInt(radioButton.getText())) {
-            case 1:
-                noteCours = NoteCours.UNE;
-                break;
-            case 2:
-                noteCours = NoteCours.DEUX;
-                break;
-            case 3:
-                noteCours = NoteCours.TROIS;
-                break;
-            case 4:
-                noteCours = NoteCours.QUATRE;
-                break;
-            case 5:
-                noteCours = NoteCours.CINQ;
-                break;
-            default:
-                System.out.println(noteCours);
-                // Code à exécuter si aucun des cas ne correspond
-                break;}
-        System.out.println(noteCours);
-                userId = 10;
-                avis a=new avis(noteCours,commentaire.getText());
-                a.setIdu(userId);
-                a.setIdc(id_cours);
-            as.ajouter(a);
+        String commentText = commentaire.getText().trim();
+        List<String> badWords = Arrays.asList("fuck", "bitch", "shit");
 
+        // Check for bad words in the comment
+        boolean containsBadWord = badWords.stream().anyMatch(commentText.toLowerCase()::contains);
+        if (containsBadWord) {
+            // Show an alert if a bad word is found
+            showAlert("Inappropriate Language", "Your comment contains inappropriate language. Please revise and try again.");
+        } else {
+            // Proceed to add the comment if no bad words are found
+            AvisService as = new AvisService();
+            userId = 10; // Make sure to set the user ID appropriately
+            avis a = new avis(commentText);
+            a.setIdu(userId);
+            a.setIdc(id_cours);
+            as.ajouter(a);
+        }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     @FXML

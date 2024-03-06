@@ -1,0 +1,25 @@
+
+‚
+java:S1598"æThis file "AvisService.java" should be located in "com\esprit\services" directory, not in "C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\mouadh\PIMouadh\src\main\java\com.esprit\services"(Do not use dots in directory names).(¿©ãóúÿÿÿÿ
+j
+java:S2095G"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8¡˜Ş¤á1
+q
+java:S20958"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8÷Æİ¤á1
+j
+java:S2095Z"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ
+q
+java:S2095)"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¬æıÿÿÿÿ8©±¤á1
+@	java:S106"+Replace this use of System.out by a logger.(À‹à²
+E	java:S106!"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+@	java:S106."+Replace this use of System.out by a logger.(Û´œş
+E	java:S1060"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+@	java:S106;"+Replace this use of System.out by a logger.(¥˜ÿÆ
+E	java:S106="+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106P"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106c"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+U
+java:S1128"8Remove this unused import 'com.esprit.models.NoteCours'.(ê§°î8«˜Ş¤á1
+Q
+java:S1128"4Remove this unused import 'com.esprit.models.cours'.(å‰‡8«˜Ş¤á1

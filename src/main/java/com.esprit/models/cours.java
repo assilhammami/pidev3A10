@@ -10,7 +10,8 @@ private String nom;
 private String description;
 private Date date_pub;
 private String image;
-
+    private int likes; // New field for likes
+    private int dislikes;
 
     public cours() {
 
@@ -31,6 +32,31 @@ private String image;
         this.image = image;
     }
 
+    public cours(int id, String nom, String description, Date datePub, String image, int likes, int dislike) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.date_pub = datePub;
+        this.image = image;
+        this.likes = likes ;
+        this.dislikes = dislike ;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
     public int getId() {
         return id;
     }

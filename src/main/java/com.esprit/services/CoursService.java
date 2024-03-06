@@ -14,6 +14,27 @@ public class CoursService implements IService<cours> {
     public CoursService() {
         connection = DataSource.getInstance().getConnection();
     }
+    public void incrementLikes(int courseId) {
+        String req = "UPDATE cours SET likes = likes + 1 WHERE id = ?;";
+        try (PreparedStatement pst = connection.prepareStatement(req)) {
+            pst.setInt(1, courseId);
+            pst.executeUpdate();
+            System.out.println("Likes incremented!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementDislikes(int courseId) {
+        String req = "UPDATE cours SET dislikes = dislikes + 1 WHERE id = ?;";
+        try (PreparedStatement pst = connection.prepareStatement(req)) {
+            pst.setInt(1, courseId);
+            pst.executeUpdate();
+            System.out.println("Dislikes incremented!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     public void ajouter(cours cours) {
@@ -75,13 +96,32 @@ public class CoursService implements IService<cours> {
                 String description = rs.getString("description");
                 Date date_pub = rs.getDate("date_pub");
                 String image = rs.getString("image");
-                courss.add(new cours(id,nom,description,date_pub,image));
+                int like = rs.getInt("likes");
+                int dislike = rs.getInt("dislikes");
+                courss.add(new cours(id,nom,description,date_pub,image,like,dislike));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return courss;
+    }
+    public int[] getLikesAndDislikes(int courseId) {
+        int likes = 0;
+        int dislikes = 0;
+        String sql = "SELECT likes, dislikes FROM cours WHERE id = ?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setInt(1, courseId);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    likes = rs.getInt("likes");
+                    dislikes = rs.getInt("dislikes");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching likes and dislikes: " + e.getMessage());
+        }
+        return new int[]{likes, dislikes};
     }
 
     public boolean isNomUnique(String nom) {

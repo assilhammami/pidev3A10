@@ -4,8 +4,13 @@ import java.util.Objects;
 
 public class avis {
     private int id;
-    private NoteCours note;
     private String commentaire;
+
+    public avis(int id, String commentaire, int idu) {
+        this.id = id;
+        this.commentaire = commentaire;
+        this.idu = idu ;
+    }
 
 
     public int getIdc() {
@@ -29,13 +34,13 @@ public class avis {
     private int idu;
 
 
-    public avis(int id, NoteCours note, String commentaire) {
+    public avis(int id,  String commentaire) {
         this.id = id;
-        this.note = note;
+
         this.commentaire = commentaire;
     }
-    public avis(NoteCours note, String commentaire) {
-        this.note = note;
+    public avis( String commentaire) {
+
         this.commentaire = commentaire;
     }
 
@@ -51,9 +56,7 @@ public class avis {
         return id;
     }
 
-    public NoteCours getNote() {
-        return note;
-    }
+
 
     public String getCommentaire() {
         return commentaire;
@@ -63,9 +66,7 @@ public class avis {
         this.id = id;
     }
 
-    public void setNote(NoteCours note) {
-        this.note = note;
-    }
+
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
@@ -75,7 +76,6 @@ public class avis {
     public String toString() {
         return "avis{" +
                 "id=" + id +
-                ", note=" + note +
                 ", commentaire='" + commentaire + '\'' +
                 '}';
     }
@@ -85,11 +85,11 @@ public class avis {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         avis avis = (avis) o;
-        return id == avis.id && note == avis.note && Objects.equals(commentaire, avis.commentaire);
+        return id == avis.id &&  Objects.equals(commentaire, avis.commentaire);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, note, commentaire);
+        return Objects.hash(id,  commentaire);
     }
 }

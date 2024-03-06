@@ -17,13 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="747.0" prefWidth="1246.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.AfficheCoursAdminController">
+<AnchorPane prefHeight="725.0" prefWidth="1409.0" styleClass="bgProductsAdmin" stylesheets="@../css/Styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.AfficheCoursAdminController">
    <children>
-      <ScrollPane fx:id="scroll" layoutX="252.0" layoutY="105.0" prefHeight="538.0" prefWidth="953.0">
-         <styleClass>
-            <String fx:value="PaneBg" />
-            <String fx:value="transparent" />
-         </styleClass>
+      <ScrollPane fx:id="scroll" layoutX="213.0" layoutY="134.0" prefHeight="509.0" prefWidth="838.0" style="-fx-background-color: transaprent; -fx-background: transparent;" stylesheets="@../css/Styling.css">
          <content>
             <GridPane fx:id="grid" prefHeight="125.0" prefWidth="114.0">
                <rowConstraints>
@@ -32,7 +28,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1205.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="286.0" styleClass="background" stylesheets="@../Style.css">
+      <VBox fx:id="chosen" alignment="TOP_CENTER" layoutX="1132.0" layoutY="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="243.0" stylesheets="@../Style.css">
          <children>
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="286.0">
                <children>
@@ -44,7 +40,7 @@
                   <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#upload" text="Upload">
+            <Button mnemonicParsing="false" onAction="#upload" text="Upload" textFill="#816161">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
@@ -87,32 +83,31 @@
                </children>
             </HBox>
          </children>
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="transparent" />
+         </styleClass>
       </VBox>
-      <Button layoutX="1123.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#supprimer" text="Supprimer" textFill="#816161">
+      <Button layoutX="834.0" layoutY="677.0" mnemonicParsing="false" onMouseClicked="#supprimer" text="Supprimer" textFill="#816161">
          <font>
             <Font name="Britannic Bold" size="19.0" />
          </font></Button>
-      <Button layoutX="1003.0" layoutY="691.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="104.0" text="Modifier" textFill="#816161">
+      <Button layoutX="661.0" layoutY="678.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="104.0" text="Modifier" textFill="#816161">
          <font>
             <Font name="Britannic Bold" size="19.0" />
          </font></Button>
-      <Button layoutX="435.0" layoutY="691.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="32.0" prefWidth="178.0" text="Ajouter un Cours" textFill="#816161">
+      <Button layoutX="384.0" layoutY="676.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="32.0" prefWidth="178.0" text="Ajouter un Cours" textFill="#816161">
          <font>
             <Font name="Britannic Bold" size="19.0" />
          </font>
       </Button>
-      <Label contentDisplay="CENTER" layoutX="548.0" layoutY="20.0" text="LISTE DES COURS" textFill="#816161">
+      <Label contentDisplay="CENTER" layoutX="524.0" layoutY="11.0" text="LISTE DES COURS" textFill="#816161">
          <font>
             <Font name="Britannic Bold" size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="82.0" fitWidth="169.0" layoutX="1275.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/fersi/OneDrive/Bureau/logo.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="searchField" alignment="TOP_CENTER" layoutX="1003.0" layoutY="74.0" onKeyPressed="#search" promptText="Search..." />
-      <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1003.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="searchField" alignment="TOP_CENTER" layoutX="1003.0" layoutY="31.0" onKeyPressed="#search" promptText="Search..." />
+      <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1010.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/fersi/OneDrive/Bureau/search.png" />
          </image>

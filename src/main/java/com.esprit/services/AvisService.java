@@ -19,14 +19,14 @@ public class AvisService implements IService<avis>{
     }
     @Override
     public void ajouter(avis avis) {
-        String req = "INSERT into avis(note, commentaire, id_cour, id_user) values (?, ?, ?, ?);";
+        String req = "INSERT into avis( commentaire, id_cour, id_user) values (?, ?, ?);";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
 
-            pst.setInt(4, avis.getIdu());
-            pst.setInt(3, avis.getIdc());
-            pst.setString(2, avis.getCommentaire());
-            pst.setInt(1, avis.getNote().getValue());
+            pst.setInt(3, avis.getIdu());
+            pst.setInt(2, avis.getIdc());
+            pst.setString(1, avis.getCommentaire());
+
             pst.executeUpdate();
             System.out.println("avis ajoutée !");
         } catch (SQLException e) {
@@ -36,12 +36,12 @@ public class AvisService implements IService<avis>{
 
     @Override
     public void modifier(avis avis) {
-        String req = "UPDATE avis set note = ?, commentaire = ? where id = ?;";
+        String req = "UPDATE avis set  commentaire = ? where id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(req);
-            pst.setInt(3, avis.getId());
-            pst.setString(2, avis.getCommentaire());
-            pst.setInt(1, avis.getNote().getValue());
+            pst.setInt(2, avis.getId());
+            pst.setString(1, avis.getCommentaire());
+
             pst.executeUpdate();
             System.out.println("avis modifiée !");
         } catch (SQLException e) {
@@ -72,11 +72,9 @@ public class AvisService implements IService<avis>{
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int noteValue = rs.getInt("note");
-                int i = 1;
-                NoteCours note = NoteCours.values()[ 1 ];
                 String commentaire = rs.getString("commentaire");
-                aviss.add(new avis(id, note, commentaire));
+                int idu = rs.getInt("id_user");
+                aviss.add(new avis(id, commentaire,idu));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -93,11 +91,9 @@ public class AvisService implements IService<avis>{
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int noteValue = rs.getInt("note");
-                int i = 1;
-                NoteCours note = NoteCours.values()[ 1 ];
                 String commentaire = rs.getString("commentaire");
-                avis.add(new avis(id, note, commentaire));
+                int idu = rs.getInt("id_user");
+                avis.add(new avis(id, commentaire,idu));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

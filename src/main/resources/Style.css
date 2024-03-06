@@ -18,3 +18,13 @@
 .background2 {
     -fx-background-color: linear-gradient(to bottom, #A5C1BA, #ffffffff);
 }
+.app_logo{
+    -fx-background-image: url("images/logo.png");}
+.searchBtn{
+    -fx-background-image:url("images/search.png");
+}
+.like-dislike-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-padding: 5px;
+}

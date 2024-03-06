@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="752.0" prefWidth="1489.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Client.DetailsCoursClientController">
+<AnchorPane prefHeight="752.0" prefWidth="1489.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Client.DetailsCoursClientController">
    <children>
       <ScrollPane fx:id="scroll1" layoutX="18.0" layoutY="193.0" prefHeight="434.0" prefWidth="420.0">
          <content>
@@ -81,6 +81,9 @@
             </VBox>
          </children>
       </VBox>
+      <Label fx:id="likeLabel" layoutX="1092.0" layoutY="118.0" style="-fx-font-weight: bold; -fx-text-fill: #0076a3;" text="Likes: 0" />
+      <Label fx:id="dislikeLabel" layoutX="1210.0" layoutY="118.0" style="-fx-font-weight: bold; -fx-text-fill: #8b0000;" text="Dislikes: 0" />
       <ListView fx:id="listview" layoutX="940.0" layoutY="137.0" prefHeight="615.0" prefWidth="403.0" />
+      <Button layoutX="1134.0" layoutY="84.0" onAction="#handleExportToPDF" text="Export to PDF" />
    </children>
 </AnchorPane>
