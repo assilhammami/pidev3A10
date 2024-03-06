@@ -77,6 +77,7 @@
                   <Font size="10.0" />
                </font>
             </Hyperlink>
+            <Button fx:id="Qrcode_Button" layoutX="119.0" layoutY="255.0" mnemonicParsing="false" onAction="#LoginQrcode" prefHeight="27.0" prefWidth="159.0" style="-fx-border-color: #B7C7C3;" stylesheets="@Styles/buttonstyle.css" text="Login with you QR code" />
             </children>
         </AnchorPane>
     </children>

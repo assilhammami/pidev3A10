@@ -16,13 +16,14 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import net.glxn.qrgen.core.image.ImageType;
+
+import net.glxn.qrgen.javase.QRCode;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -160,6 +161,8 @@ public class UpdateAccController implements Initializable {
     private TextField weakPasswod;
     @FXML
     private Button HomeButton;
+    @FXML
+    private Button QRButton;
 
     UserService us=new UserService();
 
@@ -400,6 +403,44 @@ public class UpdateAccController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Home");
+    }
+    @FXML
+    void getQRcode(ActionEvent event) {
+        try {
+            // Générer le code QR en tant que tableau d'octets
+            ByteArrayOutputStream out = QRCode.from(username.getText()).to(ImageType.PNG).stream();
+
+            String f_name = username.getText();
+
+            // Configurer la boîte de dialogue de sauvegarde de fichier
+            FileChooser fileChooser = new FileChooser();
+
+            // Set extension filter for PNG files
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                    "PNG Files (*.png)", "*.png");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Définir le nom de fichier par défaut
+            fileChooser.setInitialFileName(f_name);
+
+            // Afficher la boîte de dialogue de sauvegarde de fichier
+            File selectedFile = fileChooser.showSaveDialog(null);
+
+            // Vérifier si l'utilisateur a sélectionné un emplacement de sauvegarde
+            if (selectedFile != null) {
+                // Enregistrer le code QR dans le fichier sélectionné
+                try (FileOutputStream fout = new FileOutputStream(selectedFile)) {
+                    fout.write(out.toByteArray());
+                    fout.flush();
+                    System.out.println("QR code generated successfully and saved to: " + selectedFile.getAbsolutePath());
+                }
+            } else {
+                System.out.println("Operation canceled by the user.");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }

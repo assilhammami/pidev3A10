@@ -69,6 +69,8 @@ public class LoginController {
     private TextField fieldserr;
     @FXML
     private Hyperlink hlpassword;
+    @FXML
+    private Button Qrcode_Button;
 
     UserService us= new UserService();
 
@@ -165,5 +167,13 @@ public class LoginController {
         stage.setScene(scene);
         stage.setTitle("Forgot Password");
     }
-
+    @FXML
+    void LoginQrcode(ActionEvent event) throws IOException {
+        Stage stage=(Stage) Qrcode_Button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/QRLogin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("QR code Login");
+    }
 }

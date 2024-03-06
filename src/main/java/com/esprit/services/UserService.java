@@ -340,7 +340,7 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
     public User getUtilisateurUsernameouEmail(String username) throws SQLException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         User connectedUser=null;
 
-        String req="SELECT * FROM user WHERE Nom_Utilisateur=? OR email=? ;";
+        String req="SELECT * FROM user WHERE username=? OR email=? ;";
 
         PreparedStatement pst =connection.prepareStatement(req);
         pst.setString(1,username);
@@ -363,6 +363,7 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
         int code = rand.nextInt((9999 - 1000) + 1) + 1000;
         return code;
     }
+
 
 }
 
