@@ -121,7 +121,7 @@ public class UserService implements IService<User> {
     }
 
 
-    @Override
+
     public void supprimer(User a) {
         String req = "DELETE from user where id = ?;";
         try {
@@ -362,6 +362,19 @@ public  boolean isValidPhoneNumber(String phoneNumber) {
         Random rand = new Random();
         int code = rand.nextInt((9999 - 1000) + 1) + 1000;
         return code;
+    }
+    @Override
+    public void supprimer(int id ) {
+        String req = "DELETE from user where id = ?;";
+        try {
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            System.out.println("User supprmié !");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
