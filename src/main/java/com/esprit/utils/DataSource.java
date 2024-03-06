@@ -1,15 +1,13 @@
 package com.esprit.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DataSource {
 
     private Connection connection;
-    private static com.esprit.utils.DataSource instance;
+    private static DataSource instance;
 
-    private final String URL = "jdbc:mysql://localhost:3306/pidev";
+    private final String URL = "jdbc:mysql://localhost:3306/esprit";
     private final String USER = "root";
     private  final String PASSWORD = "";
 
@@ -22,12 +20,13 @@ public class DataSource {
         }
     }
 
-    public static com.esprit.utils.DataSource getInstance() {
+    public static DataSource getInstance() {
         if(instance == null){
-            instance = new com.esprit.utils.DataSource();
+            instance = new DataSource();
         }
         return instance;
     }
+
     public Connection getConnection() {
         return connection;
     }

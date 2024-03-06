@@ -1,101 +1,18 @@
-.bgProducts{
-    -fx-background-image: url("assets/backgris.jpg");
+.ajoutBtn{
+    -fx-background-image:url("graphics/ajout_hover.png");
 }
-.product1{
-   -fx-background-image:url("assets/product.jpg");
-}
-.back{
-    -fx-background-image:url("assets/back.jpg");
-}
-.bck{
-    -fx-background-image:url("assets/bck.jpg");
 
+.searchInput{
+    -fx-background-image:url("graphics/SearchInput.png");
 }
-.back1{
-    -fx-background-image:url("assets/back1.jpg");}
-.coback{
-    -fx-background-image:url("graphics/21.png");
+
+.searchBtn{
+    -fx-background-image:url("graphics/SearchButton.png");
 }
 
 .ChosenBG{
     -fx-background-image:url("graphics/ChosenBG.png");
 }
-
-.PaneBg{
-    -fx-background-image:url("graphics/PaneBackground.png");
-}
-.searchInput{
-    -fx-background-image:url("graphics/SearchInput.png");
-}
-.searchBtn{
-    -fx-background-image:url("graphics/SearchButton.png");
-}
-.transparent{
-    -fx-background-color: rgba(0,0,0,0);
-}
-
-
-.ajoutBtn{
-    -fx-background-image:url("graphics/ajoutBtn.png");
-}
-.ajoutBtn:hover{
-    -fx-background-image:url("graphics/ajout_hover.png");
-}
-
 .modifBtn{
     -fx-background-image:url("graphics/modifier_button.png");
-}
-.modifBtn:hover{
-    -fx-background-image:url("graphics/modifier_hover.png");
-}
-
-.suppBtn{
-    -fx-background-image:url("graphics/supprimer_button.png");
-}
-.suppBtn:hover{
-    -fx-background-image:url("graphics/supprimer_hover.png");
-}
-
-.crudBottom{
-    -fx-background-image:url("graphics/crudBottom.png");
-}
-
-.product_item_screen{
-    -fx-background-image:url("graphics/product_item_screen.png");
-}
-
-.orders_icon{
-    -fx-background-image:url("graphics/orders_icon.png");
-}
-
-.shop_icon{
-    -fx-background-image:url("graphics/shop_logo.png");
-}
-
-
-.order_bg{
-    -fx-background-image:url("graphics/OrderItemBG.png");
-}
-
-.order_del{
-    -fx-background-image:url("graphics/Delete_btn.png");
-}
-
-.order_del:hover{
-    -fx-background-image:url("graphics/Delete_hover.png");
-}
-
-.bottomNavigation{
-    -fx-background-image:url("graphics/bottom_navigation.png");
-}
-
-.app_logo{
-    -fx-background-image: url("graphics/davincci_logo.jpg");
-}
-
-.buyButton{
-    -fx-background-image: url("graphics/buy_it.png");
-}
-.buyButton:hover{
-    -fx-background-image: url("graphics/buy_it_hover.png");
 }
