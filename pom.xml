@@ -5,7 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
+
+
+
     <artifactId>pidev2</artifactId>
+
+    <artifactId>Gestionproduits</artifactId>
+
+
+    <artifactId>Pidev2</artifactId>
+
+
+    <artifactId>pidev2</artifactId>
+
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -31,11 +43,49 @@
             <version>21.0.2</version>
         </dependency>
         <dependency>
+
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
         <dependency>
+
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>10.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>core</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version> <!-- Use the appropriate version -->
+        </dependency>
+
+    </dependencies>
+    <build>
+
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
             <version>20.120.0</version>
@@ -56,6 +106,12 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
+
+                <configuration>
+                    <mainClass>com.esprit.tests.MainProgGUI</mainClass>
+                    <executable>${java.home}/bin/java</executable>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>

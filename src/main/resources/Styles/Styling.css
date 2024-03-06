@@ -1,0 +1,40 @@
+.bgProductsAdmin{
+    -fx-background-image: url("bgUser.png");
+}
+
+.TextField_bg{
+    -fx-background-image: url("TextField_bg.png");
+}
+.TextArea_bg{
+    -fx-background-image: url("TextArea_bg.png");
+}
+.search{
+    -fx-background-image: url("search_bar.png");
+}
+.search_button{
+    -fx-background-image: url("search_btn.png");
+}
+.tri{
+    -fx-background-image: url("Filtre.png");
+}
+
+.users_management_button{
+    -fx-background-image: url("Users.png");
+}
+.users_management_button:hover{
+    -fx-background-image: url("UsersM_hover.png");
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.filter{
+    -fx-background-image: url("filter2.png");}
+.box1 {
+    background-color: #000;
+    color: #fff;
+    opacity: .5;
+}
+.box2 {
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+}
