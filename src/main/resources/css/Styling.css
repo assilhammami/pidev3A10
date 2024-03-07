@@ -122,23 +122,3 @@
             -fx-background-image: url("cart/MyCartBtn_hover.png");
         }
 
-
-
-
-.PaymentUI_BG{
-    -fx-background-image: url("payment/PaymentUI.png");
-}
-.submit_btn{
-    -fx-background-image: url("payment/SubmitPayment.png");
-}
-.submit_btn:hover{
-    -fx-background-image: url("payment/SubmitPayment_hover.png");
-}
-.subscribe_btn{
-    -fx-background-image: url("subscribeFutur.png");
-}
-.subscribed_btn{
-    -fx-background-image: url("subscribedFutur.png");
-}
-
-
