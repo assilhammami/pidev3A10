@@ -29,6 +29,8 @@ public final class Client extends User {
 
 
 
+
+
     @Override
     public String toString() {
         return "Client{" +
@@ -45,8 +47,4 @@ public final class Client extends User {
                 ", Active=" + Active +
                 '}';
     }
-
 }
-
-}
-

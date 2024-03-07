@@ -33,7 +33,4 @@ public final class Admin extends User {
                 ", Active=" + Active +
                 '}';
     }
-
-}
-
 }

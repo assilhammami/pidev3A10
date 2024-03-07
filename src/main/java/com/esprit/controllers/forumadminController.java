@@ -2,9 +2,8 @@ package com.esprit.controllers;
 
 import com.esprit.models.Publication;
 import com.esprit.models.commentaire;
-import com.esprit.services.MyListener;
-import com.esprit.services.PublicationService;
-import com.esprit.services.commentaireService;
+import com.esprit.models.favori;
+import com.esprit.services.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +75,46 @@ public class forumadminController implements Initializable {
     private ChoiceBox<?> filtreOptions;
     @FXML
     private DatePicker datePicker;
+    private int userId;
+    @FXML
+    private Button CoursesButton;
+    @FXML
+    private Button EventsButton;
+
+    @FXML
+    private Button ForumButton;
+
+    @FXML
+    private Button JobsButton;
+
+    @FXML
+    private Button MarketButton;
+    @FXML
+    void goToCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToEvents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToForum(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToJobs(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToMarket(ActionEvent event) {
+
+    }
+
+
     @FXML
     void filterByDate(ActionEvent event) {
         LocalDate selectedDate = datePicker.getValue();
@@ -169,26 +208,40 @@ public class forumadminController implements Initializable {
         grid.getChildren().clear();
         updateGrid(filteredList);
     }
+
     @FXML
     void toggleFavori(MouseEvent event) {
+        userId = UserDataManager.getInstance().getUserId();
+
         // Vérifier si une publication est sélectionnée
         if (selectedPublication != null) {
-            // Basculer l'état de favori pour la publication sélectionnée
-            selectedPublication.setFavori(!selectedPublication.isFavori());
+            int idPublication = selectedPublication.getId();
+            System.out.println(idPublication);
 
-            // Mettre à jour l'icône en fonction de l'état de favori
-            if (selectedPublication.isFavori()) {
-                iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
-            } else {
+            // Assurez-vous d'avoir une méthode pour récupérer l'ID de l'utilisateur connecté
+            favoriService favoriService = new favoriService();
+
+            // Vérifier si la publication est déjà dans les favoris de l'utilisateur
+            if (favoriService.estDejaFavori(userId, idPublication)) {
+                // La publication est déjà dans les favoris, donc on la supprime
+                favori favoriASupprimer = favoriService.getFavoriParPublicationEtUtilisateur(userId, idPublication);
+                favoriService.supprimer(favoriASupprimer);
+
+                // Mettre à jour l'icône en cœur blanc
                 iconefavori.setImage(new Image(getClass().getResource("/css/img.png").toExternalForm()));
+
+                System.out.println("Publication supprimée des favoris !");
+            } else {
+                // La publication n'est pas dans les favoris, donc on l'ajoute
+                favoriService.ajouter(new favori(idPublication, userId));
+
+                // Mettre à jour l'icône en cœur rouge
+                iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
+
+                System.out.println("Publication ajoutée aux favoris !");
             }
 
-            // Ajoutez ici le code pour mettre à jour votre modèle de données avec l'état de favori
-            // ...
-
             // Sauvegardez les modifications dans la base de données (exemple hypothétique)
-            PublicationService publicationService = new PublicationService();
-            publicationService.modifier(selectedPublication);
         } else {
             showAlert("Veuillez sélectionner une publication avant de marquer comme favori.");
         }
@@ -232,12 +285,12 @@ public class forumadminController implements Initializable {
     // Méthode pour charger la scène listecommentaires.fxml
     private void loadListeCommentairesScene(int idPublication, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listecommentaires.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listecommentairesadmin.fxml"));
             Parent root = loader.load();
 
             // Passez l'id de la publication sélectionnée et le chemin de l'image au contrôleur de la liste des commentaires
-            listecommentairesController listCommentairesController = loader.getController();
-            listCommentairesController.initializeData(idPublication, selectedPublication.getImage());
+            listecommentairesadminController listCommentairesadminController = loader.getController();
+            listCommentairesadminController.initializeData(idPublication, selectedPublication.getImage());
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

@@ -22,7 +22,7 @@ public class Mail {
         });
     }
 
-    public static void sendActivatedMail(String recipient) {
+    public static void sendCommentaireMail(String recipient,String Pubname,String username) {
         try {
             String myAccountEmail = "davincisdata@gmail.com";
             String password = "gxke jnqk tzig jjoo";
@@ -33,7 +33,7 @@ public class Mail {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject("Davinci's Data");
-            message.setContent("Your Davincci's Data Account has been activated", "text/html");
+            message.setContent(username+ "has commented on your Publication: ", "text/html");
 
             Transport.send(message);
             System.out.println("Activation email sent successfully");
@@ -42,23 +42,6 @@ public class Mail {
         }
     }
 
-    public static void sendDeactivateMail(String recipient) {
-        try {
-            String myAccountEmail = "davincisdata@gmail.com";
-            String password = "gxke jnqk tzig jjoo";
 
-            Session session = createMailSession(myAccountEmail, password);
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("Davinci's Data");
-            message.setContent("Your Davincci's Data Account has been deactivated", "text/html");
-
-            Transport.send(message);
-            System.out.println("Deactivation email sent successfully");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
 }

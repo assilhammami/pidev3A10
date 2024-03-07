@@ -1,10 +1,12 @@
 package com.esprit.controllers;
+import java.net.URI;
+import java.nio.file.Path;
 
 import com.esprit.models.Publication;
 import com.esprit.models.commentaire;
-import com.esprit.services.MyListener;
-import com.esprit.services.PublicationService;
-import com.esprit.services.commentaireService;
+import com.esprit.models.favori;
+import com.esprit.services.*;
+import com.esprit.utils.Mail;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,12 +23,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -47,6 +56,8 @@ public class testController implements Initializable {
 
     @FXML
     private ImageView img;
+    @FXML
+    private Button downloadbtn;
 
     @FXML
     private Button pub;
@@ -57,8 +68,12 @@ public class testController implements Initializable {
     @FXML
     private TextField searchfiled;
 
+
     @FXML
     private Button tfcom;
+    @FXML
+    private ImageView donwloadimg;
+
 
     @FXML
     private Label titre;
@@ -75,33 +90,145 @@ public class testController implements Initializable {
     @FXML
     private ImageView iconefavori;
     private boolean estFavori = false;
+    private int userId;
+    @FXML
+    private Button ForumButton;
+
+    @FXML
+    private Button JobsButton;
+
+    @FXML
+    private Button MarketButton;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button CoursesButton;
+    @FXML
+    private Button EventsButton;
+    @FXML
+    void LogOut(ActionEvent event) {
+
+    }
+    @FXML
+    void goToCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToEvents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToForum(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToJobs(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goToMarket(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telechargerPublication(ActionEvent event) {
+        if (selectedPublication != null) {
+            try {
+                // Récupérer l'URL de l'image
+                String imageUrl = selectedPublication.getImage();
+
+                // Utiliser java.nio.file.Paths pour créer un objet Path à partir de l'URL
+                Path path = Paths.get(imageUrl);
+
+                // Utiliser Files.copy pour copier le fichier local vers un emplacement spécifié
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Enregistrer l'image");
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
+                File file = fileChooser.showSaveDialog(new Stage());
+
+                if (file != null) {
+                    Files.copy(path, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    // Afficher une boîte de dialogue pour informer l'utilisateur que le téléchargement est terminé
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Téléchargement réussi");
+                    alert.setContentText("L'image a été téléchargée avec succès.");
+                    alert.show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gérer les exceptions liées au téléchargement de l'image
+                showAlert("Une erreur s'est produite lors du téléchargement de l'image.");
+            }
+        } else {
+            showAlert("Veuillez sélectionner une publication avant de télécharger.");
+        }
+    }
+
+
+
     @FXML
     void toggleFavori(MouseEvent event) {
+        userId = UserDataManager.getInstance().getUserId();
+
         // Vérifier si une publication est sélectionnée
         if (selectedPublication != null) {
-            // Basculer l'état de favori pour la publication sélectionnée
-            selectedPublication.setFavori(!selectedPublication.isFavori());
+            int idPublication = selectedPublication.getId();
+            System.out.println(idPublication);
 
-            // Mettre à jour l'icône en fonction de l'état de favori
-            if (selectedPublication.isFavori()) {
-                iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
-            } else {
+            // Assurez-vous d'avoir une méthode pour récupérer l'ID de l'utilisateur connecté
+            favoriService favoriService = new favoriService();
+
+            // Vérifier si la publication est déjà dans les favoris de l'utilisateur
+            if (favoriService.estDejaFavori(userId, idPublication)) {
+                // La publication est déjà dans les favoris, donc on la supprime
+                favori favoriASupprimer = favoriService.getFavoriParPublicationEtUtilisateur(userId, idPublication);
+                favoriService.supprimer(favoriASupprimer);
+
+                // Mettre à jour l'icône en cœur blanc
                 iconefavori.setImage(new Image(getClass().getResource("/css/img.png").toExternalForm()));
+
+                System.out.println("Publication supprimée des favoris !");
+            } else {
+                // La publication n'est pas dans les favoris, donc on l'ajoute
+                favoriService.ajouter(new favori(idPublication, userId));
+
+                // Mettre à jour l'icône en cœur rouge
+                iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
+
+                System.out.println("Publication ajoutée aux favoris !");
             }
 
-            // Ajoutez ici le code pour mettre à jour votre modèle de données avec l'état de favori
-            // ...
-
             // Sauvegardez les modifications dans la base de données (exemple hypothétique)
-            PublicationService publicationService = new PublicationService();
-            publicationService.modifier(selectedPublication);
         } else {
             showAlert("Veuillez sélectionner une publication avant de marquer comme favori.");
         }
     }
 
+    // Load initial state of the icon based on user's favorites when the user logs in
+    private void loadInitialIconState() {
+        // Assurez-vous d'avoir une méthode pour vérifier si la publication est dans les favoris de l'utilisateur
+        favoriService favoriService = new favoriService();
+
+        // Vérifier si la publication est déjà dans les favoris de l'utilisateur
+        if (favoriService.estDejaFavori(userId, selectedPublication.getId())) {
+            // La publication est dans les favoris, donc on initialise l'icône en cœur rouge
+            iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
+        } else {
+            // La publication n'est pas dans les favoris, donc on initialise l'icône en cœur blanc
+            iconefavori.setImage(new Image(getClass().getResource("/css/img.png").toExternalForm()));
+        }
+    }
+
+
+
+
     @FXML
-    void nzidcom(ActionEvent event) {
+    void nzidcom(ActionEvent event) throws SQLException {
         int noteValue = (int) starrating.getRating();
         if (noteValue == 0) {
             showAlert("Please rate the publication.");
@@ -112,8 +239,9 @@ public class testController implements Initializable {
         if (selectedPublication != null) {
             int idPublication = selectedPublication.getId();
             System.out.println(idPublication);
+            userId = UserDataManager.getInstance().getUserId();
             commentaireService cs = new commentaireService();
-            cs.ajouter(new commentaire(contenu.getText(), noteValue, idPublication, 91));
+            cs.ajouter(new commentaire(contenu.getText(), noteValue, idPublication, userId));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Commentaire ajouté");
             alert.setContentText("Commentaire ajouté !");
@@ -121,6 +249,12 @@ public class testController implements Initializable {
 
             // Charger la scène listecommentaires.fxml
             loadListeCommentairesScene(idPublication, event);
+            PublicationService ps=new PublicationService();
+            UserService us =new UserService();
+            String recipientEmail= "aminehamrouni10@gmail.com";
+            java.lang.String pubname =ps.getTitrePublication(idPublicationSelectionnee);
+            java.lang.String username= us.getUser(UserDataManager.getInstance().getUserId()).getUsername();
+            Mail.sendCommentaireMail(recipientEmail, pubname, username);
         } else {
             showAlert("Veuillez sélectionner une publication avant d'ajouter un commentaire.");
         }
@@ -212,6 +346,9 @@ public class testController implements Initializable {
         sousmettre.setVisible(true);
         tcom.setVisible(true);
         iconefavori.setVisible(true);
+        donwloadimg.setVisible(true);
+        downloadbtn.setVisible(true);
+
         if (p.isFavori()) {
             iconefavori.setImage(new Image(getClass().getResource("/css/coeur rouge.png").toExternalForm()));
         } else {
@@ -275,6 +412,9 @@ public class testController implements Initializable {
         sousmettre.setVisible(false);
         tcom.setVisible(false);
         iconefavori.setVisible(false);
+        donwloadimg.setVisible(false);
+        downloadbtn.setVisible(false);
+
         searchfiled.textProperty().addListener((observable, oldValue, newValue) -> {
             // Appeler la fonction de recherche à chaque fois que le texte du champ de recherche change
             search();

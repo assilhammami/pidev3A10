@@ -30,7 +30,7 @@
                 <Image url="@css/search_bar.png" />
             </image>
         </ImageView>
-        <BorderPane layoutX="-5.6" layoutY="-8.8" prefHeight="789.0" prefWidth="1436.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-9.0">
+        <BorderPane layoutX="-3.0" layoutY="-5.0" prefHeight="789.0" prefWidth="1436.0" AnchorPane.bottomAnchor="-3.7999999999999545" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-2.599999999999909" AnchorPane.topAnchor="-5.0">
             <right>
                 <VBox prefHeight="444.0" prefWidth="238.0" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
@@ -62,55 +62,113 @@
                                         <Insets left="15.0" top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                              <HBox alignment="CENTER" prefHeight="49.0" prefWidth="237.0">
-                                  <children>
-                                      <Label fx:id="Date_creation" prefHeight="18.0" prefWidth="206.0" text="Date_publication">
-                                          <HBox.margin>
-                                              <Insets left="10.0" />
-                                          </HBox.margin>
-                                      </Label>
-                                  </children>
-                              </HBox>
+                                <HBox alignment="CENTER" prefHeight="49.0" prefWidth="237.0">
+                                    <children>
+                                        <Label fx:id="Date_creation" prefHeight="18.0" prefWidth="206.0" text="Date_publication">
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="73.0" prefWidth="237.0">
                             <children>
                                 <HBox alignment="CENTER" prefHeight="33.0" prefWidth="237.0">
-                           <children>
-                              <Rating fx:id="starrating" rating="0.0" />
-                              <ImageView fx:id="iconefavori" fitHeight="28.0" fitWidth="33.0" onMouseClicked="#toggleFavori" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="file:/C:/Users/21625/Pictures/favorite-heart-outline-button_icon-icons.com_72758.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
+                                    <children>
+                                        <Rating fx:id="starrating" rating="0.0" />
+                                        <ImageView fx:id="iconefavori" fitHeight="28.0" fitWidth="33.0" onMouseClicked="#toggleFavori" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="file:/C:/Users/21625/Pictures/favorite-heart-outline-button_icon-icons.com_72758.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
                                 </HBox>
-                        <Button fx:id="tcom" mnemonicParsing="false" onAction="#showcomments" prefHeight="25.0" prefWidth="234.0" stylesheets="@../../../../../Downloads/wetransfer_untitled-transfer_2024-02-26_2005/css/Styling.css" text="Show all comments" textAlignment="CENTER">
-                           <styleClass>
-                              <String fx:value="TextField_bg" />
-                              <String fx:value="transparent" />
-                           </styleClass>
-                        </Button>
+                                <Button fx:id="tcom" mnemonicParsing="false" onAction="#showcomments" prefHeight="25.0" prefWidth="234.0" stylesheets="@../../../../../Downloads/wetransfer_untitled-transfer_2024-02-26_2005/css/Styling.css" text="Show all comments" textAlignment="CENTER">
+                                    <styleClass>
+                                        <String fx:value="TextField_bg" />
+                                        <String fx:value="transparent" />
+                                    </styleClass>
+                                </Button>
                             </children>
                         </VBox>
-                  <TextArea fx:id="contenu" prefHeight="81.0" prefWidth="238.0" />
+                        <TextArea fx:id="contenu" prefHeight="81.0" prefWidth="238.0" />
                     </children>
                 </VBox>
             </right>
             <left>
-                <VBox alignment="TOP_CENTER" prefHeight="705.0" prefWidth="143.0" BorderPane.alignment="CENTER">
+                <VBox alignment="TOP_CENTER" prefHeight="564.0" prefWidth="152.0" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
                         <Insets left="5.0" top="40.0" />
                     </BorderPane.margin>
-                    <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" stylesheets="@css/Styling.css">
-                            <styleClass>
-                                <String fx:value="users_management_button" />
-                                <String fx:value="transparent" />
-                            </styleClass>
-                        </Button>
-                  <DatePicker fx:id="datePicker" onAction="#filterByDate" />
-                    </children>
+               <children>
+                  <Button fx:id="ForumButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToForum" prefHeight="82.0" prefWidth="143.0" stylesheets="@Styles/buttonstyle.css" text="Forum" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/mona-lisa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="53.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/21625/Pictures/Screenshots/Capture%20d'écran%202024-03-06%20225801.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="EventsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToEvents" prefHeight="92.0" prefWidth="143.0" stylesheets="@Styles/buttonstyle.css" text="Events">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/party.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="JobsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToJobs" prefHeight="100.0" prefWidth="318.0" stylesheets="@Styles/buttonstyle.css" text="Jobs">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/portfolio.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="CoursesButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToCourses" prefHeight="100.0" prefWidth="152.0" stylesheets="@Styles/buttonstyle.css" text="Courses" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/learning.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="MarketButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToMarket" prefHeight="100.0" prefWidth="170.0" stylesheets="@Styles/buttonstyle.css" text="MarketPlace" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/art.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+               </children>
                 </VBox>
             </left>
             <center>
@@ -176,26 +234,48 @@
                             </image>
                         </ImageView>
                         <Button layoutX="704.0" layoutY="30.0" mnemonicParsing="false" onAction="#ajoutbtn" prefHeight="55.0" prefWidth="184.0" stylesheets="@css/Styling.css">
-                     <styleClass>
-                        <String fx:value="add_button" />
-                        <String fx:value="transparent" />
-                     </styleClass>
+                            <styleClass>
+                                <String fx:value="add_button" />
+                                <String fx:value="transparent" />
+                            </styleClass>
                         </Button>
-                  <Button fx:id="pub" layoutX="347.0" layoutY="33.0" mnemonicParsing="false" onAction="#mespub" prefHeight="48.0" prefWidth="194.0" styleClass="transparent" stylesheets="@../../../../../Downloads/wetransfer_untitled-transfer_2024-02-26_2005/css/Styling.css" text="MY LYBRARY">
+                        <Button fx:id="pub" layoutX="347.0" layoutY="33.0" mnemonicParsing="false" onAction="#mespub" prefHeight="48.0" prefWidth="194.0" styleClass="transparent" stylesheets="@../../../../../Downloads/wetransfer_untitled-transfer_2024-02-26_2005/css/Styling.css" text="MY LYBRARY">
+                            <font>
+                                <Font name="Berlin Sans FB Bold" size="23.0" />
+                            </font>
+                        </Button>
+                        <HBox layoutX="1140.0" layoutY="-72.0" prefHeight="32.0" prefWidth="234.0">
+                            <children>
+                        <Button fx:id="downloadbtn" mnemonicParsing="false" onAction="#telechargerPublication" prefHeight="26.0" prefWidth="41.0" styleClass="transparent" stylesheets="@../../../../../Downloads/wetransfer_untitled-transfer_2024-02-26_2005/css/Styling.css">
+                           <graphic>
+                              <ImageView fx:id="donwloadimg" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/Pictures/download_icon_128877.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                                <Button fx:id="sousmettre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nzidcom" prefHeight="27.0" prefWidth="184.0" stylesheets="@css/Styling.css" text="Submit">
+                                    <styleClass>
+                                        <String fx:value="transparent" />
+                                        <String fx:value="TextField_bg" />
+                                    </styleClass>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <DatePicker fx:id="datePicker" layoutY="88.0" onAction="#filterByDate" prefHeight="25.0" prefWidth="157.0" />
+                  <Button fx:id="logoutButton" alignment="CENTER" mnemonicParsing="false" onAction="#LogOut" prefHeight="60.0" prefWidth="151.0" stylesheets="@Styles/buttonstyle.css" text="Log out" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/sign-out_2990306.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <font>
-                        <Font name="Berlin Sans FB Bold" size="23.0" />
+                        <Font size="24.0" />
                      </font>
                   </Button>
-                  <HBox layoutX="1140.0" layoutY="-72.0" prefHeight="32.0" prefWidth="234.0">
-                     <children>
-                                  <Button fx:id="sousmettre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nzidcom" prefHeight="27.0" prefWidth="233.0" stylesheets="@css/Styling.css" text="Submit">
-                           <styleClass>
-                              <String fx:value="transparent" />
-                              <String fx:value="TextField_bg" />
-                           </styleClass>
-                                  </Button>
-                     </children>
-                  </HBox>
                     </children>
                 </Pane>
             </bottom>

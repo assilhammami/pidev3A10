@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -17,8 +18,8 @@
                         <Font name="Algerian" size="23.0" />
                     </font>
                 </Label>
-                <Button layoutX="20.0" layoutY="288.0" mnemonicParsing="false" onAction="#ajoutcom" prefHeight="26.0" prefWidth="194.0" text="Ajouter votre commentaire" />
-                <Button layoutX="14.0" layoutY="587.0" mnemonicParsing="false" onAction="#refreshTableView" text="Refresh" />
+            <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="14.0" layoutY="587.0" mnemonicParsing="false" onAction="#backtoforum" text="Back" />
             </children>
         </AnchorPane>
         <ScrollPane layoutX="224.0" prefHeight="628.0" prefWidth="615.0">
