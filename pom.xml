@@ -5,7 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
+
+    <artifactId>workshopjdbc</artifactId>
+
     <artifactId>pidev2</artifactId>
+
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version> 17.0.8.1</javafx.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -32,18 +35,51 @@
             <version>21.0.2</version>
         </dependency>
         <dependency>
+
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+        <dependency>
+
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>11.2.0</version>
         </dependency>
         <dependency>
+
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>7.1.9</version>
+            <type>pom</type>
+
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
+
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
+
+            <version>1.6.2</version> <!-- or the latest version -->
+        </dependency>
+
+    </dependencies>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <mainClass>com.esprit.tests.MainProgGUI</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+
+</build>
+
             <version>1.6.2</version>
         </dependency>
     </dependencies>

@@ -1,0 +1,5 @@
+
+†
+java:S1598"êThis file "UserDataManager.java" should be located in "com\esprit\services" directory, not in "C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\mouadh\PIMouadh\src\main\java\com.esprit\services"(Do not use dots in directory names).(¿©ãóúÿÿÿÿ
+¯
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(¯ÂŸ­

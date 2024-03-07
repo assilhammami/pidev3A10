@@ -1,0 +1,52 @@
+
+F
+java:S1604î"(Make this anonymous inner class a lambda(¿¼‹ñ8íÚ¥¡á1
+v
+java:S1104H"YMake selectedCours a static final constant or non-public and provide accessors if needed.(ÉÀõ8îÚ¥¡á1
+©
+java:S1598"‹This file "DetailsCoursClientController.java" should be located in "com\esprit\controllers\Client" directory, not in "C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\mouadh\PIMouadh\src\main\java\com.esprit\controllers\Client"(Do not use dots in directory names).(Èğ²Á8ïÚ¥¡á1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Èğ²Á8ïÚ¥¡á1
+j
+java:S2095³"GUse try-with-resources or close this "PdfWriter" in a "finally" clause.(şçü¡øÿÿÿÿ8”Û¥¡á1
+d
+java:S2095µ"FUse try-with-resources or close this "Document" in a "finally" clause.(¯ü¦8”Û¥¡á1
+l
+java:S2095´"IUse try-with-resources or close this "PdfDocument" in a "finally" clause.(…½ğêûÿÿÿÿ8”Û¥¡á1
+w	java:S1161"VRename this field "Description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à…ò†ùÿÿÿÿ8•Û¥¡á1
+j	java:S1164"NRename this field "Nom" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢Åó8•Û¥¡á1
+o	java:S116E"SRename this field "id_cours" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óïöÂ8•Û¥¡á1
+t
+java:S3776T"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(•‘İŸüÿÿÿÿ8ñÖÅ¤á1
+]	java:S125O"<This block of commented-out lines of code should be removed.(ƒŒÑĞüÿÿÿÿ8˜Û¥¡á1
+{
+java:S1171k"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ÍÔÓ¡á1
+H	java:S106™"+Replace this use of System.out by a logger.(ºë´8§Û¥¡á1
+H	java:S106›"+Replace this use of System.out by a logger.(€É€’8®Û¥¡á1
+M	java:S106œ"+Replace this use of System.out by a logger.(ÔåÚÃøÿÿÿÿ8éÜÊ¤á1
+M	java:S106×"+Replace this use of System.out by a logger.(ï Óéıÿÿÿÿ8ÁÖÎ¤á1
+k	java:S100ç"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ƒƒà8¨Û¥¡á1
+M	java:S106‰"+Replace this use of System.out by a logger.(ı™øøÿÿÿÿ8—·Ğ¤á1
+U
+java:S1128"8Remove this unused import 'com.esprit.models.NoteCours'.(ê§°î8ÁÂÔ¡á1
+\
+java:S1128"?Remove this unused import 'com.itextpdf.layout.borders.Border'.(ù£ßõ8ÁÂÔ¡á1
+[
+java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8ÁÂÔ¡á1
+e
+java:S1128!"CRemove this unused import 'com.itextpdf.io.image.ImageDataFactory'.(Ä®öÌøÿÿÿÿ8ÁÂÔ¡á1
+[
+java:S1128%">Remove this unused import 'com.itextpdf.layout.element.Image'.(İ×Ó¬8ÁÂÔ¡á1
+\
+java:S1128(":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8ÁÂÔ¡á1
+X
+java:S1128)";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8ÁÂÔ¡á1
+@
+java:S1128+"Remove this duplicated import.(©ıÛúÿÿÿÿ8°Û¥¡á1
+@
+java:S1128,"Remove this duplicated import.(‚¶¤øÿÿÿÿ8°Û¥¡á1
+@
+java:S1128-"Remove this duplicated import.(«¹¶Òüÿÿÿÿ8°Û¥¡á1
+L
+java:S1068D"*Remove this unused "userId" private field.(“Ğ„Äüÿÿÿÿ8°Û¥¡á1
+I
+java:S1068E",Remove this unused "id_cours" private field.(óïöÂ8°Û¥¡á1

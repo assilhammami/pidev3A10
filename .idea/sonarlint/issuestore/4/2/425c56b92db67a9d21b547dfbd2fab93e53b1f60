@@ -1,0 +1,9 @@
+
+œ
+java:S1598"…This file "CoursCardAdminController.java" should be located in "com\esprit\controllers\Admin" directory, not in "C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\mouadh\PIMouadh\src\main\java\com.esprit\controllers\Admin"(Do not use dots in directory names).(û¤‹Ê
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(û¤‹Ê
+—
+java:S1186S"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦žÊ—
+@	java:S1069"+Replace this use of System.out by a logger.(Ì‰”³
+G	java:S106D"+Replace this use of System.out by a logger.(·öôÉ8ç¾ë¤á1
+G	java:S106M"+Replace this use of System.out by a logger.(Ù°†ò8ë¾ë¤á1

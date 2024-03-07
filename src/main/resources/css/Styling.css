@@ -47,6 +47,15 @@
 .add_button{
     -fx-background-image: url("ADD_BTN.png");
 }
+
+.MyCartBtn{
+        -fx-background-image: url("cart/MyCartBtn.png");
+    }
+.MyCartBtn:hover{
+            -fx-background-image: url("cart/MyCartBtn_hover.png");
+        }
+
+
 .add_button:hover{
     -fx-background-image: url("ADD_BTN_hover.png");
 }
@@ -62,3 +71,4 @@
 .delete_button:hover{
     -fx-background-image: url("DeleteButton_hover.png");
 }
+

@@ -1,3 +1,35 @@
+
+.button {
+    -fx-background-color: #cce8e1; /* Couleur de base */
+    -fx-text-fill: #000000;
+}
+
+.button:hover {
+    -fx-background-color: #cce8e1; /* Couleur de survol */
+}
+
+.button:pressed {
+    -fx-background-color: #576f69; /* Couleur enfoncée */
+}
+
+.background {
+    -fx-background-color: linear-gradient(to right, #A5C1BA, #ffffffff);
+}
+
+.background2 {
+    -fx-background-color: linear-gradient(to bottom, #A5C1BA, #ffffffff);
+}
+.app_logo{
+    -fx-background-image: url("images/logo.png");}
+.searchBtn{
+    -fx-background-image:url("images/search.png");
+}
+.like-dislike-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-padding: 5px;
+}
+
 .ajoutBtn{
     -fx-background-image:url("graphics/ajout_hover.png");
 }
@@ -16,3 +48,4 @@
 .modifBtn{
     -fx-background-image:url("graphics/modifier_button.png");
 }
+
