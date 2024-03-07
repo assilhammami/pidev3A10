@@ -13,14 +13,22 @@ public class DataSource {
 
     private DataSource() {
         try {
+<<<<<<< HEAD
             connection = DriverManager.getConnection(URL, USER, PASSWORD); // connexion au base
+=======
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+>>>>>>> 2a5c9c04de20e210453822606aa0fa2e3fa3f9d9
             System.out.println("Connection a été établie");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
+<<<<<<< HEAD
     public static DataSource getInstance() { // un seul canal de communication
+=======
+    public static DataSource getInstance() {
+>>>>>>> 2a5c9c04de20e210453822606aa0fa2e3fa3f9d9
         if(instance == null){
             instance = new DataSource();
         }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="04564fba-cf9e-458c-b0a5-c11810430f1d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/models/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/models/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/models/badge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/models/commentaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/models/commentaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/services/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/services/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/services/PublicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/services/PublicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/services/badgeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/services/commentaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/services/commentaireService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/esprit/tests/MainProg.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/esprit/tests/MainProg.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2dKRYyUsC0BK1hLGKKCBZXa3IwA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/21625/Downloads/pidev3A10-main",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04564fba-cf9e-458c-b0a5-c11810430f1d" name="Changes" comment="" />
+      <created>1709754834505</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709754834505</updated>
+      <workItem from="1709754835539" duration="66000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

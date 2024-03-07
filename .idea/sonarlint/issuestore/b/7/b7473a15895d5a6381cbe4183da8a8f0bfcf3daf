@@ -1,0 +1,20 @@
+
+û
+java:S1598"ßThis file "DataSource.java" should be located in "com\esprit\utils" directory, not in "C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\mouadh\PIMouadh\src\main\java\com.esprit\utils"(Do not use dots in directory names).(ç¼Şúÿÿÿÿ
+h	java:S116
+"NRename this field "URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª…›´ıÿÿÿÿ
+i	java:S116"ORename this field "USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ­èëüÿÿÿÿ
+m	java:S116"SRename this field "PASSWORD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìñ­‚üÿÿÿÿ
+<
+java:S1170
+"!Make this final field static too.(ª…›´ıÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(õ­èëüÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(ìñ­‚üÿÿÿÿ
+´
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ãÍ•ñıÿÿÿÿ
+?
+java:S2115")Add password protection to this database.(åÔÉÊ
+@	java:S106"+Replace this use of System.out by a logger.(¶¶×Ï
+E	java:S106"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ

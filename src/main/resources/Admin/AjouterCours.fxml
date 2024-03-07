@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="758.0" prefWidth="1064.0" styleClass="background" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Admin.AjouterCoursAdminController">
+   <children>
+      <Label layoutX="70.0" layoutY="117.0" text="Nom">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="200.0" text="Description">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNom" layoutX="146.0" layoutY="114.0" />
+      <TextField fx:id="tfDescription" layoutX="178.0" layoutY="197.0" />
+      <Button layoutX="225.0" layoutY="408.0" mnemonicParsing="false" onAction="#addCours" prefHeight="36.0" prefWidth="86.0" text="Ajouter">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font>
+      </Button>
+      <Text fill="#816161" fontSmoothingType="LCD" layoutX="132.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Cours">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+      </Text>
+      <Label layoutX="69.0" layoutY="273.0" text="Date de publication">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="tfDatepub" disable="true" layoutX="244.0" layoutY="270.0" />
+      <Label layoutX="69.0" layoutY="353.0" text="Image">
+         <font>
+            <Font name="Cooper Black" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfImage" layoutX="153.0" layoutY="350.0" />
+      <Button layoutX="513.0" layoutY="408.0" mnemonicParsing="false" onAction="#afficher" prefHeight="36.0" prefWidth="155.0" text="Liste des Cours">
+         <font>
+            <Font name="Britannic Bold" size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="341.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleUploadImage" text="Upload" />
+   </children>
+</AnchorPane>

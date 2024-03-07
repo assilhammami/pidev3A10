@@ -98,6 +98,7 @@
 }
 .buyButton:hover{
     -fx-background-image: url("graphics/buy_it_hover.png");
+
 }
 .notification-counter {
     -fx-background-color: red;
@@ -109,3 +110,6 @@
     -fx-min-width: 20px;
     -fx-text-alignment: center;
 }
+
+
+
