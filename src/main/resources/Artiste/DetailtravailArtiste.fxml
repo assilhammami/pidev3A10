@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Artiste.DetailsTravailArtisteController">
+    <children>
+        <ImageView fitHeight="343.0" fitWidth="214.0" layoutX="10.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../css/Capture.PNG" />
+            </image>
+        </ImageView>
+        <TextField fx:id="titleLabel" disable="true" layoutX="29.0" layoutY="44.0" prefHeight="25.0" prefWidth="198.0" promptText="Titre" />
+        <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="40.0" layoutY="17.0" prefHeight="27.0" prefWidth="170.0" text="Titre" textOverrun="CLIP">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="76.0" prefHeight="27.0" prefWidth="192.0" text="Description">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <TextArea fx:id="descriptionLabel" disable="true" layoutX="29.0" layoutY="103.0" prefHeight="98.0" prefWidth="198.0" promptText="Description" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="211.0" prefHeight="25.0" prefWidth="137.0" text="Date de fin">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="dateEndLabel" disable="true" layoutX="25.0" layoutY="251.0" prefHeight="25.0" prefWidth="207.0" />
+        <Label layoutX="29.0" layoutY="285.0" text="Date de demande">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="dateDemandLabel" disable="true" layoutX="25.0" layoutY="311.0" prefHeight="25.0" prefWidth="207.0">
+            <opaqueInsets>
+                <Insets left="60.0" right="10.0" />
+            </opaqueInsets>
+        </DatePicker>
+        <Label alignment="TOP_CENTER" layoutX="18.0" layoutY="342.0" prefHeight="27.0" prefWidth="59.0" text="Type">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <TextField fx:id="typeLabel" disable="true" layoutX="20.0" layoutY="369.0" prefHeight="33.0" prefWidth="207.0" promptText="Type">
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+        </TextField>
+        <Label alignment="TOP_CENTER" layoutX="19.0" layoutY="408.0" prefHeight="27.0" prefWidth="57.0" text="Prix">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="priceLabel" disable="true" layoutX="76.0" layoutY="412.0" prefHeight="27.0" prefWidth="114.0" promptText="Prix">
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+        </TextField>
+    </children>
+</AnchorPane>

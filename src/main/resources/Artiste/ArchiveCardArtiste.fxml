@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane cache="true" prefHeight="224.0" prefWidth="300.0" styleClass="ChosenBG" stylesheets="@../Stylee.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Artiste.ArchiveCardArtisteController">
+    <children>
+        <AnchorPane layoutX="11.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="279.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0">
+            <children>
+                <Label fx:id="titre" layoutX="96.0" layoutY="6.0" text="Titre de Travail" wrapText="true" />
+                <ImageView fx:id="img" fitHeight="107.0" fitWidth="138.0" layoutX="48.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </AnchorPane>
+      <Button layoutX="151.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Modifier" />
+      <Button layoutX="218.0" layoutY="197.0" mnemonicParsing="false" text="Supprimer" />
+          <Label fx:id="descLabel" layoutX="57.0" layoutY="201.0" text="Description" wrapText="true" />
+    </children>
+    <effect>
+        <Glow level="0.42" />
+    </effect>
+</AnchorPane>

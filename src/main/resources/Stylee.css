@@ -98,4 +98,18 @@
 }
 .buyButton:hover{
     -fx-background-image: url("graphics/buy_it_hover.png");
+
 }
+.notification-counter {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 2px 5px;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-min-width: 20px;
+    -fx-text-alignment: center;
+}
+
+
+
