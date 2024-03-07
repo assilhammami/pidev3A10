@@ -74,7 +74,7 @@ public class AffichageToutesPublications {
     public void initialize() {
         PublicationService ps = new PublicationService();
         // Supposons que vous ayez une méthode pour obtenir les titres des publications depuis la base de données
-        List<String> publicationTitles = ps.getPublicationTitlesFromDatabase();
+        List<String> publicationTitles = ps.getPublicationTitlesForLoggedInUser();
 
         // Initialiser la ListView avec les titres
         listoftitles.getItems().addAll(publicationTitles);

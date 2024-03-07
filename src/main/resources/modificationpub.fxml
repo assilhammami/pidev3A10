@@ -31,7 +31,7 @@
             <Font name="Algerian" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tfimage" layoutX="387.0" layoutY="158.0" />
+      <TextField fx:id="tfimage" layoutX="387.0" layoutY="158.0" visible="false" />
       <TextField fx:id="tftitre" layoutX="387.0" layoutY="278.0" />
       <TextField fx:id="tfdescription" layoutX="380.0" layoutY="401.0" prefHeight="86.0" prefWidth="162.0" />
       <Text fill="#ff0000" layoutX="244.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification de votre Publication" textAlignment="CENTER" wrappingWidth="232.5367431640625">

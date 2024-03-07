@@ -2,6 +2,7 @@ package com.esprit.controllers;
 
 import com.esprit.models.Publication;
 import com.esprit.services.PublicationService;
+import com.esprit.services.UserDataManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +33,11 @@ public class AjoutPublicationadminController {
 
     @FXML
     private TextField tftitre;
+    private int userId;
 
     @FXML
     void addPublication(ActionEvent event) throws IOException {
+
         if ( tfimage.getText().isEmpty()) {
             // Affichez une alerte si l'un des champs est vide
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -45,7 +48,8 @@ public class AjoutPublicationadminController {
         }
         else {
             PublicationService ps = new PublicationService();
-            ps.ajouter(new Publication(tfimage.getText(), tftitre.getText(), tfdescription.getText(),92));
+            userId = UserDataManager.getInstance().getUserId();
+            ps.ajouter(new Publication(tfimage.getText(), tftitre.getText(), tfdescription.getText(),userId));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Publication ajoutée");
             alert.setContentText("Publication ajoutée !");

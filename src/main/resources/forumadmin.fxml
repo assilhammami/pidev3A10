@@ -103,13 +103,75 @@
                         <Insets left="5.0" top="40.0" />
                     </BorderPane.margin>
                     <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="134.0" stylesheets="@css/Styling.css">
-                            <styleClass>
-                                <String fx:value="users_management_button" />
-                                <String fx:value="transparent" />
-                            </styleClass>
+                  <VBox alignment="TOP_CENTER" prefHeight="573.0" prefWidth="143.0">
+                     <children>
+                        <Button fx:id="ForumButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToForum" prefHeight="82.0" prefWidth="143.0" stylesheets="@Styles/buttonstyle.css" text="Forum" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/mona-lisa.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
                         </Button>
-                        <DatePicker fx:id="datePicker" onAction="#filterByDate" />
+                        <ImageView fitHeight="63.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/C:/Users/21625/Pictures/Screenshots/Capture%20d'écran%202024-03-06%20225801.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="EventsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToEvents" prefHeight="92.0" prefWidth="143.0" stylesheets="@Styles/buttonstyle.css" text="Events">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/party.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="JobsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToJobs" prefHeight="100.0" prefWidth="318.0" stylesheets="@Styles/buttonstyle.css" text="Jobs">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/portfolio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="CoursesButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToCourses" prefHeight="100.0" prefWidth="152.0" stylesheets="@Styles/buttonstyle.css" text="Courses" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/learning.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="MarketButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToMarket" prefHeight="100.0" prefWidth="170.0" stylesheets="@Styles/buttonstyle.css" text="MarketPlace" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/21625/IdeaProjects/ousoudtiranga2/src/main/resources/Styles/art.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
                     </children>
                 </VBox>
             </left>
@@ -202,6 +264,7 @@
                         <String fx:value="transparent" />
                      </styleClass>
                   </Button>
+                        <DatePicker fx:id="datePicker" layoutY="89.0" onAction="#filterByDate" prefHeight="25.0" prefWidth="159.0" />
                     </children>
                 </Pane>
             </bottom>

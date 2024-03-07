@@ -3,6 +3,7 @@ package com.esprit.controllers;
 
 import com.esprit.models.Publication;
 import com.esprit.models.commentaire;
+import com.esprit.services.UserDataManager;
 import com.esprit.services.commentaireService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,9 +20,12 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -36,6 +41,8 @@ public class listecommentairesadminController implements Initializable {
 
     @FXML
     private TableView<commentaire> tabcom;
+    @FXML
+    private ImageView imageview;
 
     @FXML
     private TableColumn<commentaire, Integer> tfnote;
@@ -52,6 +59,7 @@ public class listecommentairesadminController implements Initializable {
     private commentaireService cs = new commentaireService();
     public int idPublicationSelectionnee;
     public List<commentaire> Listecomm=new ArrayList<>();
+    private int userId;
 
 
 
@@ -116,6 +124,7 @@ public class listecommentairesadminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userId = UserDataManager.getInstance().getUserId();
         try {
             rafraichirTableView(idPublicationSelectionnee);
 
@@ -139,8 +148,8 @@ public class listecommentairesadminController implements Initializable {
 
                     editButton.setOnAction(event -> {
                         commentaire commentaire = tabcom.getItems().get(getIndex());
-                        int currentIdUser = 91;
-                        if (commentaire != null && commentaire.getIduser() == currentIdUser) {
+
+                        if (commentaire != null && commentaire.getIduser() == userId) {
                             // Rediriger vers ModifCommentaireController avec les champs remplis
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifCommentaire.fxml"));
                             Parent root;
@@ -168,12 +177,12 @@ public class listecommentairesadminController implements Initializable {
                         setGraphic(null);
                     } else {
                         commentaire selectedComment = tabcom.getItems().get(getIndex());
-                        int currentIdUser = 91;
+
 
                         // Ajouter les boutons au conteneur en fonction de la condition
                         container.getChildren().clear(); // Effacer les boutons précédents
 
-                        if (selectedComment.getIduser() == currentIdUser) {
+                        if (selectedComment.getIduser() ==userId ) {
                             container.getChildren().addAll(deleteButton, editButton);
                         } else {
                             container.getChildren().add(deleteButton);
@@ -196,34 +205,53 @@ public class listecommentairesadminController implements Initializable {
 
 
 
-    @FXML
-    void ajoutcom(ActionEvent event) throws IOException {
-        int idPublication = idPublicationSelectionnee;
-        System.out.println(idPublication);
+    private int idPublication;
+    private String imagePath;
+    public void initializeData(int idPublication, String imagePath) {
+        this.idPublication = idPublication;
+        this.imagePath = imagePath;
 
+        // Chargez l'image à partir du chemin et affichez-la dans l'ImageView
+        Image image = loadImage(imagePath);
+        imageview.setImage(image);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjoutCommentaire.fxml"));
-        Parent root = loader.load();
-        AjoutCommentaireController AjoutCommentaireController = loader.getController();
-        AjoutCommentaireController.setIdPublicationSelectionnee(idPublicationSelectionnee);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-
-        stage.show();
-
-
-
-    }
-    @FXML
-    void refreshTableView(ActionEvent event) {
-        // Rafraîchir la TableView
         try {
-            rafraichirTableView(idPublicationSelectionnee);
+            // Appelez rafraichirTableView() ici pour mettre à jour la TableView
+            rafraichirTableView(idPublication);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+    public  Image loadImage(String filePath) {
+        try {
+            File file = new File(filePath);
+            return new Image(file.toURI().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    @FXML
+    void backtoforum(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/test.fxml"));
+            Parent root = loader.load();
+
+            // Vous pouvez éventuellement passer des données ou initialiser des contrôleurs ici
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Forum");
+            stage.show();
+
+            // Fermez la scène actuelle
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer les exceptions de manière appropriée dans une application réelle
+        }
+
     }
 
 

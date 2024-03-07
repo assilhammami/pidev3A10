@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 public class ModifCommentaire {
 
@@ -19,7 +20,8 @@ public class ModifCommentaire {
     private TextField iduser;
 
     @FXML
-    private TextField note;
+    private Rating rating;
+
 
     @FXML
     private Button tfsubmit;
@@ -29,27 +31,14 @@ public class ModifCommentaire {
     void submit(ActionEvent event) {
         // Récupérer les valeurs des champs
         String contenuText = contenu.getText();
-        String noteText = note.getText();
 
-        // Vérifier si le champ de note est vide
-        if (noteText.isEmpty()) {
-            showAlert("Veuillez saisir une note.");
-            return;
-        }
+        // Récupérer la nouvelle note depuis le composant Rating
+        int nouvelleNote = (int) rating.getRating();
 
         try {
-            // Convertir la note en entier
-            int noteValue = Integer.parseInt(noteText);
-
-            // Vérifier si la note est entre 0 et 5
-            if (noteValue < 0 || noteValue > 5) {
-                showAlert("La note doit être un nombre entre 0 et 5.");
-                return;
-            }
-
             // Mettre à jour le commentaire
             commentaireToModify.setContenu(contenuText);
-            commentaireToModify.setNote(noteValue);
+            commentaireToModify.setNote(nouvelleNote);
 
             // Appeler le service pour effectuer la modification
             commentaireService commentaireService = new commentaireService();
@@ -64,10 +53,11 @@ public class ModifCommentaire {
             // Fermer la fenêtre de modification
             ((Stage) tfsubmit.getScene().getWindow()).close();
 
-        } catch (NumberFormatException e) {
-            showAlert("Veuillez saisir une note valide (entier entre 0 et 5).");
+        } catch (Exception e) {
+            showAlert("Une erreur s'est produite lors de la modification du commentaire.");
         }
     }
+
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -84,7 +74,7 @@ public class ModifCommentaire {
         // Mettez à jour vos champs d'interface graphique avec les données du commentaireToModify
         if (commentaireToModify != null) {
             iduser.setText(String.valueOf(commentaireToModify.getIduser()));
-            note.setText(String.valueOf(commentaireToModify.getNote()));
+            rating.setRating(commentaireToModify.getNote());
             contenu.setText(commentaireToModify.getContenu());
         }
     }

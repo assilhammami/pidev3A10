@@ -20,11 +20,9 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 public class LoginController {
 
@@ -49,11 +47,6 @@ public class LoginController {
     @FXML
     private TextField loggedinfield;
     @FXML
-s
-    private CheckBox rememberme;
-
-    @FXML
-
     private Hyperlink CreateAccHL;
     @FXML
     private Button hide;
@@ -72,13 +65,10 @@ s
     @FXML
     private ImageView eyeopen1;
 
-
     @FXML
     private TextField fieldserr;
     @FXML
     private Hyperlink hlpassword;
-    @FXML
-    private Button Qrcode_Button;
 
     UserService us= new UserService();
 
@@ -104,50 +94,6 @@ s
         String username = usernametext.getText();
         String password = us.getPassword(Visiblepassword,Hiddenpassword);
 
-        int userid=us.getUserId(username);
-        System.out.println(us.getUser(userid).getActive());
-
-        if (us.verifierLogin(username,password)){
-            System.out.println("Login successful");
-            if (us.verifierLogin(username, password))
-            { int userId = us.getUserId(username);
-                UserDataManager.getInstance().setUserId(userId);}
-            if(us.getUser(userid).getActive())
-            { System.out.println("Account is active");
-                System.out.println("logged in successfully!");
-                loggedinfield.setVisible(true);
-                errorField.setVisible(false);
-                activateErr.setVisible(false);
-
-                int userId = us.getUserId(username);
-
-                if(us.getUser(userId).getType().equals("ADMIN"))
-                {UserDataManager.getInstance().setUserId(userId);
-
-                    Stage stage = (Stage) Button_Login.getScene().getWindow();
-                    Parent root = FXMLLoader.load(getClass().getResource("/admin/AfffichageEvent.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
-
-                    Stage stage = (Stage) Button_Login.getScene().getWindow();
-                    Parent root = FXMLLoader.load(getClass().getResource("/client/AfffichageEventclient.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    }}
-
-            else {System.out.println("Account is not active");
-                activateErr.setVisible(true);};
-
-
-
-        }else {
-            System.out.println("Invalid login");
-            System.out.println("invalid !");
-            errorField.setVisible(true);
-            loggedinfield.setVisible(false);
-
-
         List<String> fields = new ArrayList<>(Arrays.asList(username,password));
         if (!us.areFieldsNotEmpty(fields)) {
             fieldserr.setVisible(true);}
@@ -169,14 +115,14 @@ s
                     {UserDataManager.getInstance().setUserId(userId);
 
                         Stage stage = (Stage) Button_Login.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("/AdminDashboard.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/forumadmin.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);stage.setTitle("Admin Dashboard");
 
                         System.out.println(userId);}else {UserDataManager.getInstance().setUserId(userId);
 
                         Stage stage = (Stage) Button_Login.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/test.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.setTitle("Home");}}
@@ -191,7 +137,6 @@ s
                 errorField.setVisible(true);
                 loggedinfield.setVisible(false);
             }
-
         }
 
 
@@ -210,15 +155,6 @@ s
 
 
 
-    @FXML
-    void SauvegarderDonnees(ActionEvent event) {
-
-    }
-
-
-
-
-
 
     @FXML
     void mdpoublier(ActionEvent event) throws IOException {
@@ -228,15 +164,6 @@ s
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Forgot Password");
-    }
-    @FXML
-    void LoginQrcode(ActionEvent event) throws IOException {
-        Stage stage=(Stage) Qrcode_Button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/QRLogin.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("QR code Login");
     }
 
 }

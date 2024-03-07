@@ -36,7 +36,7 @@
                   <Font name="Algerian" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfimage" layoutX="219.0" layoutY="36.0" prefHeight="26.0" prefWidth="115.0" promptText="Image_URL" />
+            <TextField fx:id="tfimage" layoutX="219.0" layoutY="36.0" prefHeight="26.0" prefWidth="115.0" promptText="Image_URL" visible="false" />
             <Button defaultButton="true" graphicTextGap="6.0" layoutX="341.0" layoutY="349.0" mnemonicParsing="false" onAction="#addPublication" text="Ajouter" />
             <Button fx:id="uploadbutton" layoutX="153.0" layoutY="37.0" mnemonicParsing="false" onAction="#upload" text="Upload" />
             <ImageView fx:id="post" fitHeight="106.0" fitWidth="115.0" layoutX="339.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />

@@ -1,4 +1,3 @@
-
 .bgProductsAdmin{
     -fx-background-image: url("BG_PRODS.png");
 }
@@ -8,18 +7,6 @@
 .bgProdItem{
     -fx-background-image: url("ProdItem.png");
 }
-.bgAddProductsAdminNew{
-    -fx-background-image: url("addProdNewBg.png");
-}
-
-
-.bgOrdersAdmin{
-    -fx-background-image: url("BG_ADMIN_ORDERS.png");
-}
-.bgOrderItem{
-    -fx-background-image: url("OrderItem.png");
-}
-
 .TextField_bg{
     -fx-background-image: url("TextField_bg.png");
 }
@@ -35,12 +22,7 @@
 .filtre{
     -fx-background-image: url("Filtre.png");
 }
-.delete_button{
-    -fx-background-image: url("DeleteButton.png");
-}
-.delete_button:hover{
-    -fx-background-image: url("DeleteButton_hover.png");
-}
+
 .edit_button{
     -fx-background-image: url("EditButton.png");
 }
@@ -62,57 +44,8 @@
 .transparent{
     -fx-background-color: rgba(0,0,0,0);
 }
-
-.CartBg{
-    -fx-background-image: url("cart/Cart.png");
-}
-
-.BuySelectedBtn{
-    -fx-background-image: url("cart/BuySelectedBtn.png");
-}
-
-.BuySelectedBtn:hover{
-    -fx-background-image: url("cart/BuySelectedBtn_clicked.png");
-}
-
-.CartItem{
-    -fx-background-image: url("cart/CartItem.png");
-}
-
-.MinusBtn{
-    -fx-background-image: url("cart/MinusBtn.png");
-}
-.MinusBtn:hover{
-    -fx-background-image: url("cart/MinusBtn_clicked.png");
-}
-
-.PlusBtn{
-    -fx-background-image: url("cart/PlusBtn.png");
-}
-.PlusBtn:hover{
-    -fx-background-image: url("cart/PlusBtn_clicked.png");
-}
-
-.RemoveButton{
-     -fx-background-image: url("cart/RemoveButton.png");
- }
- .RemoveButton:hover{
-     -fx-background-image: url("cart/RemoveButton_clicked.png");
- }
-
- .SelectButton{
-     -fx-background-image: url("cart/SelectButton.png");
- }
-
-.SelectedButton{
-      -fx-background-image: url("cart/SelectedButton.png");
-  }
-
-.AddToCartBtn{
-        -fx-background-image: url("cart/AddToCartBtn.png");
-    }
-.AddToCartBtn:hover{
-            -fx-background-image: url("cart/AddToCartBtn_hover.png");
+.add_button{
+    -fx-background-image: url("ADD_BTN.png");
 }
 
 .MyCartBtn{
@@ -121,4 +54,21 @@
 .MyCartBtn:hover{
             -fx-background-image: url("cart/MyCartBtn_hover.png");
         }
+
+
+.add_button:hover{
+    -fx-background-image: url("ADD_BTN_hover.png");
+}
+.edit_button{
+    -fx-background-image: url("EditButton.png");
+}
+.edit_button:hover{
+    -fx-background-image: url("EditButton_hover.png");
+}
+.delete_button{
+    -fx-background-image: url("DeleteButton.png");
+}
+.delete_button:hover{
+    -fx-background-image: url("DeleteButton_hover.png");
+}
 

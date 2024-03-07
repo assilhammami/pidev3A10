@@ -4,7 +4,4 @@ public enum UserType {
     ADMIN,
     ARTISTE,
     CLIENT,
-
-}
-
 }

@@ -3,6 +3,7 @@ package com.esprit.controllers;
 
 import com.esprit.models.Publication;
 import com.esprit.models.commentaire;
+import com.esprit.services.UserDataManager;
 import com.esprit.services.commentaireService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -58,6 +59,7 @@ public class listecommentairesController implements Initializable {
     private commentaireService cs = new commentaireService();
     public int idPublicationSelectionnee;
     public List<commentaire> Listecomm=new ArrayList<>();
+    private int userId;
 
 
 
@@ -121,6 +123,7 @@ public class listecommentairesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userId = UserDataManager.getInstance().getUserId();
         try {
             rafraichirTableView(idPublicationSelectionnee);
 
@@ -136,8 +139,8 @@ public class listecommentairesController implements Initializable {
                 {
                     deleteButton.setOnAction(event -> {
                         commentaire commentaire = getTableRow().getItem();
-                        int currentIdUser = 91;
-                        if (commentaire != null && commentaire.getIduser() == currentIdUser) {
+
+                        if (commentaire != null && commentaire.getIduser() == userId) {
                             cs.supprimer(commentaire);
                             getTableView().getItems().remove(commentaire);
                         }
@@ -145,8 +148,8 @@ public class listecommentairesController implements Initializable {
 
                     editButton.setOnAction(event -> {
                         commentaire commentaire = getTableRow().getItem();
-                        int currentIdUser = 91;
-                        if (commentaire != null && commentaire.getIduser() == currentIdUser) {
+
+                        if (commentaire != null && commentaire.getIduser() == userId) {
                             // Rediriger vers ModifCommentaireController avec les champs remplis
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifCommentaire.fxml"));
                             Parent root;
@@ -174,12 +177,12 @@ public class listecommentairesController implements Initializable {
                         setGraphic(null);
                     } else {
                         commentaire selectedComment = getTableRow().getItem();
-                        int currentIdUser = 91;
+
 
                         // Ajouter les boutons au conteneur en fonction de la condition
                         container.getChildren().clear(); // Effacer les boutons précédents
 
-                        if (selectedComment.getIduser() == currentIdUser) {
+                        if (selectedComment.getIduser() == userId) {
                             container.getChildren().addAll(deleteButton, editButton);
                         }
 
@@ -201,16 +204,7 @@ public class listecommentairesController implements Initializable {
 
 
 
-    @FXML
-    void refreshTableView(ActionEvent event) {
-        // Rafraîchir la TableView
-        try {
-            rafraichirTableView(idPublicationSelectionnee);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
+
 
 
     private int idPublication;

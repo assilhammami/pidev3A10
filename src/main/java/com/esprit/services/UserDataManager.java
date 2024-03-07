@@ -25,8 +25,4 @@ public class UserDataManager {
     public  void logout() {
         userId = 0;
     }
-
 }
-
-}
-

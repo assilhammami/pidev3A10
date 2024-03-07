@@ -4,12 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.ModifCommentaire">
+<AnchorPane prefHeight="399.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.ModifCommentaire">
     <children>
+      <ImageView fitHeight="399.0" fitWidth="543.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/21625/Desktop/add_background.png" />
+         </image>
+      </ImageView>
         <Text layoutX="107.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N'hesite pas à donner ton avis!" textAlignment="CENTER" underline="true">
             <font>
                 <Font name="Algerian" size="24.0" />
@@ -25,9 +33,9 @@
                 <Font name="Berlin Sans FB" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="note" layoutX="160.0" layoutY="245.0" promptText="Notez" />
         <TextArea fx:id="contenu" layoutX="160.0" layoutY="93.0" prefHeight="101.0" prefWidth="200.0" promptText="Exprimez_vous" />
-        <Button fx:id="tfsubmit" layoutX="441.0" layoutY="318.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="82.0" text="Submit" />
-        <TextField fx:id="iduser" layoutX="161.0" layoutY="300.0" prefHeight="26.0" prefWidth="29.0" />
+        <Button fx:id="tfsubmit" layoutX="319.0" layoutY="336.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="82.0" text="Submit" />
+        <TextField fx:id="iduser" layoutX="161.0" layoutY="300.0" prefHeight="26.0" prefWidth="29.0" visible="false" />
+      <Rating fx:id="rating" layoutX="161.0" layoutY="242.0" />
     </children>
 </AnchorPane>

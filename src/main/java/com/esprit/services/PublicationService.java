@@ -131,21 +131,24 @@ public class PublicationService implements IService<Publication> {
 
         return publications;
     }
-    public List<String> getPublicationTitlesFromDatabase() {
+    public List<String> getPublicationTitlesForLoggedInUser() {
         List<String> publicationTitles = new ArrayList<>();
 
-        String query = "SELECT titre FROM publication where iduser=91";
+        // Utilisez le userId de l'utilisateur connecté
+        int userId = UserDataManager.getInstance().getUserId();
 
+        // Utilisez un paramètre dans votre requête SQL pour filtrer par utilisateur
+        String query = "SELECT titre FROM publication WHERE iduser = ?";
 
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            // Définissez la valeur du paramètre userId
+            pst.setInt(1, userId);
 
-
-        try (PreparedStatement pst = connection.prepareStatement(query);
-
-             ResultSet rs = pst.executeQuery()) {
-
-            while (rs.next()) {
-                String titre = rs.getString("titre");
-                publicationTitles.add(titre);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    String titre = rs.getString("titre");
+                    publicationTitles.add(titre);
+                }
             }
 
         } catch (SQLException e) {
@@ -224,6 +227,27 @@ public class PublicationService implements IService<Publication> {
         }
 
         return publications;
+    }
+
+    public String getTitrePublication(int idPublication) throws SQLException {
+        String titrePublication = null;
+
+        String req = "SELECT titre FROM publication WHERE id= ?";
+
+        try (PreparedStatement pst = connection.prepareStatement(req)) {
+            pst.setInt(1, idPublication);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    titrePublication = rs.getString("titre");
+                }
+            } // Pas besoin de catch SQLException ici, car le try-with-resources gère automatiquement la fermeture de la ressource ResultSet
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérer les exceptions de manière appropriée dans une application réelle
+        }
+
+        return titrePublication;
     }
 
 }
